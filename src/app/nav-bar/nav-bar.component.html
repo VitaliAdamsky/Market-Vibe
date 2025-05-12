@@ -1,0 +1,39 @@
+<mat-toolbar class="navbar-container">
+  <app-alert-menu></app-alert-menu>
+  <span></span>
+
+
+
+
+  <!-- <button mat-icon-button matTooltip="Alerts at Work" (click)="goToAlertsAtWork()">
+    <mat-icon svgIcon="alarm" style="cursor: pointer;"></mat-icon>
+  </button>
+
+
+  <button mat-icon-button matTooltip="Triggered Alerts" (click)="goToTriggeredAlerts()">
+    <mat-icon style="cursor: pointer;" svgIcon="triggered-alarm"></mat-icon>
+  </button>
+
+  <button mat-icon-button matTooltip="Archived Alerts" (click)="goToArchivedAlerts()">
+    <mat-icon style="cursor: pointer;">history</mat-icon>
+  </button> -->
+
+  <button mat-icon-button matTooltip="Working Coins" (click)="onGetToWork()">
+    <mat-icon style="cursor: pointer;">handyman</mat-icon>
+  </button>
+
+
+
+
+
+  <button mat-icon-button matTooltip="Coins" (click)="goToCoins()">
+    <mat-icon style="cursor: pointer;">local_atm</mat-icon>
+  </button>
+
+
+
+  <app-vwap-alert-menu></app-vwap-alert-menu>
+  <app-admin-panel-menu></app-admin-panel-menu>
+
+  <app-user-profile></app-user-profile>
+</mat-toolbar>
