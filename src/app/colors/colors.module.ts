@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ColorsComponent } from './colors.component';
 import { ColorsRoutingModule } from './colors-routing.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [ColorsComponent],
@@ -14,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     ColorsRoutingModule,
   ],
   exports: [ColorsComponent],

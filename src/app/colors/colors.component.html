@@ -2,9 +2,10 @@
   <h1 class="form-title">
     <span style="margin-bottom: 4px;">Colors</span>
     <a href="https://www.w3schools.com/colors/colors_picker.asp" target="_blank" rel="noopener" class="info-icon-link">
-      <mat-icon class="info-icon">info</mat-icon>
+      <mat-icon class="info-icon" matTooltip="Open color picker" matTooltipPosition="above">info</mat-icon>
     </a>
-    <span class="info-icon-link" (click)="resetSettings()"><mat-icon class="info-icon">info</mat-icon></span>
+    <span class="info-icon-link" (click)="resetSettings()"><mat-icon class="info-icon" svgIcon="reset-settings"
+        matTooltip="Reset Colors" matTooltipPosition="above"></mat-icon></span>
   </h1>
 
   <form [formGroup]="colorsForm" class="colors-form mat-elevation-z10">

@@ -9,10 +9,6 @@ export const COLORS = 'colors';
 //URLS
 const renderBaseURL = env.renderBaseURL;
 
-export const COLORS_URLS = {
-  colorsUrl: `${renderBaseURL}/colors`,
-};
-
 // export const KLINE_URLS = {
 //   proxyKlineUrl: `${baseURL}/proxy-kline`,
 // };

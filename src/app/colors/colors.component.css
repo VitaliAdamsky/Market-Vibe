@@ -9,7 +9,7 @@
   font-weight: bold;
   display: inline-flex;   /* keeps it centered in text-align: center */
   align-items: center;    /* vertical alignment */
-  gap: 6px;
+  gap: 4px;
 }
 
 .info-icon-link {
