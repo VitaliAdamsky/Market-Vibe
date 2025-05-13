@@ -8,7 +8,7 @@ import { APP_ICONS } from '../assets/icons-library';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Market-Vibe';
+  title = 'Market Vibe';
   constructor(private iconRegistry: IconRegistryService) {
     this.iconRegistry.registerIcons(APP_ICONS);
   }
