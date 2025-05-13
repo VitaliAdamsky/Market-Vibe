@@ -1,0 +1,20 @@
+<!-- Shared mat-menu -->
+<mat-menu #coinMenu="matMenu" class="dark-menu">
+  <div class="menu-icons" *ngIf="selectedCoin">
+    <a [href]="coinLinksService.tradingViewLink(selectedCoin.symbol, selectedCoin.exchanges)" target="_blank"
+      mat-menu-item>
+      <img src="assets/icons/tv.svg" alt="TV" class="round-image" />
+    </a>
+
+    <a [href]="coinLinksService.coinglassLink(selectedCoin.symbol, selectedCoin.exchanges)" target="_blank"
+      mat-menu-item>
+      <img src="assets/icons/coinglass.svg" alt="CG" class="round-image" />
+    </a>
+
+    <ng-container *ngFor="let exchange of selectedCoin.exchanges">
+      <a [href]="coinLinksService.exchangeLink(selectedCoin.symbol, exchange)" target="_blank" mat-menu-item>
+        <img [src]="coinLinksService.exchangeLogoLink(exchange)" [alt]="exchange" class="round-image" />
+      </a>
+    </ng-container>
+  </div>
+</mat-menu>
