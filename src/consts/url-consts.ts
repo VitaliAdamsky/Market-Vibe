@@ -5,6 +5,7 @@ export const COINS = 'coins';
 export const ADMIN = 'admin';
 export const LOGIN = 'login';
 export const COLORS = 'colors';
+export const HEATMAP = 'heatmap';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;

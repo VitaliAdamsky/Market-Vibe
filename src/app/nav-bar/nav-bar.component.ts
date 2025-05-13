@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../login/service/auth.service';
-import { COLORS } from 'src/consts/url-consts';
+import { COLORS, HEATMAP } from 'src/consts/url-consts';
 
 @Component({
   selector: 'app-nav-bar',
@@ -28,6 +28,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   goToAlertsAtWork() {
     this.router.navigate([]);
+  }
+  onGetToHeatmap() {
+    this.router.navigate([HEATMAP]);
   }
 
   goToTriggeredAlerts() {

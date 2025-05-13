@@ -1,0 +1,45 @@
+.color-cell {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.logo {
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: left;
+  white-space: nowrap;
+  font-size: 12px;
+
+}
+.coin-label {
+  white-space: nowrap;
+  padding-right: 8px;
+  font-weight: 500;
+}
+
+table {
+  table-layout: auto; /* Important! */
+  width: 100%;
+}
+
+tr.cdk-drag-preview {
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.15);
+  background-color: #1e1e1e; /* Dark gray */
+  color: #fff;
+  border: 1px solid #333;
+}
+
+tr.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drop-list-dragging tr:not(.cdk-drag-placeholder) {
+  transition: transform 200ms ease;
+}

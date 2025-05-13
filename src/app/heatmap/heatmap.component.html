@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Coin</th>
+      <th *ngFor="let item of openInterestData[0]?.data?.slice(removedFromBeginningColumns)">
+        <div class="vertical-text">
+          {{ item.openTime | date: 'EEE':'':'ru' }}
+          {{ item.openTime | date: 'HH:mm':'':'ru' }}
+        </div>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody cdkDropList (cdkDropListDropped)="dropRow($event)">
+    <tr *ngFor="let coin of openInterestData; let i = index" cdkDrag>
+      <td class="coin-label">
+        <img class="logo" [src]="coin.imageUrl" width="20" />
+        {{ stripPair(coin.symbol) }}
+      </td>
+      <td *ngFor="let item of coin.data?.slice(removedFromBeginningColumns)">
+        <div class="color-cell" [style.backgroundColor]="item.colors.openInterest"></div>
+      </td>
+    </tr>
+  </tbody>
+</table>

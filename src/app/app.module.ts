@@ -1,7 +1,8 @@
 import { AppMaterialModule } from './material.module';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AlertMenuComponent } from './nav-bar/alert-menu/alert-menu.component';
 import { VwapAlertMenuComponent } from './nav-bar/vwap-alert-menu/vwap-alert-menu.component';
 import { AdminPanelMenuComponent } from './nav-bar/admin-panel-menu/admin-panel-menu.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LoginModule } from './login/login.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -19,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ColorsModule } from './colors/colors.module';
-
+import { HeatmapComponent } from './heatmap/heatmap.component';
+import { HeatmapTableComponent } from './heatmap/heatmap-table/heatmap-table.component';
+registerLocaleData(localeRu);
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,8 @@ import { ColorsModule } from './colors/colors.module';
     AlertMenuComponent,
     VwapAlertMenuComponent,
     AdminPanelMenuComponent,
+    HeatmapComponent,
+    HeatmapTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,11 +47,13 @@ import { ColorsModule } from './colors/colors.module';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(env.firebaseConfig),
     AngularFireAuthModule,
+    DragDropModule,
+
     //--- MY MODULES ---
     LoginModule,
     ColorsModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
