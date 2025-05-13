@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './login/guards/auth.guard';
-import { LOGIN } from 'src/consts/url-consts';
+import { COLORS, LOGIN } from 'src/consts/url-consts';
+import { ColorsComponent } from './colors/colors.component';
 const routes: Routes = [
+  {
+    path: COLORS,
+    loadChildren: () =>
+      import('./colors/colors.module').then((m) => m.ColorsModule),
+  },
   {
     path: LOGIN,
     loadChildren: () =>

@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ColorsModule } from './colors/colors.module';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,11 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     AppMaterialModule,
     BrowserAnimationsModule,
-    LoginModule,
     AngularFireModule.initializeApp(env.firebaseConfig),
     AngularFireAuthModule,
+    //--- MY MODULES ---
+    LoginModule,
+    ColorsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

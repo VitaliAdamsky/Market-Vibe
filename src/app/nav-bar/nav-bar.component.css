@@ -1,4 +1,11 @@
- .navbar-container {
+
+/* -------- NAVBAR ---------*/
+.navbar-container {
+  justify-content:   space-evenly;
+  position: fixed; top: 0;
+  left: 0; right: 0;
+  z-index: 1000;
   background-color: #1e1e1e;
-  color: whitesmoke
+  color: whitesmoke;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }

@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../login/service/auth.service';
+import { COLORS } from 'src/consts/url-consts';
 
 @Component({
   selector: 'app-nav-bar',
@@ -21,8 +22,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
-  onGetToWork() {
-    this.router.navigate([]);
+  onGetToColors() {
+    this.router.navigate([COLORS]);
   }
 
   goToAlertsAtWork() {

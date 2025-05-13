@@ -19,13 +19,14 @@ import {
   signInWithCredential,
 } from 'firebase/auth';
 
-import { GENERAL_URLS, LOGIN } from 'src/consts/url-consts';
+import { LOGIN } from 'src/consts/url-consts';
 import { Router } from '@angular/router';
 
 import { UserData } from '../model/user/user-data';
 import { env } from 'src/environments/environment';
 import { SnackbarType } from 'src/app/models/shared/snackbar-type';
 import { SnackbarService } from 'src/services/snackbar.service';
+import { EMAIL_VALIDATION_URL } from '../consts/url-const';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -168,11 +169,7 @@ export class AuthService {
   private validateEmailWithBackend(email: string): Observable<UserData> {
     console.log('User email', email);
     return this.http
-      .post<UserData>(
-        GENERAL_URLS.emailValidationUrl,
-        { email },
-        this.httpOptions
-      )
+      .post<UserData>(EMAIL_VALIDATION_URL, { email }, this.httpOptions)
       .pipe(
         tap((data) => {
           console.log('Backend response:', data);

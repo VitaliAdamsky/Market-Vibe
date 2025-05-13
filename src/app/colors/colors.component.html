@@ -1,0 +1,22 @@
+<div class="form-container">
+  <h1 class="form-title">
+    <span style="margin-bottom: 4px;">Colors</span>
+    <a href="https://www.w3schools.com/colors/colors_picker.asp" target="_blank" rel="noopener" class="info-icon-link">
+      <mat-icon class="info-icon">info</mat-icon>
+    </a>
+    <span class="info-icon-link" (click)="resetSettings()"><mat-icon class="info-icon">info</mat-icon></span>
+  </h1>
+
+  <form [formGroup]="colorsForm" class="colors-form mat-elevation-z10">
+    <div *ngFor="let key of colorKeys" class="color-row">
+      <label>{{ formatLabel(key) }}</label>
+      <input type="text" [formControlName]="key" class="color-input" />
+      <div class="color-box" [style.backgroundColor]="getSafeColor(colorsForm.get(key)?.value)"></div>
+      <div *ngIf="!isResetting && colorsForm.get(key)?.invalid && colorsForm.get(key)?.touched" class="error-message">
+        Invalid color code!
+      </div>
+    </div>
+
+    <button mat-flat-button color="primary" style="margin-top: 10px;" (click)="submit()">Save Colors</button>
+  </form>
+</div>
