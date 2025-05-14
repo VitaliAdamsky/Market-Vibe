@@ -11,7 +11,7 @@ import {
   OverlayRef,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ExchangesTooltipComponent } from './shared/exchanges-tooltip/exchanges-tooltip.component';
+import { ExchangesTooltipComponent } from '../exchanges-tooltip.component';
 
 @Directive({
   selector: '[appExchangeTooltip]',

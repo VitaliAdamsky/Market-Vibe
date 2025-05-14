@@ -23,7 +23,7 @@ import { ColorsModule } from './colors/colors.module';
 import { HeatmapComponent } from './heatmap/heatmap.component';
 import { HeatmapTableComponent } from './heatmap/heatmap-table/heatmap-table.component';
 import { ExchangesTooltipComponent } from './shared/exchanges-tooltip/exchanges-tooltip.component';
-import { ExchangeTooltipDirective } from './exchange-tooltip.directive';
+import { ExchangeTooltipDirective } from './shared/exchanges-tooltip/directives/exchange-tooltip.directive';
 registerLocaleData(localeRu);
 @NgModule({
   declarations: [
