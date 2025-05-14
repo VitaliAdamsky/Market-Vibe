@@ -82,7 +82,7 @@ export class CoinLinksService {
 
   exchangeLogoLink(exchange: string) {
     if (exchange == 'Binance') {
-      return `assets/icons/binance-black.svg`;
+      return `assets/img/binance.png`;
     }
     if (exchange == 'Bybit') {
       return `assets/icons/bybit.svg`;

@@ -16,12 +16,12 @@
       <td class="coin-label">
         <div class="logo-container">
           <img ExchangeTooltipDirective
-            [appExchangeTooltip]="{ coinName: stripPair(coin.symbol), exchanges: coin.exchanges }" [src]="coin.imageUrl"
+            [appExchangeTooltip]="{ symbol: stripPair(coin.symbol), exchanges: coin.exchanges }" [src]="coin.imageUrl"
             width="20" />
           <span class="coin-name">{{ stripPair(coin.symbol) }}</span>
-          <img class="round-image" src="assets/img/tv-white.png" alt="">
+          <!-- <img class="round-image" src="assets/img/tv-white.png" alt="">
           <img class="round-image" src="assets/img/coinglass-white.png" alt="">
-          <img class="round-image" src="assets/img/binance.png" alt="">
+          <img class="round-image" src="assets/img/binance.png" alt=""> -->
         </div>
         <ng-template #tooltipTemplate>
           <div class="tooltip-content">

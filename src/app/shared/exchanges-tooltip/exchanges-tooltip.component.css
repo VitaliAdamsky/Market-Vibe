@@ -1,23 +1,19 @@
-.tooltip-content {
-max-width: 200px;
-background-color: #333;
-color: white;
-padding: 8px;
-border-radius: 4px;
-font-size: 12px;
+.tooltip-content{
+  margin-left: 6px;
+   display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-ul {
-list-style-type: none;
-margin: 0;
-padding: 0;
+.round-image {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Circle shape */
+  transition: transform 0.2s ease;
+  object-fit: cover; /* Ensures image covers the area without stretching */
 }
 
-li {
-margin: 4px 0;
-}
-
-a {
-color: #76c7ff;
-text-decoration: none;
+/* Hover effect for images */
+.round-image:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
 }

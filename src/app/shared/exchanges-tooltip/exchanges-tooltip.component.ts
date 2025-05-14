@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoinLinksService } from 'src/app/heatmap/services/coin-links.service';
 
 @Component({
   selector: 'app-exchanges-tooltip',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./exchanges-tooltip.component.css'],
 })
 export class ExchangesTooltipComponent {
-  coinName: string = '';
+  constructor(public coinLinksService: CoinLinksService) {}
+  symbol: string = '';
   exchanges: string[] = [];
 }

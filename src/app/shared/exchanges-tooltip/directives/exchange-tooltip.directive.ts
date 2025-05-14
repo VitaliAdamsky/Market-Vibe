@@ -12,14 +12,15 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ExchangesTooltipComponent } from '../exchanges-tooltip.component';
+import { TooltipManagerService } from '../../services/tooltip-manager.service';
 
 @Directive({
   selector: '[appExchangeTooltip]',
 })
 export class ExchangeTooltipDirective {
   @Input('appExchangeTooltip') tooltipData!: {
-    coinName: string;
-    exchanges: string[]; // adjust this later if you have objects instead of strings
+    symbol: string;
+    exchanges: string[];
   };
 
   private overlayRef: OverlayRef | null = null;
@@ -29,12 +30,16 @@ export class ExchangeTooltipDirective {
     private overlay: Overlay,
     private overlayPositionBuilder: OverlayPositionBuilder,
     private elementRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private tooltipManager: TooltipManagerService
   ) {}
 
   @HostListener('mouseenter')
   showTooltip() {
     clearTimeout(this.closeTimeout);
+
+    // Close any previously opened tooltip before opening new one
+    this.tooltipManager.closeCurrentTooltip();
 
     if (!this.overlayRef) {
       const positionStrategy = this.overlayPositionBuilder
@@ -42,7 +47,7 @@ export class ExchangeTooltipDirective {
         .withPositions([
           {
             originX: 'end',
-            originY: 'bottom',
+            originY: 'top',
             overlayX: 'start',
             overlayY: 'top',
           },
@@ -53,10 +58,19 @@ export class ExchangeTooltipDirective {
       const tooltipPortal = new ComponentPortal(ExchangesTooltipComponent);
       const tooltipRef = this.overlayRef.attach(tooltipPortal);
 
-      tooltipRef.instance.coinName = this.tooltipData.coinName;
+      // Pass data to tooltip component
+      tooltipRef.instance.symbol = this.tooltipData.symbol;
       tooltipRef.instance.exchanges = this.tooltipData.exchanges;
 
-      // Keep tooltip open when mouse enters tooltip content
+      // Notify manager about new tooltip
+      this.tooltipManager.openTooltip(this.overlayRef);
+
+      // Clear local overlayRef when tooltip is destroyed
+      tooltipRef.onDestroy(() => {
+        this.overlayRef = null;
+      });
+
+      // Keep tooltip open while hovering over it
       this.renderer.listen(
         tooltipRef.location.nativeElement,
         'mouseenter',
@@ -82,7 +96,7 @@ export class ExchangeTooltipDirective {
         this.overlayRef.detach();
         this.overlayRef = null;
       }
-    }, 300); // Adjust this delay as needed (in ms)
+    }, 300); // Adjust delay as needed
   }
 
   ngOnDestroy() {

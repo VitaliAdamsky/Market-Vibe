@@ -1,9 +1,16 @@
-template: `
 <div class="tooltip-content">
-  <strong>{{ coinName }}</strong>
-  <ul>
-    <li *ngFor="let exchange of exchanges">
-      <a [href]="exchange" target="_blank">{{ exchange }}</a>
-    </li>
-  </ul>
+  <!-- TRADING VIEW -->
+  <a [href]="coinLinksService.tradingViewLink(symbol+'USDT', exchanges)" target="_blank">
+    <img src="assets/img/tv-white.png" alt="TradingView" class="round-image" />
+  </a>
+  <!-- COIN GLASS -->
+  <a [href]="coinLinksService.coinglassLink(symbol+'USDT', exchanges)" target="_blank">
+    <img src="assets/img/coinglass-white.png" alt="Coinglass" class="round-image" />
+  </a>
+
+  <div style="display: inline-block;" *ngFor="let exchange of exchanges">
+    <a [href]="coinLinksService.exchangeLink(symbol+'USDT',exchange)" target="_blank">
+      <img [src]="coinLinksService.exchangeLogoLink(exchange)" [alt]="exchange" class="round-image" />
+    </a>
+  </div>
 </div>
