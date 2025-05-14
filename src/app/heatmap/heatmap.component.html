@@ -33,8 +33,9 @@
         </ng-template>
       </td>
 
-      <td *ngFor="let item of coin.data?.slice(removedFromBeginningColumns)">
-        <div matTooltip="{{ item.tooltipText }}" class="color-cell" [style.backgroundColor]="item.displayedColorValue">
+      <td *ngFor="let item of coin.data?.slice(removedFromBeginningColumns)" class="color-cell">
+        <div matTooltip="{{ item.tooltipText }}" matTooltipPosition="above" class="color-cell"
+          [style.backgroundColor]="item.displayedColorValue">
         </div>
       </td>
     </tr>

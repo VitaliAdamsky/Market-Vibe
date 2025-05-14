@@ -137,3 +137,14 @@ tr.cdk-drag-placeholder {
 .round-image:hover {
   transform: scale(1.1);
 }
+
+.color-cell {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease-in-out;
+  cursor: default;
+}
+
+.color-cell:hover {
+  transform: scale(1.07);
+}
