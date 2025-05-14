@@ -89,27 +89,7 @@ tr.cdk-drag-placeholder {
   transform: scale(1.1); /* Slight zoom on hover */
 }
 
-/* Styling the individual mat-menu items (links) */
-mat-menu-item {
-  padding: 0px 0px; /* Padding for items */
-  font-size: 14px; /* Font size for better readability */
-  background-color: transparent; /* Make sure the background is transparent */
-  color: #fff; /* White text color */
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
 
-/* Hover effect for mat-menu items */
-mat-menu-item:hover {
-  background-color: #444; /* Darker background on hover */
-}
-
-/* Optional: Adjust the width of mat-menu items if needed */
-mat-menu {
-  min-width: 100px; /* Minimum width for the menu */
-  max-width: 150px; /* Maximum width for the menu */
-}
 
 /* Optional: Styling for menu trigger (logo) */
 .coin-label img {
@@ -134,13 +114,26 @@ mat-menu {
   color: #ddd; /* Lighter color for the coin name */
   margin-left: px;
 }
-
-/* Optional: Menu item separator for visual organization */
-.mat-menu-item:not(:last-child) {
-  border-bottom: 1px solid #444; /* A thin border between items */
+ /* TOOLTIP */
+/* Container for the logo and menu */
+.logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Optional: Small tweak to align menu more centrally */
-.mat-menu-panel {
-  margin: 0 !important; /* Removing any default margin */
+
+
+/* Icons within the menu */
+.round-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.round-image:hover {
+  transform: scale(1.1);
 }

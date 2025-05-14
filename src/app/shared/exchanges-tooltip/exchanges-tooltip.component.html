@@ -1,0 +1,9 @@
+template: `
+<div class="tooltip-content">
+  <strong>{{ coinName }}</strong>
+  <ul>
+    <li *ngFor="let exchange of exchanges">
+      <a [href]="exchange" target="_blank">{{ exchange }}</a>
+    </li>
+  </ul>
+</div>

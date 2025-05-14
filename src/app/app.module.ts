@@ -22,6 +22,8 @@ import { RouterModule } from '@angular/router';
 import { ColorsModule } from './colors/colors.module';
 import { HeatmapComponent } from './heatmap/heatmap.component';
 import { HeatmapTableComponent } from './heatmap/heatmap-table/heatmap-table.component';
+import { ExchangesTooltipComponent } from './shared/exchanges-tooltip/exchanges-tooltip.component';
+import { ExchangeTooltipDirective } from './exchange-tooltip.directive';
 registerLocaleData(localeRu);
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ registerLocaleData(localeRu);
     AdminPanelMenuComponent,
     HeatmapComponent,
     HeatmapTableComponent,
+    ExchangesTooltipComponent,
+    ExchangeTooltipDirective,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,6 @@ registerLocaleData(localeRu);
     AngularFireModule.initializeApp(env.firebaseConfig),
     AngularFireAuthModule,
     DragDropModule,
-
     //--- MY MODULES ---
     LoginModule,
     ColorsModule,

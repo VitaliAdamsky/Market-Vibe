@@ -1,0 +1,23 @@
+.tooltip-content {
+max-width: 200px;
+background-color: #333;
+color: white;
+padding: 8px;
+border-radius: 4px;
+font-size: 12px;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+li {
+margin: 4px 0;
+}
+
+a {
+color: #76c7ff;
+text-decoration: none;
+}

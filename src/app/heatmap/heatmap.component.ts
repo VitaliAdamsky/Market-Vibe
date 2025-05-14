@@ -15,7 +15,8 @@ export class HeatmapComponent {
   subcribtion: Subscription = new Subscription();
   openInterestData: OpentInterestData[] = [];
   removedFromBeginningColumns = 4;
-  selectedCoin: any = null;
+  selectedCoin: OpentInterestData | null = null;
+
   constructor(
     private marketService: MarketService,
     public coinLinksService: CoinLinksService
