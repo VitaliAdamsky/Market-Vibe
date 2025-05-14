@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { MarketService } from './services/market-data.service';
-import { MarketData } from './models/market-data';
+import { OiMarketDataService } from './services/oi-market-data.service';
 import { TF } from './models/timeframes';
-import { OpenInterestTableRow, OpentInterestData } from './models/oi';
+import { OpentInterestData } from './models/oi';
 import { CoinLinksService } from './services/coin-links.service';
+import { TableDataRow } from './models/table-metrics';
 @Component({
   selector: 'app-heatmap',
   templateUrl: './heatmap.component.html',
@@ -13,19 +13,21 @@ import { CoinLinksService } from './services/coin-links.service';
 })
 export class HeatmapComponent {
   subcribtion: Subscription = new Subscription();
-  openInterestData: OpentInterestData[] = [];
+  openInterestData: TableDataRow[] = [];
   removedFromBeginningColumns = 4;
   selectedCoin: OpentInterestData | null = null;
 
   constructor(
-    private marketService: MarketService,
+    private oiMarketDataService: OiMarketDataService,
     public coinLinksService: CoinLinksService
   ) {
     this.subcribtion.add(
-      this.marketService.getOpenInterestData(TF.h1).subscribe((data) => {
-        this.openInterestData = data;
-        console.log(data);
-      })
+      this.oiMarketDataService
+        .getOpenInterestTableRows(TF.h1, 'openInterest')
+        .subscribe((data) => {
+          this.openInterestData = data;
+          console.log(data);
+        })
     );
   }
   stripPair(symbol: string): string {

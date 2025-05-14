@@ -3,6 +3,7 @@ export interface FundingRateItem {
   closeTime: number;
   fundingRate: number;
   fundingRateChange: number | null;
+  normalizedFundingRate: number;
   colors?: {
     fundingRate: string;
     fundingRateChange: string;

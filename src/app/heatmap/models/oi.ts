@@ -3,6 +3,7 @@ export interface OpentInterestItem {
   symbol: string;
   openInterest: number;
   openInterestChange: number;
+  normalizedOpenInterest: number;
   colors: {
     openInterest: string;
     openInterestChange: string;

@@ -19,9 +19,6 @@
             [appExchangeTooltip]="{ symbol: stripPair(coin.symbol), exchanges: coin.exchanges }" [src]="coin.imageUrl"
             width="20" />
           <span class="coin-name">{{ stripPair(coin.symbol) }}</span>
-          <!-- <img class="round-image" src="assets/img/tv-white.png" alt="">
-          <img class="round-image" src="assets/img/coinglass-white.png" alt="">
-          <img class="round-image" src="assets/img/binance.png" alt=""> -->
         </div>
         <ng-template #tooltipTemplate>
           <div class="tooltip-content">
@@ -37,9 +34,9 @@
       </td>
 
       <td *ngFor="let item of coin.data?.slice(removedFromBeginningColumns)">
-        <div class="color-cell" [style.backgroundColor]="item.colors.openInterest"></div>
+        <div matTooltip="{{ item.tooltipText }}" class="color-cell" [style.backgroundColor]="item.displayedColorValue">
+        </div>
       </td>
     </tr>
-
   </tbody>
 </table>

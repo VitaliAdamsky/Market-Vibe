@@ -11,6 +11,11 @@ export interface KlineDataItem {
   buyerRatioChange: number;
   spotClosePrice: number;
   perpSpotDiff: number;
+  normalizedClosePrice: number;
+  normalizedBuyerRatio: number;
+  normalizedQuoteVolume: number;
+  normalizedSpotClosePrice: number;
+  normalizedVolumeDelta: number;
   colors?: {
     closePrice: string;
     closePriceChange: string;
