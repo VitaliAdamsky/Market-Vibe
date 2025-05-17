@@ -1,15 +1,8 @@
-import { MatMenuModule } from '@angular/material/menu'; // For mat-menu/matMenuTriggerFor
-import { MatToolbarModule } from '@angular/material/toolbar'; // For mat-toolbar
-import { MatButtonModule } from '@angular/material/button'; // For mat-button/mat-icon-button
-import { MatIconModule } from '@angular/material/icon'; // For mat-icon
-import { MatTooltipModule } from '@angular/material/tooltip'; // For matTooltip
-import { Subscription, take } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../login/service/auth.service';
-import { COLORS, HEATMAP } from 'src/consts/url-consts';
+import { COLORS, FUNDING_RATE } from 'src/consts/url-consts';
 
 @Component({
   selector: 'app-nav-bar',
@@ -29,8 +22,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
   goToAlertsAtWork() {
     this.router.navigate([]);
   }
-  onGetToHeatmap() {
-    this.router.navigate([HEATMAP]);
+  onGoToFundingRate() {
+    this.router.navigate([FUNDING_RATE]);
   }
 
   goToTriggeredAlerts() {

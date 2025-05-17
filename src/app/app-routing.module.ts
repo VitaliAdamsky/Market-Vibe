@@ -1,9 +1,14 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { COLORS, HEATMAP, LOGIN } from 'src/consts/url-consts';
-import { ColorsComponent } from './colors/colors.component';
-import { HeatmapComponent } from './heatmap/heatmap.component';
+import {
+  COLORS,
+  FUNDING_RATE,
+  LOGIN,
+  OPEN_INTEREST,
+} from 'src/consts/url-consts';
+import { FundingRateComponent } from './funding-rate/funding-rate.component';
+import { OpenInterestComponent } from './open-interest/open-interest.component';
+
 const routes: Routes = [
   {
     path: COLORS,
@@ -11,8 +16,12 @@ const routes: Routes = [
       import('./colors/colors.module').then((m) => m.ColorsModule),
   },
   {
-    path: HEATMAP,
-    component: HeatmapComponent,
+    path: FUNDING_RATE,
+    component: FundingRateComponent,
+  },
+  {
+    path: OPEN_INTEREST,
+    component: OpenInterestComponent,
   },
   {
     path: LOGIN,

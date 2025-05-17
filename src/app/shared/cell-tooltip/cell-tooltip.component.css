@@ -1,0 +1,9 @@
+.tooltip-content {
+  padding: 8px;
+  background-color: #333;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  max-width: 200px;
+  word-wrap: break-word;
+}

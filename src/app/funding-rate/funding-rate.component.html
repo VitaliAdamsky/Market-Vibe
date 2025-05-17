@@ -1,0 +1,9 @@
+<div class="header">
+  <span class="header-text">{{ currentMetric.title }}</span>
+  <span class="header-icon" (click)="openInfoModal()">
+    <mat-icon>info</mat-icon>
+  </span>
+</div>
+<div *ngFor="let group of groupedTableData" class="group-container">
+  <app-heatmap-table [data]="group"></app-heatmap-table>
+</div>

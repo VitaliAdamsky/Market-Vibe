@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MetricService } from 'src/app/shared/services/metric.service';
+import { FUNDING_RATE } from 'src/consts/url-consts';
 
 @Component({
   selector: 'app-alert-menu',
@@ -7,16 +9,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./alert-menu.component.css'],
 })
 export class AlertMenuComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private metricService: MetricService) {}
 
   ngOnInit(): void {}
 
-  goToAlertsAtWork() {
-    this.router.navigate([]);
+  goToFundingRate() {
+    this.router.navigate([FUNDING_RATE], {
+      queryParams: { metric: 'fundingRate' },
+    });
   }
 
-  goToTriggeredAlerts() {
-    this.router.navigate([]);
+  goToFundingRateChange() {
+    this.router.navigate([FUNDING_RATE], {
+      queryParams: { metric: 'fundingRateChange' },
+    });
   }
 
   goToArchivedAlerts() {

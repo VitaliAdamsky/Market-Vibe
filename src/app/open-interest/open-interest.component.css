@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  align-items: center;     /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  gap: 10px;               /* Space between text and icon */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.header-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+

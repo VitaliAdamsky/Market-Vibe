@@ -1,24 +1,20 @@
 <button mat-button [matMenuTriggerFor]="menu">
   <mat-icon>shield_person</mat-icon>
-  <span>Admin</span>
+  <span>Open Interest</span>
 </button>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="onGoToExchanges()">
+  <button mat-menu-item (click)="onGoToOpenInterest()">
     <mat-icon>attach_money</mat-icon>
-    <span>Exchanges</span>
+    <span>Open Intereset</span>
   </button>
 
 
-  <button mat-menu-item (click)="onGoToAlertsBatch()">
+  <button mat-menu-item (click)="onGoToOpenInterestChange()">
     <mat-icon svgIcon="data-object"></mat-icon>
-    <span>Alerts Batch</span>
+    <span>Open Interest Change</span>
   </button>
 
-  <button mat-menu-item (click)="onGoToDConfig()">
-    <mat-icon svgIcon="developer-mode"></mat-icon>
-    <span>Developer Mode</span>
-  </button>
 
 
 </mat-menu>

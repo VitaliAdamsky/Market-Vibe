@@ -1,0 +1,7 @@
+<div class="header">
+  <span class="header-text">{{ title }}</span>
+  <span class="header-icon" (click)="openInfoModal()">
+    <mat-icon>info</mat-icon>
+  </span>
+</div>
+<app-heatmap-table [data]="tableData"></app-heatmap-table>

@@ -1,0 +1,5 @@
+<div class="container">
+  <div *ngIf="htmlContent$ | async as htmlContent">
+    <div [innerHTML]="htmlContent"></div>
+  </div>
+</div>

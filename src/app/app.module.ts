@@ -20,10 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ColorsModule } from './colors/colors.module';
-import { HeatmapComponent } from './heatmap/heatmap.component';
-import { HeatmapTableComponent } from './heatmap/heatmap-table/heatmap-table.component';
+
 import { ExchangesTooltipComponent } from './shared/exchanges-tooltip/exchanges-tooltip.component';
 import { ExchangeTooltipDirective } from './shared/exchanges-tooltip/directives/exchange-tooltip.directive';
+import { HeatmapTableComponent } from './heatmap-table/heatmap-table.component';
+import { FundingRateComponent } from './funding-rate/funding-rate.component';
+import { InfoModalComponent } from './shared/info-modal/info-modal.component';
+import { OpenInterestComponent } from './open-interest/open-interest.component';
+import { CellTooltipComponent } from './shared/cell-tooltip/cell-tooltip.component';
+import { CellTooltipDirective } from './shared/cell-tooltip/directives/cell-tooltip.directive';
 registerLocaleData(localeRu);
 @NgModule({
   declarations: [
@@ -32,10 +37,14 @@ registerLocaleData(localeRu);
     AlertMenuComponent,
     VwapAlertMenuComponent,
     AdminPanelMenuComponent,
-    HeatmapComponent,
     HeatmapTableComponent,
     ExchangesTooltipComponent,
     ExchangeTooltipDirective,
+    FundingRateComponent,
+    InfoModalComponent,
+    OpenInterestComponent,
+    CellTooltipComponent,
+    CellTooltipDirective,
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
 
 import { UserData } from '../model/user/user-data';
 import { env } from 'src/environments/environment';
-import { SnackbarType } from 'src/app/models/shared/snackbar-type';
+import { SnackbarType } from 'src/app/shared/models/snackbar-type';
 import { SnackbarService } from 'src/services/snackbar.service';
 import { EMAIL_VALIDATION_URL } from '../consts/url-const';
 

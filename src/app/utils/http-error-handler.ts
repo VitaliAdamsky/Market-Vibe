@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SnackbarService } from 'src/services/snackbar.service';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { SnackbarType } from '../models/shared/snackbar-type';
+import { SnackbarType } from '../shared/models/snackbar-type';
 
 @Injectable({
   providedIn: 'root',

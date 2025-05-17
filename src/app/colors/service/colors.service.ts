@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Colors } from '../models/colors';
 import { HttpErrorHandler } from 'src/app/utils/http-error-handler';
 import { SnackbarService } from 'src/services/snackbar.service';
-import { SnackbarType } from 'src/app/models/shared/snackbar-type';
+import { SnackbarType } from 'src/app/shared/models/snackbar-type';
 import { env } from 'src/environments/environment';
 
 @Injectable({

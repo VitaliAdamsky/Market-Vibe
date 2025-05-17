@@ -4,7 +4,7 @@ import { Colors } from './models/colors';
 import { ColorService } from './service/colors.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnackbarService } from 'src/services/snackbar.service';
-import { SnackbarType } from '../models/shared/snackbar-type';
+import { SnackbarType } from '../shared/models/snackbar-type';
 
 const DEFAULTS: Colors = {
   closePriceMin: '#90EE90',

@@ -1,5 +1,7 @@
 <mat-toolbar class="navbar-container">
   <app-alert-menu></app-alert-menu>
+  <app-admin-panel-menu></app-admin-panel-menu>
+
   <span></span>
 
 
@@ -22,19 +24,13 @@
     <mat-icon style="cursor: pointer;">handyman</mat-icon>
   </button>
 
-  <button mat-icon-button matTooltip="Working Coins" (click)="onGetToHeatmap()">
+  <button mat-icon-button matTooltip="Funding Rate" (click)="onGoToFundingRate()">
     <mat-icon style="cursor: pointer;">money</mat-icon>
   </button>
-
-
-
-
 
   <button mat-icon-button matTooltip="Coins" (click)="goToCoins()">
     <mat-icon style="cursor: pointer;">local_atm</mat-icon>
   </button>
-
-
 
   <app-vwap-alert-menu></app-vwap-alert-menu>
   <app-admin-panel-menu></app-admin-panel-menu>

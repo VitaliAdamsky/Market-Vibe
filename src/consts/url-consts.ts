@@ -5,7 +5,8 @@ export const COINS = 'coins';
 export const ADMIN = 'admin';
 export const LOGIN = 'login';
 export const COLORS = 'colors';
-export const HEATMAP = 'heatmap';
+export const FUNDING_RATE = 'funding-rate';
+export const OPEN_INTEREST = 'open-interest';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;

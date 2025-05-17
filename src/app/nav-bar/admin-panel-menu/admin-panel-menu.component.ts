@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TF } from 'src/app/shared/models/timeframes';
+import { MetricService } from 'src/app/shared/services/metric.service';
+import { OPEN_INTEREST } from 'src/consts/url-consts';
 
 @Component({
   selector: 'app-admin-panel-menu',
@@ -7,17 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-panel-menu.component.css'],
 })
 export class AdminPanelMenuComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private metricService: MetricService) {}
 
-  onGoToAlertsBatch() {
-    this.router.navigate([]);
+  onGoToOpenInterest() {
+    this.router.navigate([OPEN_INTEREST], {
+      queryParams: { metric: 'openInterest', timeframe: TF.h12 },
+    });
   }
 
-  onGoToExchanges() {
-    this.router.navigate([]);
-  }
-
-  onGoToDConfig() {
-    this.router.navigate([]);
+  onGoToOpenInterestChange() {
+    this.router.navigate([OPEN_INTEREST], {
+      queryParams: { metric: 'openInterestChange', timeframe: TF.h12 },
+    });
   }
 }

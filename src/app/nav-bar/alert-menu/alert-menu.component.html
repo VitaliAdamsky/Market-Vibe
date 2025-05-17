@@ -1,10 +1,10 @@
 <button mat-button [matMenuTriggerFor]="menu">
-  <mat-icon>menu</mat-icon>Alerts</button>
+  <mat-icon>menu</mat-icon>Funding Rate</button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="goToAlertsAtWork()"> <mat-icon svgIcon="alarm"></mat-icon>
-    <span>Alerts at Work</span></button>
-  <button mat-menu-item (click)="goToTriggeredAlerts()"> <mat-icon svgIcon="triggered-alarm"></mat-icon>
-    <span>Triggered Alerts</span></button>
+  <button mat-menu-item (click)="goToFundingRate()"> <mat-icon svgIcon="alarm"></mat-icon>
+    <span>Funding Rate</span></button>
+  <button mat-menu-item (click)="goToFundingRateChange()"> <mat-icon svgIcon="triggered-alarm"></mat-icon>
+    <span>Funding Rate Change</span></button>
   <button mat-menu-item (click)="goToArchivedAlerts()"> <mat-icon>history</mat-icon>
     <span>Archived Alerts</span></button>
 </mat-menu>
