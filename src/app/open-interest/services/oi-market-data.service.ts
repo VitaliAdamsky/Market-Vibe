@@ -54,6 +54,7 @@ export class OiMarketDataService {
           openInterest: item.openInterest,
           openInterestChange: item.openInterestChange,
           normalizedOpenInterest: item.normalizedOpenInterest,
+          imageUrl: entry.imageUrl,
           colors: item.colors,
           symbol: entry.symbol,
           exchanges: entry.exchanges, // ✅ Use correct field name

@@ -1,10 +1,18 @@
 <div class="tooltip-box">
-  <div class="row">
+  <div class="row" *ngIf="data.normalizedFundingRate">
     <span class="label">Norm. FR:</span>
-    <span class="data">{{ data.tooltipText }}</span>
+    <span class="data">{{ data.normalizedFundingRate }}</span>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="data.fundingRateChange">
     <span class="label">FR Change:</span>
     <span class="data">{{ data.fundingRateChange }}%</span>
+  </div>
+  <div class="row" *ngIf="data.normalizedOpenInterest">
+    <span class="label">Norm. OI:</span>
+    <span class="data">{{ data.normalizedOpenInterest }}</span>
+  </div>
+  <div class="row" *ngIf="data.openInterestChange">
+    <span class="label">OI Change:</span>
+    <span class="data">{{ data.openInterestChange }}%</span>
   </div>
 </div>

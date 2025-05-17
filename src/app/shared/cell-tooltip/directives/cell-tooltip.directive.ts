@@ -44,7 +44,8 @@ export class CellTooltipDirective implements OnDestroy {
 
   private openTooltip() {
     this.tooltipSyncService.setClickTooltipElement(
-      this.elementRef.nativeElement
+      this.elementRef.nativeElement,
+      this.data?.symbol || null
     );
     const positionStrategy = this.overlayPositionBuilder
       .flexibleConnectedTo(this.elementRef)

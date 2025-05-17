@@ -21,16 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ColorsModule } from './colors/colors.module';
 
-import { ExchangesTooltipComponent } from './shared/exchanges-tooltip/exchanges-tooltip.component';
-import { ExchangeTooltipDirective } from './shared/exchanges-tooltip/directives/exchange-tooltip.directive';
-import { HeatmapTableComponent } from './heatmap-table/heatmap-table.component';
-import { FundingRateComponent } from './funding-rate/funding-rate.component';
-import { InfoModalComponent } from './shared/info-modal/info-modal.component';
-import { OpenInterestComponent } from './open-interest/open-interest.component';
-import { CellTooltipComponent } from './shared/cell-tooltip/cell-tooltip.component';
-import { CellTooltipDirective } from './shared/cell-tooltip/directives/cell-tooltip.directive';
-import { LittleCellTooltipComponent } from './shared/little-cell-tooltip/little-cell-tooltip.component';
-import { LittleCellTooltipDirective } from './shared/little-cell-tooltip/directives/little-cell-tooltip.directive';
+import { SharedModule } from './shared/shared.module';
+import { FundingRateModule } from './funding-rate/funding-rate.module';
+import { OpenInterestModule } from './open-interest/open-interest.module';
 registerLocaleData(localeRu);
 @NgModule({
   declarations: [
@@ -39,16 +32,6 @@ registerLocaleData(localeRu);
     AlertMenuComponent,
     VwapAlertMenuComponent,
     AdminPanelMenuComponent,
-    HeatmapTableComponent,
-    ExchangesTooltipComponent,
-    ExchangeTooltipDirective,
-    FundingRateComponent,
-    InfoModalComponent,
-    OpenInterestComponent,
-    CellTooltipComponent,
-    CellTooltipDirective,
-    LittleCellTooltipComponent,
-    LittleCellTooltipDirective,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +51,9 @@ registerLocaleData(localeRu);
     //--- MY MODULES ---
     LoginModule,
     ColorsModule,
+    FundingRateModule,
+    OpenInterestModule,
+    SharedModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],

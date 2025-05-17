@@ -6,8 +6,6 @@ import {
   LOGIN,
   OPEN_INTEREST,
 } from 'src/consts/url-consts';
-import { FundingRateComponent } from './funding-rate/funding-rate.component';
-import { OpenInterestComponent } from './open-interest/open-interest.component';
 
 const routes: Routes = [
   {
@@ -16,12 +14,18 @@ const routes: Routes = [
       import('./colors/colors.module').then((m) => m.ColorsModule),
   },
   {
-    path: FUNDING_RATE,
-    component: FundingRateComponent,
+    path: OPEN_INTEREST,
+    loadChildren: () =>
+      import('./open-interest/open-interest.module').then(
+        (m) => m.OpenInterestModule
+      ),
   },
   {
-    path: OPEN_INTEREST,
-    component: OpenInterestComponent,
+    path: FUNDING_RATE,
+    loadChildren: () =>
+      import('./funding-rate/funding-rate.module').then(
+        (m) => m.FundingRateModule
+      ),
   },
   {
     path: LOGIN,

@@ -1,10 +1,13 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class TooltipSyncService {
   isClickTooltipOpen = false;
   clickTooltipElement: HTMLElement | null = null;
+  clickTooltipKey: string | null = null;
 
   private activeHoverTooltip: OverlayRef | null = null;
 
@@ -20,8 +23,9 @@ export class TooltipSyncService {
     }
   }
 
-  setClickTooltipElement(el: HTMLElement | null) {
+  setClickTooltipElement(el: HTMLElement | null, key: string | null = null) {
     this.clickTooltipElement = el;
+    this.clickTooltipKey = key;
     this.isClickTooltipOpen = !!el;
   }
 }

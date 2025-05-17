@@ -1,14 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { map, Subscription, switchMap } from 'rxjs';
-import { FrMarketDataService } from '../funding-rate/services/fr-market-data.service';
+
 import { InfoModalComponent } from '../shared/info-modal/info-modal.component';
 import { TableDataRow } from '../shared/models/table-metrics';
 import { MetricService } from '../shared/services/metric.service';
 import { OiMarketDataService } from './services/oi-market-data.service';
 import { TF } from '../shared/models/timeframes';
 import { ActivatedRoute } from '@angular/router';
-import { Metric } from '../shared/models/metric';
 
 @Component({
   selector: 'app-open-interest',

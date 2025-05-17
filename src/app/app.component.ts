@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { IconRegistryService } from '../services/general/icon-registry.service';
 import { APP_ICONS } from '../assets/icons-library';
 

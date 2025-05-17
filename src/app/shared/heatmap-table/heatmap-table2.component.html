@@ -15,22 +15,10 @@
     <tr *ngFor="let coin of openInterestData; let i = index" cdkDrag>
       <td class="coin-label">
         <div class="logo-container">
-          <img ExchangeTooltipDirective
-            [appExchangeTooltip]="{ symbol: stripPair(coin.symbol), exchanges: coin.exchanges }" [src]="coin.imageUrl"
-            width="20" />
+          <img [appExchangeTooltip]="{ symbol: stripPair(coin.symbol), exchanges: coin.exchanges }"
+            [src]="coin.imageUrl" width="20" />
           <span class="coin-name">{{ stripPair(coin.symbol) }}</span>
         </div>
-        <ng-template #tooltipTemplate>
-          <div class="tooltip-content">
-            <strong>{{ stripPair(coin.symbol) }}</strong>
-            <ul>
-              <li *ngFor="let exchange of coin.exchanges">
-                <!-- <a [href]="exchange.url" target="_blank">{{ exchange.name }}</a> -->
-                {{ exchange }}
-              </li>
-            </ul>
-          </div>
-        </ng-template>
       </td>
 
       <td *ngFor="let item of coin.data?.slice(removedFromBeginningColumns)" class="color-cell">

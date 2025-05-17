@@ -8,8 +8,23 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
+.app-scale-wrapper {
+  transform: scale(0.8);
+  transform-origin: top left;
+  width: 125%; /* 100 / 0.8 */
+  height: 125%;
+}
+
+.cdk-overlay-container .mat-mdc-menu-panel {
+  transform: scale(0.8) !important;
+  transform-origin: top left !important;
+  transition: transform 150ms ease-out, opacity 150ms ease-out !important;
+  opacity: 1 !important;
+}
+
+
 .global-container {
-  margin-top: 64px; /* match the navbar height */
+  margin-top: 0px; /* match the navbar height */
   padding: 14px 14px;
   box-sizing: border-box;
 }
