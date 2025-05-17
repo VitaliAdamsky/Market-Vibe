@@ -62,16 +62,18 @@ router-outlet + * {
 .tooltip-box::before {
   content: '';
   position: absolute;
-  bottom: -12px; /* position below the tooltip */
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 12px solid #1e1e1e; /* same as tooltip background */
+  top: 50%;
+  right: -12px; /* position it outside on the right */
+  transform: translateY(-50%);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #1e1e1e; /* same as tooltip background */
   width: 0;
   height: 0;
   z-index: 10;
 }
+
+
 
 
 .tooltip-box h3 {

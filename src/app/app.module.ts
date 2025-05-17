@@ -29,6 +29,8 @@ import { InfoModalComponent } from './shared/info-modal/info-modal.component';
 import { OpenInterestComponent } from './open-interest/open-interest.component';
 import { CellTooltipComponent } from './shared/cell-tooltip/cell-tooltip.component';
 import { CellTooltipDirective } from './shared/cell-tooltip/directives/cell-tooltip.directive';
+import { LittleCellTooltipComponent } from './shared/little-cell-tooltip/little-cell-tooltip.component';
+import { LittleCellTooltipDirective } from './shared/little-cell-tooltip/directives/little-cell-tooltip.directive';
 registerLocaleData(localeRu);
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ registerLocaleData(localeRu);
     OpenInterestComponent,
     CellTooltipComponent,
     CellTooltipDirective,
+    LittleCellTooltipComponent,
+    LittleCellTooltipDirective,
   ],
   imports: [
     BrowserModule,

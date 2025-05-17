@@ -29,7 +29,7 @@
 
       <!-- Color Cells -->
       <td *ngFor="let item of coin.data" class="color-cell">
-        <div matTooltip="{{ item.tooltipText }}" [appCellTooltip]="item" matTooltipPosition="above" class="color-cell"
+        <div [appCellTooltip]="item" [appLittleCellTooltip]="item" class="color-cell"
           [style.backgroundColor]="item.displayedColorValue">
         </div>
       </td>

@@ -8,7 +8,7 @@ import { OverlayRef } from '@angular/cdk/overlay';
 export class TooltipManagerService {
   private currentOverlayRef: OverlayRef | null = null;
   private closeTimeout: any;
-
+  public isClickTooltipOpen: boolean = false;
   openTooltip(overlayRef: OverlayRef) {
     if (this.currentOverlayRef && this.currentOverlayRef !== overlayRef) {
       this.currentOverlayRef.detach();

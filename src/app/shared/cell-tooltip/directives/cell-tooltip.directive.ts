@@ -3,7 +3,6 @@ import {
   ElementRef,
   HostListener,
   Input,
-  Renderer2,
   OnDestroy,
 } from '@angular/core';
 import {
@@ -13,9 +12,9 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { CellTooltipComponent } from '../cell-tooltip.component';
-import { FundingRateItem } from '../../models/fr';
-import { OpentInterestItem } from '../../models/oi';
 import { TableMetricItem } from '../../models/table-metrics';
+import { TooltipManagerService } from '../../services/tooltip-manager.service';
+import { TooltipSyncService } from '../../services/tooltip-sync.service';
 
 @Directive({
   selector: '[appCellTooltip]',
@@ -30,7 +29,7 @@ export class CellTooltipDirective implements OnDestroy {
     private elementRef: ElementRef,
     private overlay: Overlay,
     private overlayPositionBuilder: OverlayPositionBuilder,
-    private renderer: Renderer2
+    private tooltipSyncService: TooltipSyncService
   ) {}
 
   @HostListener('click')
@@ -44,14 +43,17 @@ export class CellTooltipDirective implements OnDestroy {
   }
 
   private openTooltip() {
+    this.tooltipSyncService.setClickTooltipElement(
+      this.elementRef.nativeElement
+    );
     const positionStrategy = this.overlayPositionBuilder
       .flexibleConnectedTo(this.elementRef)
       .withPositions([
         {
-          originX: 'center',
-          originY: 'top',
-          overlayX: 'center',
-          overlayY: 'bottom',
+          originX: 'start',
+          originY: 'center',
+          overlayX: 'end',
+          overlayY: 'center',
         },
       ]);
 
@@ -70,6 +72,7 @@ export class CellTooltipDirective implements OnDestroy {
   }
 
   private closeTooltip() {
+    this.tooltipSyncService.setClickTooltipElement(null);
     if (this.overlayRef && this.overlayRef.hasAttached()) {
       this.overlayRef.detach();
       this.overlayRef = null;
