@@ -1,3 +1,42 @@
-<div class="tooltip-content">
-  <pre>{{ data | json }}</pre>
+<div class="tooltip-box">
+  <div class="header-row">
+    <div class="header">
+      <img [src]="data.imageUrl" class="tooltip-image header-icon" alt="logo" />
+      <h3>{{ stripPair(data.symbol) }}</h3>
+    </div>
+    <mat-icon class="close-icon" (click)="closeTooltip()">close</mat-icon>
+  </div>
+  <div class="row">
+    <span class="label">Open:</span>
+    <span class="data">{{ data.openTime | date:'HH:mm dd MMM yy' }}</span>
+  </div>
+  <div class="row">
+    <span class="label">Close:</span>
+    <span class="data">{{ data.closeTime | date:'HH:mm dd MMM yy' }}</span>
+  </div>
+  <div class="row">
+    <span class="label">Norm. FR:</span>
+    <span class="data">{{ data.normalizedFundingRate }}</span>
+  </div>
+
+  <div class="row">
+    <span class="label">FR Change:</span>
+    <span class="data">{{ data.fundingRateChange }}%</span>
+  </div>
+  <div class="tooltip-exchanges">
+    <!-- TRADING VIEW -->
+    <a [href]="coinLinksService.tradingViewLink(data.symbol, data.exchanges)" target="_blank">
+      <img src="assets/img/tv-white.png" alt="TradingView" class="tooltip-image" />
+    </a>
+    <!-- COIN GLASS -->
+    <a [href]="coinLinksService.coinglassLink(data.symbol, data.exchanges)" target="_blank">
+      <img src="assets/img/coinglass-white.png" alt="Coinglass" class="tooltip-image" />
+    </a>
+
+    <div style="display: inline-block;" *ngFor="let exchange of data.exchanges">
+      <a [href]="coinLinksService.exchangeLink(data.symbol,exchange)" target="_blank">
+        <img [src]="coinLinksService.exchangeLogoLink(exchange)" [alt]="exchange" class="tooltip-image" />
+      </a>
+    </div>
+  </div>
 </div>

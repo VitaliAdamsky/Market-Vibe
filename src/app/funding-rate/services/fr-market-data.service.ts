@@ -32,7 +32,7 @@ export class FrMarketDataService {
     data: FundingRateData[],
     propertyName: string
   ): TableDataRow[] {
-    return data.map((entry) => {
+    return data.map((entry, index) => {
       const rowData = entry.data.map((item: FundingRateItem) => {
         let colorValue = '';
         let tooltipText = '';
@@ -64,7 +64,9 @@ export class FrMarketDataService {
           fundingRateChange: item.fundingRateChange,
           normalizedFundingRate: item.normalizedFundingRate,
           displayedColorValue: colorValue,
-          exchanges: data[0].exchanges,
+          exchanges: data[index].exchanges,
+          symbol: data[index].symbol,
+          imageUrl: data[index].imageUrl,
         } satisfies TableMetricItem;
       });
 

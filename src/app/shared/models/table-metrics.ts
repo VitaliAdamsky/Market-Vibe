@@ -3,6 +3,7 @@ export interface TableMetricItem {
   closeTime: number;
   displayedColorValue: string;
   tooltipText: string;
+  imageUrl?: string;
 
   // Metric-specific values — only some will be used per view
   fundingRate?: number;
@@ -27,7 +28,7 @@ export interface TableMetricItem {
     openInterest: string;
     openInterestChange: string;
   };
-  symbol?: string;
+  symbol: string;
   exchanges: string[]; // 👈 This is required!
 }
 

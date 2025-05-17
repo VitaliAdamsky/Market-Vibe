@@ -49,9 +49,9 @@ export class CellTooltipDirective implements OnDestroy {
       .withPositions([
         {
           originX: 'center',
-          originY: 'bottom',
+          originY: 'top',
           overlayX: 'center',
-          overlayY: 'top',
+          overlayY: 'bottom',
         },
       ]);
 
@@ -60,13 +60,15 @@ export class CellTooltipDirective implements OnDestroy {
     const tooltipPortal = new ComponentPortal(CellTooltipComponent);
     const componentRef = this.overlayRef.attach(tooltipPortal);
 
-    // Pass full data object (not just `TableMetricItem`)
-    componentRef.instance.data = this.data as any; // Or cast to proper type
+    componentRef.instance.data = this.data as any;
 
-    this.overlayRef.backdropClick().subscribe(() => {
-      this.closeTooltip();
-    });
+    // Close on backdrop click
+    this.overlayRef.backdropClick().subscribe(() => this.closeTooltip());
+
+    // Close when the tooltip component requests it
+    componentRef.instance.close.subscribe(() => this.closeTooltip());
   }
+
   private closeTooltip() {
     if (this.overlayRef && this.overlayRef.hasAttached()) {
       this.overlayRef.detach();
