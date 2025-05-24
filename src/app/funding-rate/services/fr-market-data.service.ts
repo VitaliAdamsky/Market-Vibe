@@ -21,7 +21,7 @@ import { isValidFundingRateItemKey } from '../functions/is-valid-fr-item-key';
 })
 export class FrMarketDataService {
   //private readonly apiUrl = `${env.renderBaseURL}/api/fr`;
-  private readonly apiUrl = `http://localhost/api/fr`;
+  private readonly apiUrl = `http://localhost:3000/api/fr`;
 
   constructor(
     private http: HttpClient,

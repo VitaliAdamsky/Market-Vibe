@@ -15,8 +15,8 @@
     <span class="data">{{ data.closeTime | date:'HH:mm dd MMM yy' }}</span>
   </div>
   <div class="row" *ngIf="data.normalizedFundingRate">
-    <span class="label">Norm. FR:</span>
-    <span class="data">{{ data.normalizedFundingRate }}</span>
+    <span class="label">FR:</span>
+    <span class="data">{{ data.fundingRate }}</span>
   </div>
 
   <div class="row" *ngIf="data.fundingRateChange">
