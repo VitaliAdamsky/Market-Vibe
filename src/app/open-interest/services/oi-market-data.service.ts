@@ -13,7 +13,7 @@ import { TF } from 'src/app/shared/models/timeframes';
 })
 export class OiMarketDataService {
   //baseUrl = `${env.renderBaseURL}`;
-  baseUrl = 'http://localhost/api';
+  baseUrl = 'http://localhost:3000/api';
   constructor(
     private http: HttpClient,
     private errorHandler: HttpErrorHandler
