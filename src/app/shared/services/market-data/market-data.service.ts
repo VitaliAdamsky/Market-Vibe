@@ -5,6 +5,7 @@ import { HttpErrorHandler } from 'src/app/utils/http-error-handler';
 import { MarketData } from '../../models/market-data';
 import { TF } from '../../models/timeframes';
 import { IndexedDbService } from './idexdb.service';
+import { DataType } from '../../models/data-type';
 
 @Injectable({ providedIn: 'root' })
 export class MarketDataService {
@@ -16,10 +17,7 @@ export class MarketDataService {
     private indexedDb: IndexedDbService
   ) {}
 
-  getMarketData<T>(
-    dataType: 'oi' | 'fr' | 'kline',
-    timeframe: TF
-  ): Observable<T[]> {
+  getMarketData<T>(dataType: DataType, timeframe: TF): Observable<T[]> {
     const key = `${dataType}-${timeframe}`;
     const now = Date.now();
 

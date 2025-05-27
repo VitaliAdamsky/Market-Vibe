@@ -6,6 +6,7 @@ import { MetricService } from '../shared/services/metric.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoModalComponent } from '../shared/info-modal/info-modal.component';
 import { ActivatedRoute } from '@angular/router';
+import { MarketDataService } from '../shared/services/market-data/market-data.service';
 
 @Component({
   selector: 'app-funding-rate',
@@ -21,7 +22,8 @@ export class FundingRateComponent implements OnDestroy {
     private frMarketDataService: FrMarketDataService,
     private metricService: MetricService,
     private dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private marketDataService: MarketDataService
   ) {
     this.route.queryParams.subscribe((params) => {
       const metric = params['metric'] || 'openInterest';

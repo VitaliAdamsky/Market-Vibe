@@ -9,10 +9,7 @@ html, body {
 }
 
 .app-scale-wrapper {
-  transform: scale(0.8);
-  transform-origin: top left;
-  width: 125%; /* 100 / 0.8 */
-  height: 125%;
+  zoom: 0.8;
 }
 
 .cdk-overlay-container .mat-mdc-menu-panel {
@@ -185,4 +182,28 @@ router-outlet + * {
 
 .tooltip-date {
   color: #f1c010;
+}
+
+/* Override disabled mat-mini-fab button styles */
+/* Override the disabled mini fab background color */
+.mdc-fab.mat-mdc-mini-fab:disabled,
+.mdc-fab.mat-mdc-mini-fab[disabled] {
+  background-color: #4c4d4e !important; /* your desired background */
+  color: #e3e5e6 !important;            /* icon color */
+  opacity: 1 !important;                 /* remove default opacity */
+}
+
+/* Override the ripple effect color on disabled */
+.mdc-fab.mat-mdc-mini-fab:disabled .mat-mdc-button-persistent-ripple,
+.mdc-fab.mat-mdc-mini-fab[disabled] .mat-mdc-button-persistent-ripple {
+  background-color: transparent !important;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+
+.fade-in.show {
+  opacity: 1;
 }

@@ -1,8 +1,8 @@
-import { OpentInterestItem } from 'src/app/shared/models/oi';
+import { OpenInterestItem } from 'src/app/shared/models/oi';
 
-type ItemKey = keyof OpentInterestItem;
+type ItemKey = keyof OpenInterestItem;
 
-export function isValidOpentInterestItemKey(key: string): key is ItemKey {
+export function isValidOpenInterestItemKey(key: string): key is ItemKey {
   const validKeys: Record<PropertyKey, boolean> = {
     openTime: true,
     openInterest: true,

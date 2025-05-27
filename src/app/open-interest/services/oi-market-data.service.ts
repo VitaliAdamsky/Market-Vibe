@@ -4,8 +4,8 @@ import { map, Observable } from 'rxjs';
 import { HttpErrorHandler } from 'src/app/utils/http-error-handler';
 import { MarketData } from 'src/app/shared/models/market-data';
 import { TableDataRow } from 'src/app/shared/models/table-metrics';
-import { OpentInterestData, OpentInterestItem } from 'src/app/shared/models/oi';
-import { isValidOpentInterestItemKey } from '../functions/is-valid-oi-item-key';
+import { OpenInterestData, OpenInterestItem } from 'src/app/shared/models/oi';
+import { isValidOpenInterestItemKey } from '../functions/is-valid-oi-item-key';
 import { TF } from 'src/app/shared/models/timeframes';
 import { IndexedDbService } from 'src/app/shared/services/market-data/idexdb.service';
 
@@ -22,15 +22,15 @@ export class OiMarketDataService {
   ) {}
 
   buildTableRows(
-    data: OpentInterestData[],
+    data: OpenInterestData[],
     propertyName: string
   ): TableDataRow[] {
     return data.map((entry) => {
-      const mappedData = entry.data.map((item: OpentInterestItem) => {
+      const mappedData = entry.data.map((item: OpenInterestItem) => {
         let colorValue = '';
         let tooltipText = '';
 
-        if (isValidOpentInterestItemKey(propertyName)) {
+        if (isValidOpenInterestItemKey(propertyName)) {
           switch (propertyName) {
             case 'openInterest':
               colorValue = item.colors.openInterest;
@@ -73,48 +73,14 @@ export class OiMarketDataService {
     });
   }
 
-  getOpenInterestData2(timeframe: TF): Observable<OpentInterestData[]> {
+  getOpenInterestData2(timeframe: TF): Observable<OpenInterestData[]> {
     return this.http
       .get<MarketData>(this.baseUrl + `/oi?timeframe=${timeframe}`)
       .pipe(
-        map((marketData: MarketData) => marketData.data as OpentInterestData[]),
-        this.errorHandler.handleError<OpentInterestData[]>(
+        map((marketData: MarketData) => marketData.data as OpenInterestData[]),
+        this.errorHandler.handleError<OpenInterestData[]>(
           'Fetching Open Interest Data'
         )
       );
   }
-
-  // private getCacheKey(timeframe: TF): string {
-  //   return `oi-${timeframe}`;
-  // }
-
-  // getOpenInterestData(timeframe: TF): Observable<OpentInterestData[]> {
-  //   const key = this.getCacheKey(timeframe);
-
-  //   return new Observable<OpentInterestData[]>((observer) => {
-  //     const now = Date.now() / 1000;
-
-  //     this.indexedDbService.get(key).then((cached) => {
-  //       if (cached && now < cached.expirationTime) {
-  //         observer.next(cached.data as OpentInterestData[]);
-  //         observer.complete();
-  //       } else {
-  //         this.http
-  //           .get<{
-  //             projectName: string;
-  //             dataType: string;
-  //             expirationTime: number;
-  //             timeframe: TF;
-  //             data: OpentInterestData[];
-  //           }>(`${this.baseUrl}/oi?timeframe=${timeframe}`)
-  //           .pipe(this.errorHandler.handleError('Fetching Open Interest Data'))
-  //           .subscribe((response) => {
-  //             this.indexedDbService.set(key, response);
-  //             observer.next(response.data);
-  //             observer.complete();
-  //           });
-  //       }
-  //     });
-  //   });
-  // }
 }

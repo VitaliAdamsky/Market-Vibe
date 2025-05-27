@@ -1,4 +1,4 @@
-import { OpentInterestData } from '../models/oi';
+import { OpenInterestData } from '../models/oi';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { env } from 'src/environments/environment';
 import { TF } from '../models/timeframes';
 import { MarketData } from '../models/market-data';
 import { TableDataRow } from '../models/table-metrics';
-import { isValidOpentInterestItemKey } from '../../funding-rate/functions/is-valid-oi-item-key';
+import { isValidOpenInterestItemKey } from '../../funding-rate/functions/is-valid-oi-item-key';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,7 @@ export class OiMarketDataService {
             let colorValue = '';
             let tooltipText = '';
 
-            if (isValidOpentInterestItemKey(propertyName)) {
+            if (isValidOpenInterestItemKey(propertyName)) {
               switch (propertyName) {
                 case 'openInterest':
                   colorValue = item.colors.openInterest;
@@ -65,12 +65,12 @@ export class OiMarketDataService {
     );
   }
 
-  getOpenInterestData(timeframe: TF): Observable<OpentInterestData[]> {
+  getOpenInterestData(timeframe: TF): Observable<OpenInterestData[]> {
     return this.http
       .get<MarketData>(this.baseUrl + `/oi?timeframe=${timeframe}`)
       .pipe(
-        map((marketData: MarketData) => marketData.data as OpentInterestData[]),
-        this.errorHandler.handleError<OpentInterestData[]>(
+        map((marketData: MarketData) => marketData.data as OpenInterestData[]),
+        this.errorHandler.handleError<OpenInterestData[]>(
           'Fetching Open Interest Data'
         )
       );

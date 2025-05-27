@@ -1,0 +1,60 @@
+<div class="header">
+  <span class="header-text">{{ title }}</span>
+</div>
+<div class="subheader">
+  <span class="subheader-text">{{ subtitle }}</span>
+</div>
+
+<div #tableContainer class="table-container" class="fade-in" [class.show]="tableReady">
+  <table class="market-table">
+    <thead>
+      <tr>
+        <th style="width: 90px;" (click)="sortData('symbol')">Symbol</th>
+        <th style="width: 80px;" (click)="sortData('fundingRateChange')">Funding Rate Chg</th>
+        <th style="width: 90px;" (click)="sortData('openInterestChange')">OI Change</th>
+        <th style="width: 90px;" (click)="sortData('volumeChange')">Vol Change</th>
+        <th style="width: 90px;" (click)="sortData('volumeDeltaChange')">Vol Δ Chg</th>
+        <th style="width: 90px;" (click)="sortData('closePriceChange')">Price Chg</th>
+        <th style="width: 90px;" (click)="sortData('perpSpotDiff')">Perp/Spot Diff</th>
+        <th style="width: 90px;" (click)="sortData('buyerRatioChange')">Buyer Ratio Chg</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of pagedData" [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges  || []}"
+        [triggerEvent]="'click'">
+        <td class="coin-label">
+          <div class="logo-container">
+            <img [src]="row.imageUrl" width="20"
+              [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges || []}" [triggerEvent]="'hover'" />
+            <span class="coin-name">{{ stripPair(row.symbol) }}</span>
+          </div>
+        </td>
+        <td>{{ row.fundingRateChange }}</td>
+        <td>{{ row.openInterestChange }}</td>
+        <td>{{ row.volumeChange }}</td>
+        <td>{{ row.volumeDeltaChange }}</td>
+        <td>{{ row.closePriceChange }}</td>
+        <td>{{ row.perpSpotDiff }}</td>
+        <td>{{ row.buyerRatioChange }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Pagination controls -->
+<!-- <div class="pagination">
+  <button mat-mini-fab color="primary" (click)="prevPage()" [disabled]="page === 0">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+
+  <span class="page-info">Page {{ page + 1 }} of {{ totalPages }}</span>
+
+  <button mat-mini-fab color="primary" (click)="nextPage()" [disabled]="page + 1 >= totalPages">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>-->
+<button mat-mini-fab color="primary" class="scroll-to-top" (click)="scrollToTop()">
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button>
+<!-- <ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template> -->

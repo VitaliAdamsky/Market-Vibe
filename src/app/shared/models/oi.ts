@@ -1,4 +1,4 @@
-export interface OpentInterestItem {
+export interface OpenInterestItem {
   closeTime: number;
   openTime: number;
   symbol: string;
@@ -11,16 +11,16 @@ export interface OpentInterestItem {
   };
 }
 
-export interface OpentInterestData {
+export interface OpenInterestData {
   symbol: string;
   exchanges: string[];
   imageUrl: string;
   category: string;
-  data: OpentInterestItem[];
+  data: OpenInterestItem[];
 }
 
-export interface OpenInterestTableRow extends OpentInterestItem {
-  symbol: string; // From OpentInterestData
+export interface OpenInterestTableRow extends OpenInterestItem {
+  symbol: string; // From OpenInterestData
   imageUrl: string;
   category: string;
   exchangeList: string[]; // optional: rename for clarity

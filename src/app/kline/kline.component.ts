@@ -8,6 +8,8 @@ import { TableDataRow } from '../shared/models/table-metrics';
 import { TF } from '../shared/models/timeframes';
 import { MetricService } from '../shared/services/metric.service';
 import { KlineMarketDataService } from './services/kline-market-data.service';
+import { MarketDataService } from '../shared/services/market-data/market-data.service';
+import { KlineData } from '../shared/models/kline';
 
 @Component({
   selector: 'app-kline',
@@ -29,17 +31,13 @@ export class KlineComponent implements OnDestroy, OnInit {
     private klineMarketDataService: KlineMarketDataService,
     private metricService: MetricService,
     private dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private marketDataService: MarketDataService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.metric = params['metric'] || 'closePrice';
       this.timeframe = params['timeframe'] || TF.h4;
-      console.log(
-        'CONS. METRIC',
-        this.metric,
-        'CONS. TIMEFRAME',
-        this.timeframe
-      );
+
       this.metricService.changeMetricByPropertyNameAndTimeframe(
         this.metric,
         this.timeframe
@@ -54,9 +52,10 @@ export class KlineComponent implements OnDestroy, OnInit {
         .pipe(
           switchMap((metric) => {
             this.timeframe = metric.timeframe || TF.h4;
-            return this.klineMarketDataService
-              .getKlineData(this.timeframe)
+            return this.marketDataService
+              .getMarketData('kline', this.timeframe)
               .pipe(
+                map((data) => data as KlineData[]),
                 map((data) =>
                   this.klineMarketDataService.buildTableRows(
                     data,

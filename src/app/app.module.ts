@@ -24,6 +24,7 @@ import { ColorsModule } from './colors/colors.module';
 import { SharedModule } from './shared/shared.module';
 import { FundingRateModule } from './funding-rate/funding-rate.module';
 import { OpenInterestModule } from './open-interest/open-interest.module';
+
 registerLocaleData(localeRu);
 @NgModule({
   declarations: [

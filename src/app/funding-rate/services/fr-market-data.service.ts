@@ -15,6 +15,8 @@ import { HttpErrorHandler } from 'src/app/utils/http-error-handler';
 import { env } from 'src/environments/environment';
 import { getClosestInterval } from '../functions/get-closest-interval';
 import { isValidFundingRateItemKey } from '../functions/is-valid-fr-item-key';
+import { MarketDataService } from 'src/app/shared/services/market-data/market-data.service';
+import { TF } from 'src/app/shared/models/timeframes';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +27,8 @@ export class FrMarketDataService {
 
   constructor(
     private http: HttpClient,
-    private errorHandler: HttpErrorHandler
+    private errorHandler: HttpErrorHandler,
+    private marketDataService: MarketDataService
   ) {}
 
   buildTableRows(
@@ -82,11 +85,9 @@ export class FrMarketDataService {
   }
 
   getGroupedFundingRateData(): Observable<GroupedFundingRateData[]> {
-    return this.http.get<MarketData>(this.apiUrl).pipe(
-      map((response) => {
-        const rawData = response.data as FundingRateData[];
-        return this.groupByInterval(rawData);
-      }),
+    return this.marketDataService.getMarketData('fr', TF.h2).pipe(
+      map((data) => data as FundingRateData[]),
+      map((data) => this.groupByInterval(data)),
       this.errorHandler.handleError<GroupedFundingRateData[]>(
         'Fetching & grouping funding rate data'
       )

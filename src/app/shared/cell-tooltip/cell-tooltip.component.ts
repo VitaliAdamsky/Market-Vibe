@@ -1,7 +1,7 @@
 // cell-tooltip.component.ts
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FundingRateItem } from '../models/fr';
-import { OpentInterestItem } from '../models/oi';
+import { OpenInterestItem } from '../models/oi';
 import { TableMetricItem } from '../models/table-metrics';
 import { CoinLinksService } from '../services/coin-links.service';
 

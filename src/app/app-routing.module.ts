@@ -6,6 +6,7 @@ import {
   KLINE,
   LOGIN,
   OPEN_INTEREST,
+  MARKET_ACTIVITY,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -32,6 +33,13 @@ const routes: Routes = [
     path: KLINE,
     loadChildren: () =>
       import('./kline/kline.module').then((m) => m.KlineModule),
+  },
+  {
+    path: MARKET_ACTIVITY,
+    loadChildren: () =>
+      import('./market-activity/market-activity.module').then(
+        (m) => m.MarketActivityModule
+      ),
   },
   {
     path: LOGIN,

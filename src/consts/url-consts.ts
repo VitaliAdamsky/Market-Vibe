@@ -8,6 +8,7 @@ export const COLORS = 'colors';
 export const KLINE = 'kline';
 export const FUNDING_RATE = 'funding-rate';
 export const OPEN_INTEREST = 'open-interest';
+export const MARKET_ACTIVITY = 'market-activity';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;
