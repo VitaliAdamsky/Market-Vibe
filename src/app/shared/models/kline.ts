@@ -1,4 +1,4 @@
-export interface KlineItem {
+export interface KlineDataItem {
   openTime: number;
   closeTime: number;
   closePrice: number;
@@ -9,12 +9,12 @@ export interface KlineItem {
   volumeDeltaChange: number;
   closePriceChange: number;
   buyerRatioChange: number;
-  spotClosePrice: number;
+  //spotClosePrice: number;
   perpSpotDiff: number;
   normalizedClosePrice: number;
   normalizedBuyerRatio: number;
   normalizedQuoteVolume: number;
-  normalizedSpotClosePrice: number;
+  //normalizedSpotClosePrice: number;
   normalizedVolumeDelta: number;
   colors: {
     closePrice: string;
@@ -23,7 +23,6 @@ export interface KlineItem {
     buyerRatioChange: string;
     quoteVolume: string;
     quoteVolumeChange: string;
-    spotClosePrice: string;
     perpSpotDiff: string;
     volumeDelta: string;
     volumeDeltaChange: string;
@@ -35,5 +34,5 @@ export interface KlineData {
   exchanges: string[];
   imageUrl: string;
   category: string;
-  data: KlineItem[];
+  data: KlineDataItem[];
 }

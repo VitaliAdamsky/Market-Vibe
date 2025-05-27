@@ -4,7 +4,16 @@ export type PropertyName =
   | 'fundingRate'
   | 'fundingRateChange'
   | 'openInterest'
-  | 'openInterestChange';
+  | 'openInterestChange'
+  | 'closePrice'
+  | 'closePriceChange'
+  | 'quoteVolume'
+  | 'quoteVolumeChange'
+  | 'buyerRatio'
+  | 'buyerRatioChange'
+  | 'volumeDelta'
+  | 'volumeDeltaChange'
+  | 'perpSpotDiff';
 
 export interface Metric {
   title: string;

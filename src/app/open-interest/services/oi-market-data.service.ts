@@ -7,6 +7,7 @@ import { TableDataRow } from 'src/app/shared/models/table-metrics';
 import { OpentInterestData, OpentInterestItem } from 'src/app/shared/models/oi';
 import { isValidOpentInterestItemKey } from '../functions/is-valid-oi-item-key';
 import { TF } from 'src/app/shared/models/timeframes';
+import { IndexedDbService } from 'src/app/shared/services/market-data/idexdb.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class OiMarketDataService {
   baseUrl = 'http://localhost:3000/api';
   constructor(
     private http: HttpClient,
-    private errorHandler: HttpErrorHandler
+    private errorHandler: HttpErrorHandler,
+    private indexedDbService: IndexedDbService
   ) {}
 
   buildTableRows(
@@ -71,7 +73,7 @@ export class OiMarketDataService {
     });
   }
 
-  getOpenInterestData(timeframe: TF): Observable<OpentInterestData[]> {
+  getOpenInterestData2(timeframe: TF): Observable<OpentInterestData[]> {
     return this.http
       .get<MarketData>(this.baseUrl + `/oi?timeframe=${timeframe}`)
       .pipe(
@@ -81,4 +83,38 @@ export class OiMarketDataService {
         )
       );
   }
+
+  // private getCacheKey(timeframe: TF): string {
+  //   return `oi-${timeframe}`;
+  // }
+
+  // getOpenInterestData(timeframe: TF): Observable<OpentInterestData[]> {
+  //   const key = this.getCacheKey(timeframe);
+
+  //   return new Observable<OpentInterestData[]>((observer) => {
+  //     const now = Date.now() / 1000;
+
+  //     this.indexedDbService.get(key).then((cached) => {
+  //       if (cached && now < cached.expirationTime) {
+  //         observer.next(cached.data as OpentInterestData[]);
+  //         observer.complete();
+  //       } else {
+  //         this.http
+  //           .get<{
+  //             projectName: string;
+  //             dataType: string;
+  //             expirationTime: number;
+  //             timeframe: TF;
+  //             data: OpentInterestData[];
+  //           }>(`${this.baseUrl}/oi?timeframe=${timeframe}`)
+  //           .pipe(this.errorHandler.handleError('Fetching Open Interest Data'))
+  //           .subscribe((response) => {
+  //             this.indexedDbService.set(key, response);
+  //             observer.next(response.data);
+  //             observer.complete();
+  //           });
+  //       }
+  //     });
+  //   });
+  // }
 }

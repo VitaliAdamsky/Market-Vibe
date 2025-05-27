@@ -15,4 +15,12 @@
     <span class="label">OI Change:</span>
     <span class="data">{{ data.openInterestChange }}%</span>
   </div>
+  <div class="row" *ngIf="data.closePriceChange">
+    <span class="label">Close Price Change:</span>
+    <span class="data">{{ data.closePriceChange }}%</span>
+  </div>
+  <div class="row" *ngIf="data.volumeDeltaChange">
+    <span class="label">Volume Delta Change:</span>
+    <span class="data">{{ data.volumeDeltaChange }}%</span>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { KlineDataItem } from '../../heatmap-table/models/kline';
+import { KlineDataItem } from '../../shared/models/kline';
 
 type ItemKey = keyof KlineDataItem;
 
@@ -14,12 +14,10 @@ export function isValidKlineDataItemKey(key: string): key is ItemKey {
     volumeDeltaChange: true,
     closePriceChange: true,
     buyerRatioChange: true,
-    spotClosePrice: true,
     perpSpotDiff: true,
     normalizedClosePrice: true,
     normalizedBuyerRatio: true,
     normalizedQuoteVolume: true,
-    normalizedSpotClosePrice: true,
     normalizedVolumeDelta: true,
     colors: true,
   };

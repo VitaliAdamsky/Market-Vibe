@@ -8,6 +8,8 @@ import { MetricService } from '../shared/services/metric.service';
 import { OiMarketDataService } from './services/oi-market-data.service';
 import { TF } from '../shared/models/timeframes';
 import { ActivatedRoute } from '@angular/router';
+import { MarketDataService } from '../shared/services/market-data/market-data.service';
+import { OpentInterestData } from '../shared/models/oi';
 
 @Component({
   selector: 'app-open-interest',
@@ -27,6 +29,7 @@ export class OpenInterestComponent implements OnDestroy {
 
   constructor(
     private oiMarketDataService: OiMarketDataService,
+    private marketDataService: MarketDataService,
     private metricService: MetricService,
     private dialog: MatDialog,
     private route: ActivatedRoute
@@ -46,9 +49,10 @@ export class OpenInterestComponent implements OnDestroy {
         .pipe(
           switchMap((metric) => {
             this.timeframe = metric.timeframe || TF.h4;
-            return this.oiMarketDataService
-              .getOpenInterestData(this.timeframe)
+            return this.marketDataService
+              .getMarketData('oi', this.timeframe)
               .pipe(
+                map((data) => data as OpentInterestData[]),
                 map((data) =>
                   this.oiMarketDataService.buildTableRows(
                     data,

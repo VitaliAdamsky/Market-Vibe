@@ -55,7 +55,7 @@ router-outlet + * {
 
 /* TOOLTIP BOX */
 .tooltip-box {
-   position: relative; /* needed for the pseudo-element positioning */
+  position: relative; /* needed for the pseudo-element positioning */
   background-color: #1e1e1e;
   color: #f0f0f0;
   padding: 1rem;
@@ -67,10 +67,11 @@ router-outlet + * {
   line-height: 1.5;
   border: 1px solid #444;
 
-  min-width: 200px;
+  min-width: 220px;
   max-width: none; /* ← allow it to grow indefinitely */
   width: auto;     /* ← grow with content */
   white-space: nowrap; /* Prevent text wrapping everywhere */
+  cursor: pointer;
 }
 
 /* Triangle pointer at bottom */
@@ -180,4 +181,8 @@ router-outlet + * {
 
 .tooltip-box .close-icon:hover {
   color: #fff;
+}
+
+.tooltip-date {
+  color: #f1c010;
 }

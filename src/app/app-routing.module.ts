@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   COLORS,
   FUNDING_RATE,
+  KLINE,
   LOGIN,
   OPEN_INTEREST,
 } from 'src/consts/url-consts';
@@ -26,6 +27,11 @@ const routes: Routes = [
       import('./funding-rate/funding-rate.module').then(
         (m) => m.FundingRateModule
       ),
+  },
+  {
+    path: KLINE,
+    loadChildren: () =>
+      import('./kline/kline.module').then((m) => m.KlineModule),
   },
   {
     path: LOGIN,

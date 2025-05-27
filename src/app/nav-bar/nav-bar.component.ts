@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { COLORS, FUNDING_RATE } from 'src/consts/url-consts';
+import { IndexedDbService } from '../shared/services/market-data/idexdb.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,7 +12,10 @@ import { COLORS, FUNDING_RATE } from 'src/consts/url-consts';
 })
 export class NavBarComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private indexedDbService: IndexedDbService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -40,6 +44,10 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   goToVwapArchivedAlerts() {
     this.router.navigate([]);
+  }
+
+  clearIndexDbCache() {
+    this.indexedDbService.clearAll();
   }
 
   ngOnDestroy(): void {

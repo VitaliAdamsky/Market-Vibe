@@ -31,10 +31,16 @@ export class MetricService {
     const metric = this.metrics.find(
       (m) => m.propertyName === propertyName && m.timeframe === timeframe
     );
+    //TODO
+    console.log('CHANGE METRIC', propertyName, timeframe);
+    console.log('METRIC', metric);
+    console.log('METRICS', this.metrics);
     if (metric) {
       this.metricSource.next(metric);
     } else {
-      console.warn(`Metric with propertyName "${propertyName}" not found`);
+      console.warn(
+        `Metric with propertyName "${propertyName}" and timeframe "${timeframe}" not found`
+      );
     }
   }
 

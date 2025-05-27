@@ -1,3 +1,4 @@
+import { OpenInterestComponent } from './../../open-interest/open-interest.component';
 export interface TableMetricItem {
   openTime: number;
   closeTime: number;
@@ -11,6 +12,9 @@ export interface TableMetricItem {
   normalizedFundingRate?: number;
   openInterest?: number;
   openInterestChange?: number;
+  closePrice?: number;
+  closePriceChange?: number;
+  normalizedClosePrice?: number;
   normalizedOpenInterest?: number;
   quoteVolume?: number;
   quoteVolumeChange?: number;
@@ -25,11 +29,20 @@ export interface TableMetricItem {
   normalizedPerpSpotDiff?: number;
   normalizedSpotClosePrice?: number;
   colors?: {
-    openInterest: string;
-    openInterestChange: string;
+    OpenInterestComponent?: string;
+    openInterestChange?: string;
+    fundingRate?: string;
+    fundingRateChange?: string;
+    quoteVolume?: string;
+    quoteVolumeChange?: string;
+    buyerRatio?: string;
+    buyerRatioChange?: string;
+    volumeDelta?: string;
+    volumeDeltaChange?: string;
+    perpSpotDiff?: string;
   };
   symbol: string;
-  exchanges: string[]; // 👈 This is required!
+  exchanges: string[];
 }
 
 export interface TableDataRow {

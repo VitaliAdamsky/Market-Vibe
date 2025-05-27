@@ -7,7 +7,7 @@ import { TF } from '../models/timeframes';
 import { MarketData } from '../models/market-data';
 import { TableDataRow } from '../models/table-metrics';
 import { KlineData } from '../models/kline';
-import { isValidKlineItemKey } from '../../funding-rate/functions/is-valid-kline-item-key';
+import { isValidKlineDataItemKey } from '../../funding-rate/functions/is-valid-kline-item-key';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,7 @@ export class KlineMarketDataService {
             let colorValue = '';
             let tooltipText = '';
 
-            if (isValidKlineItemKey(propertyName)) {
+            if (isValidKlineDataItemKey(propertyName)) {
               switch (propertyName) {
                 case 'closePrice': //👈
                   colorValue = item.colors.closePrice;
