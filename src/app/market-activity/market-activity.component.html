@@ -1,11 +1,21 @@
 <div class="header">
-  <span class="header-text">{{ title }}</span>
+  <span class="header-text">{{ title}} c {{ openTime | date:'HH:mm dd MMM' }} по {{ closeTime | date:'HH:mm dd MMM'
+    }}</span>
 </div>
 <div class="subheader">
   <span class="subheader-text">{{ subtitle }}</span>
 </div>
 
-<div #tableContainer class="table-container" class="fade-in" [class.show]="tableReady">
+<div class="search-bar">
+  <div class="input-wrapper">
+    <input type="text" placeholder="Search symbol..." [(ngModel)]="searchQuery" (input)="applySearch()" />
+    <button *ngIf="searchQuery" class="clear-btn" (click)="clearSearch()" aria-label="Clear">
+      ×
+    </button>
+  </div>
+</div>
+
+<div #tableContainer class="table-container fade-in" [class.show]="tableReady">
   <table class="market-table">
     <thead>
       <tr>
@@ -20,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of pagedData" [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges  || []}"
+      <tr *ngFor="let row of filteredData" [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges  || []}"
         [triggerEvent]="'click'">
         <td class="coin-label">
           <div class="logo-container">

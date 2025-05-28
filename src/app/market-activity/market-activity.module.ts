@@ -12,11 +12,13 @@ import { SharedModule } from '../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MarketActivityComponent } from './market-activity.component';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MarketActivityComponent],
   imports: [
     CommonModule,
+    FormsModule,
     SharedModule,
     MatTableModule,
     MatSortModule,

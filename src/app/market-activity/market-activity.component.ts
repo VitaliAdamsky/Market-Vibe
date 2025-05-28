@@ -17,11 +17,16 @@ import { TF } from '../shared/models/timeframes';
 export class MarketActivityComponent implements OnInit, AfterViewInit {
   @ViewChild('tableContainer') tableContainer!: ElementRef;
   tableData: MarketActivityStats[] = [];
+  filteredData: MarketActivityStats[] = [];
   pagedData: MarketActivityStats[] = [];
-
+  searchQuery = '';
   timeframe: TF = TF.h4;
-  title = 'Market Activity';
+  title = 'Рыночная Активность';
   subtitle = `Timeframe ${this.timeframe}`;
+
+  //time
+  openTime = 0;
+  closeTime = 0;
 
   // Pagination
   pageSize = 300;
@@ -39,23 +44,34 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
     this.tableData = await this.marketActivityService.getCombinedSymbolStats(
       this.timeframe
     );
+    this.filteredData = [...this.tableData];
     this.updatePagination();
+    this.openTime = this.tableData[0].openTime;
+    this.closeTime = this.tableData[0].closeTime;
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      setTimeout(() => {
-        this.tableReady = true;
-      }); //this.isLoaded = true;
+      this.tableReady = true;
     }, 0);
   }
 
+  applySearch() {
+    const query = this.searchQuery.trim().toLowerCase();
+    this.filteredData = this.tableData.filter((item) =>
+      item.symbol.toLowerCase().includes(query)
+    );
+
+    this.page = 0; // Reset to first page
+    this.updatePagination();
+  }
+
   updatePagination() {
-    this.totalPages = Math.ceil(this.tableData.length / this.pageSize);
+    this.totalPages = Math.ceil(this.filteredData.length / this.pageSize);
     const start = this.page * this.pageSize;
     const end = start + this.pageSize;
-    this.pagedData = this.tableData.slice(start, end);
+    this.pagedData = this.filteredData.slice(start, end);
 
     if (this.tableContainer) {
       this.tableContainer.nativeElement.scrollTop = 0;
@@ -86,7 +102,7 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
       this.sortAsc = true;
     }
 
-    this.tableData.sort((a, b) => {
+    this.filteredData.sort((a, b) => {
       const valA = a[column];
       const valB = b[column];
       if (typeof valA === 'number' && typeof valB === 'number') {
@@ -97,6 +113,7 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
         : String(valB).localeCompare(String(valA));
     });
 
+    this.page = 0;
     this.updatePagination();
   }
 
@@ -113,5 +130,10 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
         behavior: 'smooth',
       });
     }
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
+    this.applySearch();
   }
 }
