@@ -29,15 +29,14 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
   openTime = 0;
   closeTime = 0;
 
-  // Pagination
-  pageSize = 300;
-  page = 0;
-  totalPages = 0;
-
   // Sorting
   sortColumn: keyof MarketActivityStats | '' = '';
   sortAsc = true;
   tableReady = false;
+
+  // Pagination for infinite scroll
+  itemsToShow = 50;
+  itemsIncrement = 50;
 
   constructor(private marketActivityService: MarketActivityService) {}
 
@@ -46,10 +45,11 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
       this.timeframe
     );
     this.filteredData = [...this.tableData];
-    this.updatePagination();
 
-    this.openTime = this.tableData[0].openTime;
-    this.closeTime = this.tableData[0].closeTime;
+    this.openTime = this.tableData[0]?.openTime || 0;
+    this.closeTime = this.tableData[0]?.closeTime || 0;
+
+    this.updatePagedData();
 
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
@@ -68,35 +68,9 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
       item.symbol.toLowerCase().includes(lower)
     );
 
-    this.page = 0;
-    this.updatePagination();
-  }
-
-  updatePagination() {
-    this.totalPages = Math.ceil(this.filteredData.length / this.pageSize);
-    const start = this.page * this.pageSize;
-    const end = start + this.pageSize;
-    this.pagedData = this.filteredData.slice(start, end);
-
-    if (this.tableContainer) {
-      this.tableContainer.nativeElement.scrollTop = 0;
-    }
-  }
-
-  nextPage() {
-    if (this.page + 1 < this.totalPages) {
-      this.page++;
-      this.updatePagination();
-      this.scrollToTop();
-    }
-  }
-
-  prevPage() {
-    if (this.page > 0) {
-      this.page--;
-      this.updatePagination();
-      this.scrollToTop();
-    }
+    // Reset paging on new filter
+    this.itemsToShow = this.itemsIncrement;
+    this.updatePagedData();
   }
 
   sortData(column: keyof MarketActivityStats) {
@@ -118,22 +92,27 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
         : String(valB).localeCompare(String(valA));
     });
 
-    this.page = 0;
-    this.updatePagination();
+    // Reset paging on new sort
+    this.itemsToShow = this.itemsIncrement;
+    this.updatePagedData();
+  }
+
+  updatePagedData() {
+    this.pagedData = this.filteredData.slice(0, this.itemsToShow);
+  }
+
+  loadMoreData() {
+    if (this.itemsToShow < this.filteredData.length) {
+      this.itemsToShow += this.itemsIncrement;
+      this.updatePagedData();
+    }
   }
 
   stripPair(symbol: string): string {
     return symbol.replace(/(USDT|BUSD|USD|PERP)$/i, '');
   }
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    if (this.tableContainer) {
-      this.tableContainer.nativeElement.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
-    }
+  trackBySymbol(index: number, item: MarketActivityStats) {
+    return item.symbol;
   }
 }

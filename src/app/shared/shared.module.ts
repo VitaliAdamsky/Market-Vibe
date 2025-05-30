@@ -19,6 +19,7 @@ import { LittleCellTooltipDirective } from './little-cell-tooltip/directives/lit
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { FormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     MatTooltipModule,
     FormsModule,
     DragDropModule,
+    InfiniteScrollModule,
   ],
   exports: [
     HeatmapTableComponent,

@@ -6,21 +6,15 @@
   <span class="subheader-text">{{ subtitle }}</span>
 </div>
 
-<!--
-<div class="search-bar">
-  <div class="input-wrapper">
-    <input type="text" placeholder="Search symbol..." [(ngModel)]="searchQuery" (input)="applySearch()" />
-    <button *ngIf="searchQuery" class="clear-btn" (click)="clearSearch()" aria-label="Clear">
-      ×
-    </button>
-  </div>
-</div> -->
+
 <div class="search-box">
   <app-search-box [(query)]="searchQuery" placeholder="Search symbol..."
     (queryChange)="applySearch($event)"></app-search-box>
 </div>
 
-<div #tableContainer class="table-container fade-in" [class.show]="tableReady">
+<div #tableContainer class="table-container fade-in" [class.show]="tableReady" infiniteScroll
+  [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [fromRoot]="true" (scrolled)="loadMoreData()">
+
   <table class="market-table">
     <thead>
       <tr>
@@ -35,8 +29,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of filteredData" [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges  || []}"
-        [triggerEvent]="'click'">
+      <tr *ngFor="let row of filteredData; trackBy: trackBySymbol"
+        [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges  || []}" [triggerEvent]="'click'">
         <td class="coin-label">
           <div class="logo-container">
             <img [src]="row.imageUrl" width="20"
@@ -55,19 +49,7 @@
     </tbody>
   </table>
 </div>
-<!-- Pagination controls -->
-<!-- <div class="pagination">
-  <button mat-mini-fab color="primary" (click)="prevPage()" [disabled]="page === 0">
-    <mat-icon>chevron_left</mat-icon>
-  </button>
 
-  <span class="page-info">Page {{ page + 1 }} of {{ totalPages }}</span>
 
-  <button mat-mini-fab color="primary" (click)="nextPage()" [disabled]="page + 1 >= totalPages">
-    <mat-icon>chevron_right</mat-icon>
-  </button>
-</div>-->
-
-<button mat-mini-fab color="primary" class="scroll-to-top" (click)="scrollToTop()">
-  <mat-icon>keyboard_arrow_up</mat-icon>
-</button>
+<app-scroll-to-top [scrollOffset]="200" position="right" [tableContainer]="tableContainer">
+</app-scroll-to-top>

@@ -7,6 +7,7 @@ import {
   DATA_CHARTS,
   FUNDING_RATE,
   MARKET_ACTIVITY,
+  PANEL,
 } from 'src/consts/url-consts';
 import { IndexedDbService } from '../shared/services/market-data/idexdb.service';
 
@@ -59,8 +60,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.router.navigate([MARKET_ACTIVITY]);
   }
 
-  goToDataCharts() {
-    this.router.navigate([DATA_CHARTS]);
+  goToPanel() {
+    this.router.navigate([PANEL]);
   }
 
   ngOnDestroy(): void {

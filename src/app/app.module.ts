@@ -25,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
 import { FundingRateModule } from './funding-rate/funding-rate.module';
 import { OpenInterestModule } from './open-interest/open-interest.module';
 import { DataChartsModule } from './data-charts/data-charts.module';
+import { PanelModule } from './panel/panel.module';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -57,6 +58,7 @@ registerLocaleData(localeRu);
     OpenInterestModule,
     SharedModule,
     DataChartsModule,
+    PanelModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],

@@ -18,6 +18,7 @@ import { OpenInterestData } from '../shared/models/oi';
 })
 export class OpenInterestComponent implements OnDestroy {
   title = 'Open Interest';
+  subtitle = `Timeframe`;
   tableData: { label: string; tableData: TableDataRow[] } = {
     label: '',
     tableData: [],

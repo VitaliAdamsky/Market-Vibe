@@ -8,6 +8,7 @@ import {
   OPEN_INTEREST,
   MARKET_ACTIVITY,
   DATA_CHARTS,
+  PANEL,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -48,6 +49,11 @@ const routes: Routes = [
       import('./market-activity/market-activity.module').then(
         (m) => m.MarketActivityModule
       ),
+  },
+  {
+    path: PANEL,
+    loadChildren: () =>
+      import('./panel/panel.module').then((m) => m.PanelModule),
   },
   {
     path: LOGIN,

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { EchartsBuilderService } from './services/echarts-builder.service';
-import { TF } from '../shared/models/timeframes';
+
+import { ActivatedRoute } from '@angular/router';
+import { getChartHeader } from './functions/get-chart-header';
 
 @Component({
   selector: 'app-data-charts',
@@ -8,6 +10,8 @@ import { TF } from '../shared/models/timeframes';
   styleUrls: ['./data-charts.component.css'],
 })
 export class DataChartsComponent {
+  header = '';
+  subheader = '';
   fullData: any[] = [];
   chartOptions: any[] = [];
   filteredData: any[] = [];
@@ -17,12 +21,27 @@ export class DataChartsComponent {
 
   searchQuery = '';
 
-  constructor(private echartsBuilder: EchartsBuilderService) {}
+  constructor(
+    private echartsBuilder: EchartsBuilderService,
+    private route: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
-    this.fullData = await this.echartsBuilder.buildEchartsOptionsForOI(TF.h4);
-    this.filteredData = this.fullData;
-    this.loadMore();
+    this.route.queryParams.subscribe(async (params) => {
+      const dataType = params['dataType'] || 'oi';
+      const timeframe = params['timeframe'] || 'h4';
+      const propertyKey = params['propertyKey'] || undefined;
+
+      this.fullData = await this.echartsBuilder.buildChartOptions(
+        dataType,
+        timeframe,
+        propertyKey
+      );
+      this.filteredData = this.fullData;
+      this.loadMore();
+      this.header = getChartHeader(dataType, propertyKey);
+      this.subheader = dataType === 'fr' ? '' : `Timeframe ${timeframe}`;
+    });
   }
 
   loadMore() {

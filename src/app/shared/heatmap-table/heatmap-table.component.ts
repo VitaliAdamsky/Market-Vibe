@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, Input } from '@angular/core';
 import { TableDataRow } from '../models/table-metrics';
 import { TooltipSyncService } from '../services/tooltip-sync.service';
 
@@ -13,29 +13,39 @@ export class HeatmapTableComponent {
     label: '',
     tableData: [],
   };
+
+  visibleRows: TableDataRow[] = [];
+  chunkSize = 50;
+
   constructor(private tooltipSyncService: TooltipSyncService) {}
-  removedFromBeginningColumns = 0;
+
+  ngOnChanges() {
+    this.visibleRows = this.data.tableData.slice(0, this.chunkSize);
+  }
+
+  onScrollDown() {
+    const nextChunk = this.data.tableData.slice(
+      this.visibleRows.length,
+      this.visibleRows.length + this.chunkSize
+    );
+    this.visibleRows = [...this.visibleRows, ...nextChunk];
+  }
 
   stripPair(symbol: string): string {
     return symbol.replace(/(USDT|BUSD|USD|PERP)$/i, '');
   }
 
   dropRow(event: CdkDragDrop<any[]>) {
-    const draggedRow = this.data.tableData[event.previousIndex];
+    const draggedRow = this.visibleRows[event.previousIndex];
     const key = draggedRow?.symbol;
 
     if (
       this.tooltipSyncService.isClickTooltipOpen &&
       this.tooltipSyncService.clickTooltipKey === key
     ) {
-      // Prevent drag if the row has a tooltip open
       return;
     }
 
-    moveItemInArray(
-      this.data.tableData,
-      event.previousIndex,
-      event.currentIndex
-    );
+    moveItemInArray(this.visibleRows, event.previousIndex, event.currentIndex);
   }
 }

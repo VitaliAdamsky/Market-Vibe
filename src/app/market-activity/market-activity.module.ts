@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MarketActivityComponent } from './market-activity.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [MarketActivityComponent],
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     MarketActivityRoutingModule,
     MatIconModule,
+    InfiniteScrollModule,
   ],
   exports: [MarketActivityComponent],
 })
