@@ -2,7 +2,12 @@ import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { COLORS, FUNDING_RATE, MARKET_ACTIVITY } from 'src/consts/url-consts';
+import {
+  COLORS,
+  DATA_CHARTS,
+  FUNDING_RATE,
+  MARKET_ACTIVITY,
+} from 'src/consts/url-consts';
 import { IndexedDbService } from '../shared/services/market-data/idexdb.service';
 
 @Component({
@@ -52,6 +57,10 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   goToMarketActivity() {
     this.router.navigate([MARKET_ACTIVITY]);
+  }
+
+  goToDataCharts() {
+    this.router.navigate([DATA_CHARTS]);
   }
 
   ngOnDestroy(): void {

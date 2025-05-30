@@ -18,10 +18,3 @@ export interface OpenInterestData {
   category: string;
   data: OpenInterestItem[];
 }
-
-export interface OpenInterestTableRow extends OpenInterestItem {
-  symbol: string; // From OpenInterestData
-  imageUrl: string;
-  category: string;
-  exchangeList: string[]; // optional: rename for clarity
-}

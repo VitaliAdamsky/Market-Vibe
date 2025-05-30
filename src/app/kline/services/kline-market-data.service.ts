@@ -107,13 +107,4 @@ export class KlineMarketDataService {
       };
     });
   }
-
-  getKlineData(timeframe: TF): Observable<KlineData[]> {
-    return this.http
-      .get<MarketData>(this.baseUrl + `/kline?timeframe=${timeframe}`)
-      .pipe(
-        map((marketData: MarketData) => marketData.data as KlineData[]),
-        this.errorHandler.handleError<KlineData[]>('Fetching Kline Data')
-      );
-  }
 }

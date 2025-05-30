@@ -6,6 +6,7 @@
   <span class="subheader-text">{{ subtitle }}</span>
 </div>
 
+<!--
 <div class="search-bar">
   <div class="input-wrapper">
     <input type="text" placeholder="Search symbol..." [(ngModel)]="searchQuery" (input)="applySearch()" />
@@ -13,6 +14,10 @@
       ×
     </button>
   </div>
+</div> -->
+<div class="search-box">
+  <app-search-box [(query)]="searchQuery" placeholder="Search symbol..."
+    (queryChange)="applySearch($event)"></app-search-box>
 </div>
 
 <div #tableContainer class="table-container fade-in" [class.show]="tableReady">
@@ -62,9 +67,7 @@
     <mat-icon>chevron_right</mat-icon>
   </button>
 </div>-->
+
 <button mat-mini-fab color="primary" class="scroll-to-top" (click)="scrollToTop()">
   <mat-icon>keyboard_arrow_up</mat-icon>
 </button>
-<!-- <ng-template #loading>
-  <mat-spinner></mat-spinner>
-</ng-template> -->

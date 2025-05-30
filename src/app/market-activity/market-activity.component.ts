@@ -16,15 +16,16 @@ import { TF } from '../shared/models/timeframes';
 })
 export class MarketActivityComponent implements OnInit, AfterViewInit {
   @ViewChild('tableContainer') tableContainer!: ElementRef;
+
   tableData: MarketActivityStats[] = [];
   filteredData: MarketActivityStats[] = [];
   pagedData: MarketActivityStats[] = [];
+
   searchQuery = '';
   timeframe: TF = TF.h4;
   title = 'Рыночная Активность';
   subtitle = `Timeframe ${this.timeframe}`;
 
-  //time
   openTime = 0;
   closeTime = 0;
 
@@ -46,8 +47,10 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
     );
     this.filteredData = [...this.tableData];
     this.updatePagination();
+
     this.openTime = this.tableData[0].openTime;
     this.closeTime = this.tableData[0].closeTime;
+
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
 
@@ -57,13 +60,15 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
-  applySearch() {
-    const query = this.searchQuery.trim().toLowerCase();
+  applySearch(query: string) {
+    this.searchQuery = query;
+    const lower = query.trim().toLowerCase();
+
     this.filteredData = this.tableData.filter((item) =>
-      item.symbol.toLowerCase().includes(query)
+      item.symbol.toLowerCase().includes(lower)
     );
 
-    this.page = 0; // Reset to first page
+    this.page = 0;
     this.updatePagination();
   }
 
@@ -82,7 +87,7 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
     if (this.page + 1 < this.totalPages) {
       this.page++;
       this.updatePagination();
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      this.scrollToTop();
     }
   }
 
@@ -90,7 +95,7 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
     if (this.page > 0) {
       this.page--;
       this.updatePagination();
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      this.scrollToTop();
     }
   }
 
@@ -130,10 +135,5 @@ export class MarketActivityComponent implements OnInit, AfterViewInit {
         behavior: 'smooth',
       });
     }
-  }
-
-  clearSearch() {
-    this.searchQuery = '';
-    this.applySearch();
   }
 }

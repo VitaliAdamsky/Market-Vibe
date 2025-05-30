@@ -16,6 +16,10 @@ import { CellTooltipDirective } from './cell-tooltip/directives/cell-tooltip.dir
 import { LittleCellTooltipComponent } from './little-cell-tooltip/little-cell-tooltip.component';
 import { LittleCellTooltipDirective } from './little-cell-tooltip/directives/little-cell-tooltip.directive';
 
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     HeatmapTableComponent,
@@ -26,12 +30,15 @@ import { LittleCellTooltipDirective } from './little-cell-tooltip/directives/lit
     CellTooltipDirective,
     LittleCellTooltipComponent,
     LittleCellTooltipDirective,
+    ScrollToTopComponent,
+    SearchBoxComponent,
   ],
   imports: [
     CommonModule,
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    FormsModule,
     DragDropModule,
   ],
   exports: [
@@ -43,6 +50,8 @@ import { LittleCellTooltipDirective } from './little-cell-tooltip/directives/lit
     CellTooltipDirective,
     LittleCellTooltipComponent,
     LittleCellTooltipDirective,
+    ScrollToTopComponent,
+    SearchBoxComponent,
   ],
 })
 export class SharedModule {}

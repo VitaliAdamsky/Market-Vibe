@@ -1,0 +1,30 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  background-color: #800080; /* Angular Material primary blue */
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px; /* Icon size */
+}
+
+.scroll-to-top.left {
+  right: auto;
+  left: 16px;
+}
+
+.scroll-to-top.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -13,7 +13,6 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import { CellTooltipComponent } from '../cell-tooltip.component';
 import { TableMetricItem } from '../../models/table-metrics';
-import { TooltipManagerService } from '../../services/tooltip-manager.service';
 import { TooltipSyncService } from '../../services/tooltip-sync.service';
 
 @Directive({

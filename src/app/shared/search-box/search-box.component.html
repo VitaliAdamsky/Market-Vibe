@@ -1,0 +1,8 @@
+<div class="search-bar">
+  <div class="input-wrapper">
+    <input type="text" [placeholder]="placeholder" [ngModel]="query" (ngModelChange)="onInput($event)" />
+    <button *ngIf="query" class="clear-btn" (click)="clear()" aria-label="Clear">
+      ×
+    </button>
+  </div>
+</div>

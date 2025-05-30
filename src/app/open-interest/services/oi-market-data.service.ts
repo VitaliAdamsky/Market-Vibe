@@ -72,15 +72,4 @@ export class OiMarketDataService {
       };
     });
   }
-
-  getOpenInterestData2(timeframe: TF): Observable<OpenInterestData[]> {
-    return this.http
-      .get<MarketData>(this.baseUrl + `/oi?timeframe=${timeframe}`)
-      .pipe(
-        map((marketData: MarketData) => marketData.data as OpenInterestData[]),
-        this.errorHandler.handleError<OpenInterestData[]>(
-          'Fetching Open Interest Data'
-        )
-      );
-  }
 }

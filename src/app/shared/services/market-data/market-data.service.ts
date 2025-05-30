@@ -18,7 +18,7 @@ export class MarketDataService {
   ) {}
 
   getMarketData<T>(dataType: DataType, timeframe: TF): Observable<T[]> {
-    const key = `${dataType}-${timeframe}`;
+    const key = dataType === 'fr' ? dataType : `${dataType}-${timeframe}`;
     const now = Date.now();
 
     return new Observable<T[]>((observer) => {

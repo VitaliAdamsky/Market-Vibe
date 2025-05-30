@@ -7,6 +7,7 @@ import {
   LOGIN,
   OPEN_INTEREST,
   MARKET_ACTIVITY,
+  DATA_CHARTS,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -14,6 +15,13 @@ const routes: Routes = [
     path: COLORS,
     loadChildren: () =>
       import('./colors/colors.module').then((m) => m.ColorsModule),
+  },
+  {
+    path: DATA_CHARTS,
+    loadChildren: () =>
+      import('./data-charts/data-charts.module').then(
+        (m) => m.DataChartsModule
+      ),
   },
   {
     path: OPEN_INTEREST,

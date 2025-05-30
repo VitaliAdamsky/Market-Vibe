@@ -1,0 +1,17 @@
+<div class="header">
+  <span class="header-text">Data Charts</span>
+</div>
+<div class="subheader">
+  <span class="subheader-text">Select a chart to view</span>
+</div>
+
+<div class="search-box">
+  <app-search-box [(query)]="searchQuery" placeholder="Search symbol..."
+    (queryChange)="applySearch($event)"></app-search-box>
+</div>
+
+<div class="echarts-container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="30"
+  (scrolled)="loadMore()">
+  <app-chart *ngFor="let chartData of chartOptions" [chartData]="chartData" class="echart-card"></app-chart>
+</div>
+<app-scroll-to-top></app-scroll-to-top>

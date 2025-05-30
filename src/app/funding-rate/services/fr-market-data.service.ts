@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import {
@@ -6,7 +5,6 @@ import {
   FundingRateItem,
   GroupedFundingRateData,
 } from 'src/app/shared/models/fr';
-import { MarketData } from 'src/app/shared/models/market-data';
 import {
   TableDataRow,
   TableMetricItem,
@@ -26,7 +24,6 @@ export class FrMarketDataService {
   private readonly apiUrl = `http://localhost:3000/api/fr`;
 
   constructor(
-    private http: HttpClient,
     private errorHandler: HttpErrorHandler,
     private marketDataService: MarketDataService
   ) {}

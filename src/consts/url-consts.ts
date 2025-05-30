@@ -9,6 +9,7 @@ export const KLINE = 'kline';
 export const FUNDING_RATE = 'funding-rate';
 export const OPEN_INTEREST = 'open-interest';
 export const MARKET_ACTIVITY = 'market-activity';
+export const DATA_CHARTS = 'data-charts';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;
