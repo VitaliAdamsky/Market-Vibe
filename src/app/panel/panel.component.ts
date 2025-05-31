@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  COIN_METRICS,
   DATA_CHARTS,
   MARKET_ACTIVITY,
   OPEN_INTEREST,
@@ -8,6 +9,7 @@ import {
 import { DataType } from '../shared/models/data-type';
 import { TF } from '../shared/models/timeframes';
 import { KlineDataItem } from '../shared/models/kline';
+import { time } from 'echarts';
 
 @Component({
   selector: 'app-panel',
@@ -25,6 +27,18 @@ export class PanelComponent {
   ) {
     const tree = this.router.createUrlTree([DATA_CHARTS], {
       queryParams: { dataType, timeframe, propertyKey },
+    });
+    const url = this.router.serializeUrl(tree);
+    window.open(window.location.origin + url, '_blank');
+  }
+
+  goToCoinMetrics() {
+    const tree = this.router.createUrlTree([COIN_METRICS], {
+      queryParams: {
+        symbol: 'BTCUSDT',
+        timeframe: TF.h4,
+        imageUrl: 'assets/logo/btc.svg',
+      },
     });
     const url = this.router.serializeUrl(tree);
     window.open(window.location.origin + url, '_blank');

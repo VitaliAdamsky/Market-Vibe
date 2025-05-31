@@ -11,6 +11,7 @@ export const OPEN_INTEREST = 'open-interest';
 export const MARKET_ACTIVITY = 'market-activity';
 export const DATA_CHARTS = 'data-charts';
 export const PANEL = 'panel';
+export const COIN_METRICS = 'coin-metrics';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;

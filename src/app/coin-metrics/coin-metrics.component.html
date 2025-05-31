@@ -1,0 +1,23 @@
+<div class="header">
+  <img [src]="imageUrl" alt="Coin Logo" class="logo" />
+  <span class="header-text">{{ symbol }} Metrics</span>
+</div>
+<div class="subheader">
+  <span class="subheader-text">Timeframe: {{ timeframe }}</span>
+</div>
+
+<div class="echarts-container">
+  <app-coin-metrics-chart *ngIf="oiEchartOptoins" [chartData]="oiEchartOptoins"></app-coin-metrics-chart>
+  <app-coin-metrics-chart *ngIf="frEchartOptoins" [chartData]="frEchartOptoins"></app-coin-metrics-chart>
+  <app-coin-metrics-chart *ngIf="quoteVolumeEchartOptoins"
+    [chartData]="quoteVolumeEchartOptoins"></app-coin-metrics-chart>
+  <app-coin-metrics-chart *ngIf="buyerRatioEchartOptoins"
+    [chartData]="buyerRatioEchartOptoins"></app-coin-metrics-chart>
+  <app-coin-metrics-chart *ngIf="volumeDeltaEchartOptoins"
+    [chartData]="volumeDeltaEchartOptoins"></app-coin-metrics-chart>
+  <app-coin-metrics-chart *ngIf="closePriceEchartOptoins"
+    [chartData]="closePriceEchartOptoins"></app-coin-metrics-chart>
+
+  <app-normalized-metrics-chart *ngIf="normalizedEchartOptoins"
+    [chartData]="normalizedEchartOptoins"></app-normalized-metrics-chart>
+</div>

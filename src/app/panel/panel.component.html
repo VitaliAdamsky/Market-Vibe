@@ -1,14 +1,13 @@
 <div class="button-grid">
   <button style="width: auto;" mat-raised-button color="primary" (click)="goToCharts( 'oi', TF.h4)">OI
     4h</button>
-
   <button (click)="goToCharts( 'kline', TF.h4, 'closePrice')" mat-raised-button color="accent">Close Price 4h</button>
   <button (click)="goToCharts( 'kline', TF.h4, 'quoteVolume')" mat-raised-button color="warn">Quote Volume 4h</button>
   <button (click)="goToCharts( 'kline', TF.h4, 'buyerRatio')" mat-raised-button>Buyer Ratio 4h</button>
   <button (click)="goToCharts( 'kline', TF.h4, 'volumeDelta')" mat-raised-button color="primary">Volume Delta
     4h</button>
   <button (click)="goToCharts( 'fr', TF.h4)" mat-raised-button color="accent">FR</button>
-  <button mat-raised-button>Button 7</button>
+  <button mat-raised-button (click)="goToCoinMetrics()">Coin Metrics: BTCUSDT</button>
   <button mat-raised-button color="warn">Button 8</button>
   <button mat-raised-button color="primary">Button 9</button>
   <button mat-raised-button color="accent">Button 10</button>

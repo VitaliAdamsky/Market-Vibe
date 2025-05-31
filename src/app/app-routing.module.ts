@@ -9,6 +9,7 @@ import {
   MARKET_ACTIVITY,
   DATA_CHARTS,
   PANEL,
+  COIN_METRICS,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -54,6 +55,13 @@ const routes: Routes = [
     path: PANEL,
     loadChildren: () =>
       import('./panel/panel.module').then((m) => m.PanelModule),
+  },
+  {
+    path: COIN_METRICS,
+    loadChildren: () =>
+      import('./coin-metrics/coin-metrics.module').then(
+        (m) => m.CoinMetricsModule
+      ),
   },
   {
     path: LOGIN,
