@@ -1,0 +1,56 @@
+.coin-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.coin-item:hover {
+  background-color: #2a2a2a;
+}
+
+.coin-item.selected {
+  border-color: #00ffe1;
+  box-shadow: 0 0 8px rgba(0, 255, 225, 0.6);
+}
+
+.round-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+  padding-right: 8px;
+}
+
+.round-image:hover {
+  transform: scale(1.1);
+}
+
+.coin-name {
+  font-size: 14px;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-effect 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.449);
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

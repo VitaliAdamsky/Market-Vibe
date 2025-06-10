@@ -52,7 +52,7 @@ import { NormalizedMetricsChartComponent } from './normalized-metrics-chart/norm
     SharedModule,
     MatIconModule,
     CoinMetricsRoutingModule,
-    SharedModule,
+    //COMPONENTS
   ],
   exports: [CoinMetricsComponent],
 })

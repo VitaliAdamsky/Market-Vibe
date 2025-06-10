@@ -65,7 +65,7 @@ export class CoinMetricsComponent implements OnInit {
         this.symbol,
         'kline',
         this.timeframe,
-        'buyerRatio'
+        'normalizedBuyerRatio'
       );
 
     this.volumeDeltaEchartOptoins =
@@ -73,7 +73,7 @@ export class CoinMetricsComponent implements OnInit {
         this.symbol,
         'kline',
         this.timeframe,
-        'volumeDelta'
+        'normalizedVolumeDelta'
       );
 
     this.closePriceEchartOptoins =
@@ -81,7 +81,7 @@ export class CoinMetricsComponent implements OnInit {
         this.symbol,
         'kline',
         this.timeframe,
-        'closePrice'
+        'normalizedClosePrice'
       );
 
     this.normalizedEchartOptoins =

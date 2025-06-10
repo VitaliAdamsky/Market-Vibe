@@ -45,6 +45,8 @@ export const APP_ICONS: { name: string; url: string }[] = [
   { name: 'send-to', url: 'assets/icons/send-to.svg' },
   { name: 'server-person', url: 'assets/icons/server-person.svg' },
   { name: 'sorter', url: 'assets/icons/sorter.svg' },
+  { name: 'sort-up', url: 'assets/icons/sort-up.svg' },
+  { name: 'sort-down', url: 'assets/icons/sort-down.svg' },
   { name: 'telegram', url: 'assets/icons/telegram.svg' },
   { name: 'triggered-alarm', url: 'assets/icons/triggered-alarm.svg' },
   { name: 'tv', url: 'assets/icons/tv.svg' },

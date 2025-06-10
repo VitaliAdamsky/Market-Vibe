@@ -37,7 +37,6 @@ import { DataChartsRoutingModule } from './data-charts-routing.module';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartComponent } from './chart/chart.component';
 import { SharedModule } from '../shared/shared.module';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
@@ -48,6 +47,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CommonModule,
     SharedModule,
     InfiniteScrollModule,
+    //COMPONENTS
   ],
 })
 export class DataChartsModule {}

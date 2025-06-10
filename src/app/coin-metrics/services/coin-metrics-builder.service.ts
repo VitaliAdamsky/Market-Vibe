@@ -42,7 +42,7 @@ export class CoinMetricsBuilderService {
 
     const seriesData: number[] =
       dataType === 'oi'
-        ? (coin.data as OpenInterestItem[]).map((d) => d.openInterest)
+        ? (coin.data as OpenInterestItem[]).map((d) => d.normalizedOpenInterest)
         : dataType === 'kline' && propertyKey
         ? (coin.data as KlineDataItem[]).map((d) =>
             this.getKlineValue(d, propertyKey)

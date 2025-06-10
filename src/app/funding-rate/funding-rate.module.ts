@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
     SharedModule,
     MatIconModule,
     FundingRateRoutingModule,
+    //COMPONENTS
   ],
   exports: [FundingRateComponent],
 })

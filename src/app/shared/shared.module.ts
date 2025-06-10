@@ -20,6 +20,7 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CoinItemComponent } from './coin-item/coin-item.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     LittleCellTooltipDirective,
     ScrollToTopComponent,
     SearchBoxComponent,
+    CoinItemComponent,
   ],
   imports: [
+    //MODULES
     CommonModule,
     MatButtonModule,
     MatIconModule,
@@ -42,6 +45,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     FormsModule,
     DragDropModule,
     InfiniteScrollModule,
+
+    //COMPONENTS
   ],
   exports: [
     HeatmapTableComponent,
@@ -54,6 +59,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     LittleCellTooltipDirective,
     ScrollToTopComponent,
     SearchBoxComponent,
+    CoinItemComponent,
   ],
 })
 export class SharedModule {}

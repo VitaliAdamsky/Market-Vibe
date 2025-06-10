@@ -1,0 +1,71 @@
+<div class="toolbar">
+  <app-search-box [(query)]="searchQuery" placeholder="Search symbol..." (queryChange)="applySearch($event)">
+  </app-search-box>
+
+  <div class="left-button-panel">
+    <!-- COIN METRICS -->
+    <!-- TIMEFRAME: 1H -->
+    <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
+      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.h1)"><mat-icon
+        class="panel-icon">bar_chart</mat-icon> 1H</button>
+    <!-- TIMEFRAME: 4H -->
+    <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
+      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.h4)"><mat-icon
+        class="panel-icon">bar_chart</mat-icon>
+      4H</button>
+    <!-- TIMEFRAME: 12H -->
+    <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
+      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.h12)"><mat-icon
+        class="panel-icon">bar_chart</mat-icon> 12H</button>
+    <!-- TIMEFRAME: D -->
+    <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
+      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.D)"><mat-icon
+        class="panel-icon">bar_chart</mat-icon> D</button>
+
+  </div>
+
+  <div class="header">
+    <span class="header-text">
+      Coins <button style="margin-bottom: 5px;" mat-icon-button (click)="toggleAll()">{{selected}}</button> /
+      {{filteredCoins.length}}
+    </span>
+  </div>
+
+  <div class="button-panel">
+
+    <button matTooltip="Sort by Alphabet" matTooltipPosition="above" mat-raised-button
+      style="background-color:#002699; color: white;" (click)="sortByAlphabet()">
+      <div *ngIf="isAlpahbetAsc"> <mat-icon class="sort-icon" svgIcon="sort-up"></mat-icon></div>
+      <div *ngIf="!isAlpahbetAsc"> <mat-icon class="sort-icon" svgIcon="sort-down"></mat-icon></div>
+    </button>
+
+    <button matTooltip="Sort by Category" matTooltipPosition="above" mat-raised-button
+      style="background-color:#00b36b; color: white;" (click)="sortByCategory()">
+      <div *ngIf="isCategoryAsc"> <mat-icon class="sort-icon" svgIcon="sort-up"></mat-icon></div>
+      <div *ngIf="!isCategoryAsc"> <mat-icon class="sort-icon" svgIcon="sort-down"></mat-icon></div>
+    </button>
+    <!-- COIN COMPARISON -->
+    <!-- TIMEFRAME: 1H -->
+    <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
+      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.h1)"><mat-icon
+        class="panel-icon">show_chart</mat-icon> 1H</button>
+    <!-- TIMEFRAME: 4H -->
+    <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
+      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.h4)"><mat-icon
+        class="panel-icon">show_chart</mat-icon> 4H</button>
+    <!-- TIMEFRAME: 12H -->
+    <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
+      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.h12)"><mat-icon
+        class="panel-icon">show_chart</mat-icon> 12H</button>
+    <!-- TIMEFRAME: D -->
+    <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
+      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.D)"><mat-icon
+        class="panel-icon">show_chart</mat-icon> D</button>
+    <button matTooltip="Close Windows" matTooltipPosition="above" mat-raised-button
+      style="background-color:#ff0000; color: white;" (click)="closeWindows()"><mat-icon
+        class="panel-icon">close</mat-icon></button>
+  </div>
+</div>
+<div class="coin-container">
+  <app-coin-item *ngFor="let coin of filteredCoins" [coin]="coin"></app-coin-item>
+</div>

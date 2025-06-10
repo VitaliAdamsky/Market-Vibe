@@ -16,6 +16,7 @@ import { LoginRoutingModule } from './login-routing.module';
     MatIconModule,
     MatTooltipModule,
     LoginRoutingModule,
+    //COMPONENTS
   ],
   exports: [LoginComponent, UserProfileComponent],
 })

@@ -41,11 +41,11 @@ export class NormalizedMetricsChartService {
         data: coinOi.data.map((d) => d.normalizedOpenInterest),
         color: '#ffcc00',
       },
-      {
-        name: 'FR',
-        data: this.alignFundingRateToKlines(coinKline.data, coinFr.data),
-        color: '#00e676',
-      },
+      // {
+      //   name: 'FR',
+      //   data: this.alignFundingRateToKlines(coinKline.data, coinFr.data),
+      //   color: '#00e676',
+      // },
       {
         name: 'Price',
         data: coinKline.data.map((d) => d.normalizedClosePrice),

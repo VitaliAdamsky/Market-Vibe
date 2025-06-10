@@ -27,6 +27,7 @@ import { OpenInterestModule } from './open-interest/open-interest.module';
 import { DataChartsModule } from './data-charts/data-charts.module';
 import { PanelModule } from './panel/panel.module';
 import { CoinMetricsModule } from './coin-metrics/coin-metrics.module';
+import { CoinsModule } from './coins/coins.module';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -61,6 +62,7 @@ registerLocaleData(localeRu);
     DataChartsModule,
     PanelModule,
     CoinMetricsModule,
+    CoinsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],

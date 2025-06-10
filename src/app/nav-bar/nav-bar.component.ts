@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
+  COINS,
   COLORS,
   DATA_CHARTS,
   FUNDING_RATE,
@@ -45,7 +46,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   goToCoins() {
-    this.router.navigate([]);
+    this.router.navigate([COINS]);
   }
 
   goToVwapArchivedAlerts() {

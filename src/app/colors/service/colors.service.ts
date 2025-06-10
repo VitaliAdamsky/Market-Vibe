@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Colors } from '../models/colors';
 import { HttpErrorHandler } from 'src/app/utils/http-error-handler';
 import { SnackbarService } from 'src/services/snackbar.service';

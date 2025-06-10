@@ -17,6 +17,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     MatTooltipModule,
     ColorsRoutingModule,
+    //COMPONENTS
   ],
   exports: [ColorsComponent],
 })

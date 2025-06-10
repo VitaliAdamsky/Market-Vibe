@@ -23,7 +23,6 @@ export class ExchangeTooltipDirective implements OnDestroy {
     symbol: string;
     exchanges: string[];
   };
-
   @Input() triggerEvent: 'hover' | 'click' = 'hover';
 
   private overlayRef: OverlayRef | null = null;

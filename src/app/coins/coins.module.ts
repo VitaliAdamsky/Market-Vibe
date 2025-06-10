@@ -1,22 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PanelRoutingModule } from './panel-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { PanelComponent } from './panel.component';
+
 import { MatIconModule } from '@angular/material/icon';
+
+import { CoinsRoutingModule } from './coins-routing.module';
+import { CoinsComponent } from './coins.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  declarations: [PanelComponent],
+  declarations: [CoinsComponent],
   imports: [
     CommonModule,
     SharedModule,
-    PanelRoutingModule,
     MatIconModule,
+    CoinsRoutingModule,
     MatButtonModule,
+    MatTooltipModule,
+
     //COMPONENTS
   ],
-  exports: [PanelComponent],
+  exports: [CoinsComponent],
 })
-export class PanelModule {}
+export class CoinsModule {}

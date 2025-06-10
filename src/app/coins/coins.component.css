@@ -1,0 +1,79 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Общий стиль для всех дочерних элементов */
+.toolbar > app-search-box,
+.toolbar > .header,
+.toolbar > .button-panel {
+  margin-top: 84px;
+  margin-bottom: 10px;
+}
+
+/* === Search Box (слева) === */
+.toolbar > app-search-box {
+  flex: 1 1 25%; /* Занимает ~25% ширины */
+  min-width: 200px;
+  margin-top: 94px;
+}
+
+/* === Header (по центру) === */
+.toolbar > .header {
+  flex: 1 1 50%; /* Занимает ~50% ширины */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header-text {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Пробел между текстом и кнопкой */
+}
+
+/* === Button Panel (справа) === */
+.toolbar > .button-panel {
+  flex: 1 1 25%; /* Занимает ~25% ширины */
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px; /* Отступ между кнопками */
+}
+
+/* Опционально: предотвращает перенос текста в Material-кнопках */
+.button-panel button {
+  white-space: nowrap;
+}
+
+.left-button-panel   {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 70px;
+  margin-left: 30px
+
+}
+
+.coin-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panel-icon{
+  margin-left: 4px;
+  padding-right: 4px;
+  font-size: 24px;
+  padding-bottom: 5px;
+}
+
+.sort-icon{
+  margin-left: 6px; font-size: 25px;
+  margin-top: 6px;
+}
