@@ -11,9 +11,10 @@ import { SnackbarType } from '../models/snackbar-type';
 })
 export class CoinItemComponent {
   @Input() coin!: Coin;
+  @Input() isSelected = false;
   maxSelections = 7;
   constructor(
-    private selectionService: SelectionService<Coin>,
+    public selectionService: SelectionService<Coin>,
     private snackbarService: SnackbarService
   ) {}
 
@@ -30,7 +31,7 @@ export class CoinItemComponent {
     // Этот метод можно оставить для других вызовов, но он не используется напрямую в этом компоненте
     if (
       this.selectionService.selectedValues().length < 7 ||
-      this.isSelected()
+      this.selectionService.isSelected(this.coin)
     ) {
       this.selectionService.toggle(this.coin);
     } else {
@@ -43,9 +44,9 @@ export class CoinItemComponent {
     }
   }
 
-  isSelected(): boolean {
-    return this.selectionService.isSelected(this.coin);
-  }
+  // isSelected(): boolean {
+  //   return this.selectionService.isSelected(this.coin);
+  // }
 
   stripPair(symbol: string): string {
     return symbol.replace(/(USDT|BUSD|USD|PERP)$/i, '');

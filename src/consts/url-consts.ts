@@ -12,6 +12,7 @@ export const MARKET_ACTIVITY = 'market-activity';
 export const DATA_CHARTS = 'data-charts';
 export const PANEL = 'panel';
 export const COIN_METRICS = 'coin-metrics';
+export const COIN_COMPARE = 'coin-compare';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;

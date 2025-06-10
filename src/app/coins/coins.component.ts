@@ -5,9 +5,11 @@ import { CoinsService } from './services/coins.service';
 import { Coin } from '../shared/models/coin';
 import { Subscription } from 'rxjs';
 import { SelectionService } from '../shared/services/selection.service';
-import { COIN_METRICS } from 'src/consts/url-consts';
+import { COIN_COMPARE, COIN_METRICS } from 'src/consts/url-consts';
 
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/services/snackbar.service';
+import { SnackbarType } from '../shared/models/snackbar-type';
 
 @Component({
   selector: 'app-coins',
@@ -30,7 +32,8 @@ export class CoinsComponent implements OnInit, OnDestroy {
   constructor(
     private coinsService: CoinsService,
     private selectionService: SelectionService<Coin>,
-    private router: Router
+    private router: Router,
+    private snacakbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -115,7 +118,15 @@ export class CoinsComponent implements OnInit, OnDestroy {
 
   onGoToCoinMetrics(timeframe: TF) {
     const coins = this.selectionService.selectedValues();
-    if (coins.length === 0) return;
+    if (coins.length < 1) {
+      this.snacakbarService.showSnackBar(
+        'Select at least 1 coin',
+        '',
+        3000,
+        SnackbarType.Info
+      );
+      return;
+    }
 
     for (const coin of coins) {
       const url = this.router.serializeUrl(
@@ -134,7 +145,32 @@ export class CoinsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onGoToComparison(timeframe: TF) {}
+  onGoToComparison(timeframe: TF) {
+    const coins = this.selectionService.selectedValues();
+    if (coins.length < 2) {
+      this.snacakbarService.showSnackBar(
+        'Select at least 2 coins',
+        '',
+        3000,
+        SnackbarType.Info
+      );
+      return;
+    }
+
+    const uuid = crypto.randomUUID(); // Генерируем уникальный ID
+
+    // Сохраняем данные по уникальному ключу
+    localStorage.setItem(`${COIN_COMPARE}_${uuid}`, JSON.stringify(coins));
+
+    // Формируем URL с uuid в query параметре
+    const url = this.router
+      .createUrlTree([COIN_COMPARE], {
+        queryParams: { timeframe, uuid },
+      })
+      .toString();
+
+    window.open(url, '_blank');
+  }
 
   closeWindows(): void {
     for (const win of this.openedWindows) {

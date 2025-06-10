@@ -2,7 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 98%;
+  background-color: #383838;
+  margin: auto;
+
+
+
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 
 /* Общий стиль для всех дочерних элементов */
@@ -64,6 +72,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top:155px
 }
 
 .panel-icon{

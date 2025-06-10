@@ -1,4 +1,5 @@
-<div class="coin-item" [class.selected]="isSelected()" (click)="onCoinItemClick($event)">
+<div class="coin-item" [class.selected]="isSelected || selectionService.isSelected(coin)"
+  (click)="onCoinItemClick($event)">
   <img [src]="coin.imageUrl" class="round-image" alt="{{ coin.symbol }}"
     [appExchangeTooltip]="{ symbol: coin.symbol, exchanges: coin.exchanges}" [triggerEvent]="'click'" />
 

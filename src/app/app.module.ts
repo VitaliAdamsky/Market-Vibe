@@ -29,6 +29,8 @@ import { PanelModule } from './panel/panel.module';
 import { CoinMetricsModule } from './coin-metrics/coin-metrics.module';
 import { CoinsModule } from './coins/coins.module';
 
+import { CoinCompareModule } from './coin-compare/coin-compare.module';
+
 registerLocaleData(localeRu);
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ registerLocaleData(localeRu);
     PanelModule,
     CoinMetricsModule,
     CoinsModule,
+    CoinCompareModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
