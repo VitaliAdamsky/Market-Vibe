@@ -6,7 +6,8 @@
 </div>
 <div class="ribbon">
   <ng-container *ngIf="coins && coins.length > 0; else noItems">
-    <app-coin-item *ngFor="let coin of coins" [coin]="coin" [isSelected]="true"></app-coin-item>
+    <app-coin-item *ngFor="let coin of coins" [coin]="coin" [isSelected]="true" [actionType]="'compare'"
+      [timeframe]="timeframe"></app-coin-item>
   </ng-container>
 
   <ng-template #noItems>
@@ -16,9 +17,5 @@
 <div class="echarts-container">
   <div *ngIf="oiChartOptions" style="width: 100%; height: 400px;">
     <div echarts [options]="oiChartOptions" style="height: 100%;"></div>
-  </div>
-
-  <div *ngIf="!oiChartOptions">
-    No data available to display.
   </div>
 </div>

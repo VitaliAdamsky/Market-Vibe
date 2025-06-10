@@ -3,9 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Coin } from '../shared/models/coin';
 import { SelectionService } from '../shared/services/selection.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TF } from '../shared/models/timeframes';
-import { COIN_COMPARE } from 'src/consts/url-consts';
+import { COIN_COMPARE, COIN_METRICS } from 'src/consts/url-consts';
 import { CoinCompareBuilderService } from './services/coin-compare-builder.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private chartService: CoinCompareBuilderService
   ) {}
 
@@ -67,6 +68,21 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
       this.oiChartOptions = null;
     }
   }
+
+  onGoToMetrics(coin: Coin) {
+    const url = this.router
+      .createUrlTree([COIN_METRICS], {
+        queryParams: {
+          symbol: coin.symbol,
+          timeframe: this.timeframe,
+          imageUrl: encodeURIComponent(coin.imageUrl),
+        },
+      })
+      .toString();
+
+    window.open(url, '_blank');
+  }
+
   ngOnDestroy(): void {
     this.subscribtion.unsubscribe();
   }
