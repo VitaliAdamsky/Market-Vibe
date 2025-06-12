@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 84px;
+  margin-top: 74px;
   margin-bottom: 10px;
 }
 
@@ -16,10 +16,10 @@
   text-align: center;
   margin-top: 30px;
   margin-bottom: 10px;
-  position: sticky;
+  /* position: sticky;
   top: 70px;
-  background-color: #383838; /* или цвет твоего фона */
-  z-index: 999;
+  background-color: #383838;
+  z-index: 999; */
   padding: 10px 0;
 }
 
@@ -36,7 +36,7 @@
   margin-bottom: 20px;
   justify-content: center;
   position: sticky;
-  top: 130px; /* Подбери под высоту subheader */
+  top: 64px; /* Подбери под высоту subheader */
   background-color: #383838; /* или цвет твоего фона */
   z-index: 20;
   padding: 10px 0;

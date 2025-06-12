@@ -1,0 +1,38 @@
+<div class="header">
+  <span class="header-text">{{ title }}</span>
+</div>
+<div class="subheader">
+  <span class="subheader-text">{{ subtitle }}</span>
+</div>
+<div class="heatmap-container">
+  <ng-container *ngIf="tableData.length > 0; else loading">
+    <app-sentiment-heatmap [data]="tableData" [metricKey]="'closePriceChange'"></app-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-sentiment-heatmap [data]="tableData" [metricKey]="'openInterestChange'"></app-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-sentiment-heatmap [data]="tableData" [metricKey]="'fundingRateChange'"></app-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-sentiment-heatmap [data]="tableData" [metricKey]="'volumeDeltaChange'"></app-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-sentiment-heatmap [data]="tableData" [metricKey]="'perpSpotDiff'"></app-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-sentiment-heatmap [data]="tableData" [metricKey]="'buyerRatioChange'"></app-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0">
+    <app-sentiment-heatmap [data]="tableData" [metricKey]="'volumeChange'"></app-sentiment-heatmap>
+  </ng-container>
+  <ng-template #loading>
+    <div class="loading">Loading...</div>
+  </ng-template>
+</div>

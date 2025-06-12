@@ -12,4 +12,12 @@ export interface MarketActivityStats {
   closePriceChange: number;
   perpSpotDiff: number;
   buyerRatioChange: number;
+  closePriceChangeColor?: string;
+  buyerRatioChangeColor?: string;
+  quoteVolumeChangeColor?: string;
+  volumeDeltaChangeColor?: string;
+  perpSpotDiffColor?: string;
+  fundingRateChangeColor?: string;
+  openInterestChangeColor?: string;
+  volumeChangeColor?: string;
 }

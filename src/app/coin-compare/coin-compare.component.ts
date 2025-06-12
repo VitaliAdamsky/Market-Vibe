@@ -20,6 +20,11 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
   timeframe!: TF;
   subscribtion: Subscription = new Subscription();
   oiChartOptions!: EChartsOption | null;
+  closePriceChartOptions!: EChartsOption | null;
+  volumeChartOptions!: EChartsOption | null;
+  volumeDeltaChartOptions!: EChartsOption | null;
+  buyerRatioChartOptions!: EChartsOption | null;
+  frChartOptions!: EChartsOption | null;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,9 +65,65 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
 
   async loadOiChart() {
     if (this.coins && this.coins.length > 0) {
-      this.oiChartOptions = await this.chartService.buildOiChartForCoins(
+      this.oiChartOptions = await this.chartService.buildMetricChart(
         this.coins,
-        this.timeframe
+        this.timeframe,
+        {
+          type: 'oi',
+          title: 'Open Interest',
+          valueKey: 'normalizedOpenInterest',
+          tooltipKey: 'openInterestChange',
+        }
+      );
+      this.closePriceChartOptions = await this.chartService.buildMetricChart(
+        this.coins,
+        this.timeframe,
+        {
+          type: 'kline',
+          title: 'Close Price',
+          valueKey: 'normalizedClosePrice',
+          tooltipKey: 'closePriceChange',
+        }
+      );
+      this.volumeChartOptions = await this.chartService.buildMetricChart(
+        this.coins,
+        this.timeframe,
+        {
+          type: 'kline',
+          title: 'Quote Volume',
+          valueKey: 'normalizedQuoteVolume',
+          tooltipKey: 'quoteVolumeChange',
+        }
+      );
+      this.volumeDeltaChartOptions = await this.chartService.buildMetricChart(
+        this.coins,
+        this.timeframe,
+        {
+          type: 'kline',
+          title: 'Volume Delta',
+          valueKey: 'normalizedVolumeDelta',
+          tooltipKey: 'volumeDeltaChange',
+        }
+      );
+      this.buyerRatioChartOptions = await this.chartService.buildMetricChart(
+        this.coins,
+        this.timeframe,
+        {
+          type: 'kline',
+          title: 'Buyer Ratio',
+          valueKey: 'normalizedBuyerRatio',
+          tooltipKey: 'buyerRatioChange',
+        }
+      );
+      this.frChartOptions = await this.chartService.buildMetricChart(
+        this.coins,
+        this.timeframe,
+        {
+          type: 'fr',
+          title: 'Funding Rate',
+          valueKey: 'normalizedFundingRate',
+          tooltipKey: 'fundingRateChange',
+        }
       );
     } else {
       this.oiChartOptions = null;

@@ -10,8 +10,10 @@ import {
   FUNDING_RATE,
   MARKET_ACTIVITY,
   PANEL,
+  SENTIMENT,
 } from 'src/consts/url-consts';
 import { IndexedDbService } from '../shared/services/market-data/idexdb.service';
+import { TF } from '../shared/models/timeframes';
 
 @Component({
   selector: 'app-nav-bar',
@@ -56,6 +58,15 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   goToVwapArchivedAlerts() {
     this.router.navigate([]);
+  }
+
+  goToSentiment() {
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([SENTIMENT], {
+        queryParams: { timeframe: TF.h4 },
+      })
+    );
+    window.open(url, '_blank');
   }
 
   clearIndexDbCache() {

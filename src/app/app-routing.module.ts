@@ -12,6 +12,7 @@ import {
   COIN_METRICS,
   COIN_COMPARE,
   COINS,
+  SENTIMENT,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -64,6 +65,11 @@ const routes: Routes = [
       import('./coin-compare/coin-compare.module').then(
         (m) => m.CoinCompareModule
       ),
+  },
+  {
+    path: SENTIMENT,
+    loadChildren: () =>
+      import('./sentiment/sentiment.module').then((m) => m.SentimentModule),
   },
   {
     path: COIN_METRICS,

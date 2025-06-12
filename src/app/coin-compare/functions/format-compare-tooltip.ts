@@ -1,21 +1,12 @@
-import { OpenInterestItem } from 'src/app/shared/models/oi';
+import { CallbackDataParams } from 'echarts/types/dist/shared';
 
-/**
- * Форматирует tooltip для сравнения OI нескольких монет
- */
-export function formatCompareTooltip(
-  params: any,
-  allCoinData: OpenInterestItem[][]
-): string {
-  if (!params.length || params[0].dataIndex === undefined) return '';
+export function formatCompareTooltip(params: CallbackDataParams[]): string {
+  if (!params || params.length === 0) return '';
 
-  const index = params[0].dataIndex;
+  const firstParam = params[0];
+  const openTime = (firstParam.data as any)?.openTime ?? 0;
+  const closeTime = (firstParam.data as any)?.closeTime ?? 0;
 
-  // Получаем время из первой монеты (предполагается, что у всех одинаковое)
-  const openTime = allCoinData[0]?.[index]?.openTime ?? 0;
-  const closeTime = allCoinData[0]?.[index]?.closeTime ?? 0;
-
-  // Функция форматирования времени
   const formatDate = (time: number): string =>
     new Date(time).toLocaleString('en-GB', {
       hour: '2-digit',
@@ -24,69 +15,46 @@ export function formatCompareTooltip(
       month: 'short',
     });
 
-  // Вспомогательная функция для удаления пары
-  function stripPair(symbol: string): string {
-    return symbol.replace(/(USDT|BUSD|USD|PERP)$/i, '');
-  }
-
-  // Строим строки для каждой монеты на основе данных из params
   const rows = params
-    .filter((p: any) => p.seriesName && p.color && p.value !== undefined) // фильтруем только валидные данные
-    .map((p: any, i: any) => {
-      const symbol = stripPair(p.seriesName); // например, BTCUSDT → BTC
-      const change = p.value ? `${parseFloat(p.value).toFixed(1)}%` : '–';
-      const color = p.color || '#ccc'; // если цвет не найден — дефолтный
+    .filter(
+      (p): p is CallbackDataParams & { seriesName: string; value: number } =>
+        typeof p.seriesName === 'string' && typeof p.value === 'number'
+    )
+    .map((p) => {
+      const symbol = p.seriesName.replace(/(USDT|BUSD|USD|PERP)$/i, '');
+      const color = (p.color as string) ?? '#ccc';
+      const data = p.data as any;
+
+      const raw = data.tooltipValue ?? data.value ?? 0;
+      const value = typeof raw === 'number' ? `${raw.toFixed(2)}%` : raw;
 
       return `
-        <div style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin: 2px 0;
-        ">
-          <div style="
-            display: flex;
-            align-items: center;
-            gap: 6px;
-          ">
-            <span style="
-              display: inline-block;
-              width: 10px;
-              height: 10px;
-              border-radius: 50%;
-              background-color: ${color};
-              margin-right: 4px;
-            "></span>
-            <span>${stripPair(symbol)}</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin:2px 0;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background-color:${color};margin-right:4px;"></span>
+            <span>${symbol}</span>
           </div>
-          <span style="color: #ccc; font-weight: bold;">${change}</span>
-        </div>
-      `;
+          <span style="color:#ccc;font-weight:bold;">${value}</span>
+        </div>`;
     })
     .join('');
 
-  // HTML tooltip'а
   return `
     <div style="
-      background: #2f2f2f;
-      color: #f1f1f1;
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      line-height: 1.6;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-      min-width: 160px;
+      background:#2f2f2f;
+      color:#f1f1f1;
+      padding:10px;
+      font-size:13px;
+      line-height:1.6;
+      box-shadow:0 2px 8px rgba(0,0,0,0.6);
+      border-radius:6px;
+      min-width:160px;
     ">
       <div><span style="color:#aaa;">Open:</span> ${formatDate(openTime)}</div>
       <div><span style="color:#aaa;">Close:</span> ${formatDate(
         closeTime
       )}</div>
-      <hr style="border: none; border-top: 1px solid #444; margin: 6px 0" />
+      <hr style="border:none;border-top:1px solid #444;margin:6px 0;" />
       ${rows}
-    </div>
-  `;
-}
-
-function stripPair(symbol: string): string {
-  return symbol.replace(/(USDT|BUSD|USD|PERP)$/i, '');
+    </div>`;
 }

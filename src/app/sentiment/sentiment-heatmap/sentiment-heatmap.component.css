@@ -1,0 +1,64 @@
+.heatmap-wrapper {
+  position: relative;
+  padding: 16px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  overflow-x: auto;
+  background: linear-gradient(145deg, #1c1c1c, #242424);
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(20, 68px); /* 20 cells per row */
+  gap: 4px;
+  justify-content: start;
+}
+
+.heatmap-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 38px;
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f0e0e;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  user-select: none;
+   animation: fadeIn 0.4s ease-in;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  z-index: 2;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Внешний контейнер — центрирует всё по горизонтали */
+.heatmap-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+/* Заголовок над таблицей */
+.heatmap-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: capitalize;
+}

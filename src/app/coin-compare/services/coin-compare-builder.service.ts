@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { MarketData } from 'src/app/shared/models/market-data';
-import { OpenInterestData, OpenInterestItem } from 'src/app/shared/models/oi';
-import { FundingRateItem } from 'src/app/shared/models/fr';
-import { KlineDataItem } from 'src/app/shared/models/kline';
-import { DataType } from 'src/app/shared/models/data-type';
-import { TF } from 'src/app/shared/models/timeframes';
-import { ChartResult } from 'src/app/shared/models/chart-result';
 import { IndexedDbService } from 'src/app/shared/services/market-data/idexdb.service';
 import { MarketDataService } from 'src/app/shared/services/market-data/market-data.service';
 import { Coin } from 'src/app/shared/models/coin';
 import { getRandomColor } from '../functions/get-random-color';
-import { formatTooltip } from 'src/app/data-charts/functions/format-tooltip';
 import { formatCompareTooltip } from '../functions/format-compare-tooltip';
+
+import { OpenInterestItem } from 'src/app/shared/models/oi';
+import { FundingRateItem } from 'src/app/shared/models/fr';
+import { KlineDataItem } from 'src/app/shared/models/kline';
+import { MarketData } from 'src/app/shared/models/market-data';
+import { DataType, DataTypeMap } from 'src/app/shared/models/data-type';
+import { TF } from 'src/app/shared/models/timeframes';
+import { MetricCompareConfig } from '../models/metric-config';
+import { CallbackDataParams } from 'echarts/types/dist/shared';
+
+type DataItem<K extends DataType> = DataTypeMap[K]['data'][number];
 
 @Injectable({ providedIn: 'root' })
 export class CoinCompareBuilderService {
@@ -21,43 +24,68 @@ export class CoinCompareBuilderService {
     private marketDataService: MarketDataService
   ) {}
 
-  async buildOiChartForCoins(
+  async buildMetricChart<K extends DataType>(
     coins: Coin[],
-    timeframe: TF
+    timeframe: TF,
+    config: MetricCompareConfig<K>
   ): Promise<EChartsOption | null> {
-    const dataList = await this.getOrFetchFromCache<OpenInterestData>(
-      'oi',
-      timeframe
-    );
+    if (!coins || coins.length === 0) return null;
 
+    const dataList = await this.getOrFetchFromCache<K>(config.type, timeframe);
     if (!dataList || dataList.length === 0) return null;
 
-    // Фильтруем только те монеты, которые есть в списке
-    const coinOis = coins
-      .map((coin) => dataList.find((c) => c.symbol === coin.symbol))
-      .filter((c): c is OpenInterestData => !!c);
+    const coinData = coins
+      .map((coin) => dataList.find((d) => d.symbol === coin.symbol))
+      .filter((d): d is DataTypeMap[K] => !!d);
 
-    if (coinOis.length === 0) return null;
+    if (coinData.length === 0) return null;
 
-    // Все временные метки первой монеты будем использовать как ось X
-    const xAxis = coinOis[0].data.map((d) =>
+    const firstCoinTimeframeData = coinData[0].data;
+
+    const xAxis = firstCoinTimeframeData.map((d) =>
       new Date(d.openTime).toISOString()
     );
 
-    // Строим серию для каждой монеты
-    const series = coinOis.map((coinOi) => ({
-      name: coinOi.symbol,
-      type: 'line' as const,
-      data: coinOi.data.map((d) => d.normalizedOpenInterest),
-      symbol: 'circle',
-      symbolSize: 3,
-      itemStyle: { color: getRandomColor() },
-      lineStyle: { width: 2 },
-    }));
+    const series = coinData.map((item) => {
+      const dataItems = item.data as DataItem<K>[];
 
-    const option: EChartsOption = {
+      return {
+        name: item.symbol,
+        type: 'line' as const,
+        data: dataItems.map((d, i) => {
+          const value = d[config.valueKey] as number;
+          const tooltipValue = d[config.tooltipKey] as number;
+
+          console.log(`[${item.symbol}] #${i}`, {
+            valueKey: config.valueKey,
+            value,
+            tooltipKey: config.tooltipKey,
+            tooltipValue,
+            openTime: d.openTime,
+            closeTime: d.closeTime,
+          });
+
+          return {
+            value,
+            tooltipValue,
+            openTime: d.openTime,
+            closeTime: d.closeTime,
+          };
+        }),
+        encode: {
+          x: 'openTime',
+          y: 'value',
+        },
+        symbol: 'circle',
+        symbolSize: 3,
+        itemStyle: { color: getRandomColor() },
+        lineStyle: { width: 2 },
+      };
+    });
+
+    return {
       title: {
-        text: 'Open Interest Comparison',
+        text: `${config.title} (${timeframe})`,
         left: 'center',
         textStyle: { color: '#ccc' },
       },
@@ -66,16 +94,13 @@ export class CoinCompareBuilderService {
         axisPointer: { type: 'line' },
         backgroundColor: 'transparent',
         borderWidth: 0,
-        formatter: (params) =>
-          formatCompareTooltip(
-            params,
-            coinOis.map((c) => c.data)
-          ),
+        formatter: (params: CallbackDataParams | CallbackDataParams[]) =>
+          formatCompareTooltip(Array.isArray(params) ? params : [params]),
       },
       legend: {
         top: 30,
         textStyle: { color: '#ccc' },
-        data: coinOis.map((c) => c.symbol),
+        data: coinData.map((c) => c.symbol),
       },
       xAxis: {
         type: 'category',
@@ -95,24 +120,20 @@ export class CoinCompareBuilderService {
       },
       series,
     };
-
-    return option;
   }
 
-  private async getOrFetchFromCache<T>(
-    dataType: DataType,
+  private async getOrFetchFromCache<K extends DataType>(
+    dataType: K,
     timeframe: TF
-  ): Promise<T[]> {
+  ): Promise<DataTypeMap[K][]> {
     const key = dataType === 'fr' ? dataType : `${dataType}-${timeframe}`;
     const now = Date.now();
 
-    const cached = (await this.indexedDb.get(key)) as MarketData | undefined;
-
+    const cached = (await this.indexedDb.get(key)) as MarketData;
     if (cached && now < cached.expirationTime) {
-      return cached.data as T[];
+      return cached.data as DataTypeMap[K][];
     }
 
-    // Запрашиваем данные через MarketDataService
     await new Promise<void>((resolve, reject) => {
       this.marketDataService.getMarketData<any>(dataType, timeframe).subscribe({
         next: () => resolve(),
@@ -121,6 +142,6 @@ export class CoinCompareBuilderService {
     });
 
     const updated = (await this.indexedDb.get(key)) as MarketData;
-    return updated.data as T[];
+    return updated.data as DataTypeMap[K][];
   }
 }

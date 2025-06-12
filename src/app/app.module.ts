@@ -28,8 +28,10 @@ import { DataChartsModule } from './data-charts/data-charts.module';
 import { PanelModule } from './panel/panel.module';
 import { CoinMetricsModule } from './coin-metrics/coin-metrics.module';
 import { CoinsModule } from './coins/coins.module';
-
 import { CoinCompareModule } from './coin-compare/coin-compare.module';
+
+import { SentimentModule } from './sentiment/sentiment.module';
+import { MarketActivityModule } from './market-activity/market-activity.module';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -66,6 +68,8 @@ registerLocaleData(localeRu);
     CoinMetricsModule,
     CoinsModule,
     CoinCompareModule,
+    SentimentModule,
+    MarketActivityModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
