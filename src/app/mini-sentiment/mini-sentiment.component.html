@@ -1,0 +1,38 @@
+<div class="header">
+  <span class="header-text">{{ title }}</span>
+</div>
+<div class="subheader">
+  <span class="subheader-text">{{ subtitle }}</span>
+</div>
+<div class="heatmap-container">
+  <ng-container *ngIf="tableData.length > 0; else loading">
+    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'closePriceChange'"></app-mini-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'openInterestChange'"></app-mini-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'fundingRateChange'"></app-mini-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'volumeDeltaChange'"></app-mini-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'perpSpotDiff'"></app-mini-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0 ">
+    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'buyerRatioChange'"></app-mini-sentiment-heatmap>
+  </ng-container>
+
+  <ng-container *ngIf="tableData.length > 0">
+    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'volumeChange'"></app-mini-sentiment-heatmap>
+  </ng-container>
+  <ng-template #loading>
+    <div class="loading">Loading...</div>
+  </ng-template>
+</div>

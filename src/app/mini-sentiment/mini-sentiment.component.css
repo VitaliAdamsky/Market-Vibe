@@ -1,0 +1,35 @@
+.subheader {
+  text-align: center;
+  margin-bottom: 10px;  margin-top: 30px;
+  position: sticky;
+  top: 64px;
+  background-color: #383838;
+  z-index: 999;
+  padding: 10px 0;
+}
+
+.subheader-text {
+  font-size: 16px; /* Optional: Adjust font size */
+  font-weight: bold; /* Optional: Make text bold */
+}
+.header {
+  display: flex;
+  align-items: center;     /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  gap: 10px;               /* Space between text and icon */
+  margin-top: 84px;
+  margin-bottom: 10px;
+}
+
+.header-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.heatmap-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Центровка по всей высоте экрана */
+}

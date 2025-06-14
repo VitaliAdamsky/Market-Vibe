@@ -1,0 +1,20 @@
+<div class="header">
+  <span class="header-text">Aggregator</span>
+</div>
+
+<div class="echarts-container">
+  <ng-container
+    *ngIf="chartsOptions1h && chartsOptions4h && chartsOptions12h && chartsOptionsD && chartsOptionsFR; else loading">
+    <app-aggregator-chart [chartOptions]="chartsOptions1h"></app-aggregator-chart>
+    <app-aggregator-chart [chartOptions]="chartsOptions4h"></app-aggregator-chart>
+    <app-aggregator-chart [chartOptions]="chartsOptions12h"></app-aggregator-chart>
+    <app-aggregator-chart [chartOptions]="chartsOptionsD"></app-aggregator-chart>
+    <app-aggregator-chart *ngFor="let chartOptions of chartsOptionsFR"
+      [chartOptions]="chartOptions"></app-aggregator-chart>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="loading">Loading...</div>
+  </ng-template>
+</div>
+<app-scroll-to-top [scrollOffset]="200" position="right"></app-scroll-to-top>

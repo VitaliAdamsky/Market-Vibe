@@ -3,12 +3,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
+  AGGREGATOR,
   COIN_COMPARE,
   COINS,
   COLORS,
   DATA_CHARTS,
   FUNDING_RATE,
   MARKET_ACTIVITY,
+  MINI_SENTIMENT,
   PANEL,
   SENTIMENT,
 } from 'src/consts/url-consts';
@@ -79,6 +81,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   goToPanel() {
     this.router.navigate([PANEL]);
+  }
+
+  goToMiniSentiment() {
+    this.router.navigate([MINI_SENTIMENT]);
+  }
+  goToAggregator() {
+    this.router.navigate([AGGREGATOR]);
   }
 
   ngOnDestroy(): void {

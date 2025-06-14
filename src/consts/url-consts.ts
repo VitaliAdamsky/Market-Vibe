@@ -14,6 +14,8 @@ export const PANEL = 'panel';
 export const COIN_METRICS = 'coin-metrics';
 export const COIN_COMPARE = 'coin-compare';
 export const SENTIMENT = 'sentiment';
+export const MINI_SENTIMENT = 'mini-sentiment';
+export const AGGREGATOR = 'aggregator';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;

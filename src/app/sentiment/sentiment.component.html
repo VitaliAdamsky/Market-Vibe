@@ -9,7 +9,7 @@
     <app-sentiment-heatmap [data]="tableData" [metricKey]="'closePriceChange'"></app-sentiment-heatmap>
   </ng-container>
 
-  <ng-container *ngIf="tableData.length > 0 ">
+  <ng-container *ngIf="tableData.length > 0">
     <app-sentiment-heatmap [data]="tableData" [metricKey]="'openInterestChange'"></app-sentiment-heatmap>
   </ng-container>
 

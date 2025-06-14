@@ -13,6 +13,8 @@ import {
   COIN_COMPARE,
   COINS,
   SENTIMENT,
+  MINI_SENTIMENT,
+  AGGREGATOR,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -20,6 +22,11 @@ const routes: Routes = [
     path: COLORS,
     loadChildren: () =>
       import('./colors/colors.module').then((m) => m.ColorsModule),
+  },
+  {
+    path: AGGREGATOR,
+    loadChildren: () =>
+      import('./aggregator/aggregator.module').then((m) => m.AggregatorModule),
   },
   {
     path: DATA_CHARTS,
@@ -58,6 +65,13 @@ const routes: Routes = [
     path: PANEL,
     loadChildren: () =>
       import('./panel/panel.module').then((m) => m.PanelModule),
+  },
+  {
+    path: MINI_SENTIMENT,
+    loadChildren: () =>
+      import('./mini-sentiment/mini-sentiment.module').then(
+        (m) => m.MiniSentimentModule
+      ),
   },
   {
     path: COIN_COMPARE,

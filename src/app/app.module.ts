@@ -32,6 +32,8 @@ import { CoinCompareModule } from './coin-compare/coin-compare.module';
 
 import { SentimentModule } from './sentiment/sentiment.module';
 import { MarketActivityModule } from './market-activity/market-activity.module';
+import { MiniSentimentModule } from './mini-sentiment/mini-sentiment.module';
+import { AggregatorModule } from './aggregator/aggregator.module';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -70,6 +72,8 @@ registerLocaleData(localeRu);
     CoinCompareModule,
     SentimentModule,
     MarketActivityModule,
+    MiniSentimentModule,
+    AggregatorModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],

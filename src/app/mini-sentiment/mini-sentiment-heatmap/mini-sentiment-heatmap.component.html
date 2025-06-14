@@ -1,0 +1,11 @@
+<div class="heatmap-container">
+  <div class="heatmap-title">{{ title }}</div>
+
+  <div class="heatmap-wrapper">
+    <div class="heatmap-grid">
+      <div *ngFor="let row of heatmapData" class="heatmap-cell" [style.background]="row.color">
+
+      </div>
+    </div>
+  </div>
+</div>
