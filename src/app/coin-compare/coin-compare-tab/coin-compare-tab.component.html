@@ -1,0 +1,23 @@
+<div class="echarts-container"
+  *ngIf="oiChartOptions && closePriceChartOptions && volumeChartOptions && volumeDeltaChartOptions && buyerRatioChartOptions && frChartOptions ">
+  <div *ngIf="oiChartOptions" class="chart">
+    <div echarts [options]="oiChartOptions"></div>
+  </div>
+  <div *ngIf="closePriceChartOptions" class="chart">
+    <div echarts [options]="closePriceChartOptions"></div>
+  </div>
+  <div *ngIf="volumeChartOptions" class="chart">
+    <div echarts [options]="volumeChartOptions"></div>
+  </div>
+  <div *ngIf="volumeDeltaChartOptions" class="chart">
+    <div echarts [options]="volumeDeltaChartOptions"></div>
+  </div>
+  <div *ngIf="buyerRatioChartOptions" class="chart">
+    <div echarts [options]="buyerRatioChartOptions"></div>
+  </div>
+  <div *ngIf="frChartOptions" class="chart">
+    <div echarts [options]="frChartOptions"></div>
+  </div>
+</div>
+<app-loading
+  *ngIf="!oiChartOptions || !closePriceChartOptions || !volumeChartOptions || !volumeDeltaChartOptions || !buyerRatioChartOptions || !frChartOptions"></app-loading>

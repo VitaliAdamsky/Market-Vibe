@@ -17,7 +17,7 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
   title = 'Coin Comparison';
   subtitle = `Timeframe`;
   coins: Coin[] = [];
-  timeframe!: TF;
+  TF = TF;
   subscribtion: Subscription = new Subscription();
   oiChartOptions!: EChartsOption | null;
   closePriceChartOptions!: EChartsOption | null;
@@ -26,16 +26,10 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
   buyerRatioChartOptions!: EChartsOption | null;
   frChartOptions!: EChartsOption | null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private chartService: CoinCompareBuilderService
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.timeframe = params['timeframe'] || TF.h4;
-      this.subtitle = `Timeframe ${this.timeframe}`;
       const uuid = params['uuid'];
       if (!uuid) {
         console.warn('UUID не найден в параметрах');
@@ -49,7 +43,6 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
         try {
           this.coins = JSON.parse(stored);
           console.log('Полученные монеты:', this.coins);
-          this.loadOiChart();
 
           // Очистка после использования
           //localStorage.removeItem(key);
@@ -63,79 +56,12 @@ export class CoinCompareComponent implements OnInit, OnDestroy {
     });
   }
 
-  async loadOiChart() {
-    if (this.coins && this.coins.length > 0) {
-      this.oiChartOptions = await this.chartService.buildMetricChart(
-        this.coins,
-        this.timeframe,
-        {
-          type: 'oi',
-          title: 'Open Interest',
-          valueKey: 'normalizedOpenInterest',
-          tooltipKey: 'openInterestChange',
-        }
-      );
-      this.closePriceChartOptions = await this.chartService.buildMetricChart(
-        this.coins,
-        this.timeframe,
-        {
-          type: 'kline',
-          title: 'Close Price',
-          valueKey: 'normalizedClosePrice',
-          tooltipKey: 'closePriceChange',
-        }
-      );
-      this.volumeChartOptions = await this.chartService.buildMetricChart(
-        this.coins,
-        this.timeframe,
-        {
-          type: 'kline',
-          title: 'Quote Volume',
-          valueKey: 'normalizedQuoteVolume',
-          tooltipKey: 'quoteVolumeChange',
-        }
-      );
-      this.volumeDeltaChartOptions = await this.chartService.buildMetricChart(
-        this.coins,
-        this.timeframe,
-        {
-          type: 'kline',
-          title: 'Volume Delta',
-          valueKey: 'normalizedVolumeDelta',
-          tooltipKey: 'volumeDeltaChange',
-        }
-      );
-      this.buyerRatioChartOptions = await this.chartService.buildMetricChart(
-        this.coins,
-        this.timeframe,
-        {
-          type: 'kline',
-          title: 'Buyer Ratio',
-          valueKey: 'normalizedBuyerRatio',
-          tooltipKey: 'buyerRatioChange',
-        }
-      );
-      this.frChartOptions = await this.chartService.buildMetricChart(
-        this.coins,
-        this.timeframe,
-        {
-          type: 'fr',
-          title: 'Funding Rate',
-          valueKey: 'normalizedFundingRate',
-          tooltipKey: 'fundingRateChange',
-        }
-      );
-    } else {
-      this.oiChartOptions = null;
-    }
-  }
-
   onGoToMetrics(coin: Coin) {
     const url = this.router
       .createUrlTree([COIN_METRICS], {
         queryParams: {
           symbol: coin.symbol,
-          timeframe: this.timeframe,
+          timeframe: TF.h4,
           imageUrl: encodeURIComponent(coin.imageUrl),
         },
       })

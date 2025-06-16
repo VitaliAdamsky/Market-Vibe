@@ -6,21 +6,9 @@
     <!-- COIN METRICS -->
     <!-- TIMEFRAME: 1H -->
     <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
-      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.h1)"><mat-icon
-        class="panel-icon">bar_chart</mat-icon> 1H</button>
-    <!-- TIMEFRAME: 4H -->
-    <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
-      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.h4)"><mat-icon
-        class="panel-icon">bar_chart</mat-icon>
-      4H</button>
-    <!-- TIMEFRAME: 12H -->
-    <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
-      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.h12)"><mat-icon
-        class="panel-icon">bar_chart</mat-icon> 12H</button>
-    <!-- TIMEFRAME: D -->
-    <button matTooltip="Coin Metrics" matTooltipPosition="above" mat-raised-button
-      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics(TF.D)"><mat-icon
-        class="panel-icon">bar_chart</mat-icon> D</button>
+      style="background-color:#e60073; color: white;" (click)="onGoToCoinMetrics()"><mat-icon
+        class="panel-icon">bar_chart</mat-icon>Coin Metrics</button>
+
 
   </div>
 
@@ -45,25 +33,9 @@
       <div *ngIf="!isCategoryAsc"> <mat-icon class="sort-icon" svgIcon="sort-down"></mat-icon></div>
     </button>
     <!-- COIN COMPARISON -->
-    <!-- TIMEFRAME: 1H -->
     <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
-      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.h1)"><mat-icon
-        class="panel-icon">show_chart</mat-icon> 1H</button>
-    <!-- TIMEFRAME: 4H -->
-    <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
-      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.h4)"><mat-icon
-        class="panel-icon">show_chart</mat-icon> 4H</button>
-    <!-- TIMEFRAME: 12H -->
-    <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
-      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.h12)"><mat-icon
-        class="panel-icon">show_chart</mat-icon> 12H</button>
-    <!-- TIMEFRAME: D -->
-    <button matTooltip="Coin Comparison" matTooltipPosition="above" mat-raised-button
-      style="background-color:#ff9900; color: white;" (click)="onGoToComparison(TF.D)"><mat-icon
-        class="panel-icon">show_chart</mat-icon> D</button>
-    <button matTooltip="Close Windows" matTooltipPosition="above" mat-raised-button
-      style="background-color:#ff0000; color: white;" (click)="closeWindows()"><mat-icon
-        class="panel-icon">close</mat-icon></button>
+      style="background-color:#ff9900; color: white;" (click)="onGoToComparison( )"><mat-icon
+        class="panel-icon">show_chart</mat-icon>Coins Comparison</button>
   </div>
 </div>
 <div class="coin-container">

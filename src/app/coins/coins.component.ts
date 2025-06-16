@@ -116,7 +116,7 @@ export class CoinsComponent implements OnInit, OnDestroy {
     });
   }
 
-  onGoToCoinMetrics(timeframe: TF) {
+  onGoToCoinMetrics() {
     const coins = this.selectionService.selectedValues();
     if (coins.length < 1) {
       this.snacakbarService.showSnackBar(
@@ -128,24 +128,22 @@ export class CoinsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    for (const coin of coins) {
-      const url = this.router.serializeUrl(
-        this.router.createUrlTree([COIN_METRICS], {
-          queryParams: {
-            symbol: coin.symbol,
-            timeframe,
-            imageUrl: coin.imageUrl,
-          },
-        })
-      );
-      const newWindow = window.open(url, '_blank');
-      if (newWindow) {
-        this.openedWindows.push(newWindow);
-      }
-    }
+    const uuid = crypto.randomUUID(); // Генерируем уникальный ID
+
+    // Сохраняем данные по уникальному ключу
+    localStorage.setItem(`${COIN_METRICS}_${uuid}`, JSON.stringify(coins));
+
+    // Формируем URL с uuid в query параметре
+    const url = this.router
+      .createUrlTree([COIN_METRICS], {
+        queryParams: { uuid },
+      })
+      .toString();
+
+    window.open(url, '_blank');
   }
 
-  onGoToComparison(timeframe: TF) {
+  onGoToComparison() {
     const coins = this.selectionService.selectedValues();
     if (coins.length < 2) {
       this.snacakbarService.showSnackBar(
@@ -165,7 +163,7 @@ export class CoinsComponent implements OnInit, OnDestroy {
     // Формируем URL с uuid в query параметре
     const url = this.router
       .createUrlTree([COIN_COMPARE], {
-        queryParams: { timeframe, uuid },
+        queryParams: { uuid },
       })
       .toString();
 

@@ -87,8 +87,6 @@ router-outlet + * {
 }
 
 
-
-
 .tooltip-box h3 {
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -208,4 +206,90 @@ router-outlet + * {
   opacity: 1;
 }
 
+/* MAT TABS */
+.mat-mdc-tab .mdc-tab__text-label {
+  color: white !important;
+  font-weight: 500;
+}
+
+
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+
+.mat-mdc-tab.mdc-tab--active .mdc-tab-indicator__content--underline {
+  background-color: #ffffff !important;
+}
+
+/* ECHARTS CONTAINER */
+.echarts-container {
+  zoom: 1.25;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px;
+  margin-top: 0;
+
+  /* Fade-in */
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.chart {
+  width: 100%;
+  height: 400px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 74px;
+  margin-bottom: 20px;
+}
+
+.header-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.subheader-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 8px;
+  margin-bottom: 20px;
+  justify-content: center;
+  position: sticky;
+  top: 64px; /* Подбери под высоту subheader */
+  background-color: #383838; /* или цвет твоего фона */
+  z-index: 20;
+  padding: 10px 0;
+}
+
+.no-items-message {
+  text-align: center;
+  font-size: 18px;
+  color: #aaa;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+}
 

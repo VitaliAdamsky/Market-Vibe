@@ -1,9 +1,0 @@
- .card {
-  width: 1200px;                /* Slightly wider card */
-  height: 550px;
-}
-
-.echart-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-}

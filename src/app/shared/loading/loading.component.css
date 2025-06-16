@@ -1,0 +1,59 @@
+.loader-container {
+  position: fixed;
+  top: 50%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #ccc;
+  text-align: center;
+}
+
+.loading-text {
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+  animation: fade 3s infinite;
+}
+
+.dots {
+  display: inline-block;
+  vertical-align: middle; /* 💯 Выравнивание по центру */
+}
+
+.dot {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  margin-left: 3px;
+  background-color: currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  animation: blink 1.4s infinite ease-in-out both;
+  vertical-align: middle; /* Дополнительно */
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+.dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes blink {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

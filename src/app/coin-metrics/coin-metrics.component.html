@@ -1,25 +1,35 @@
 <div class="header">
-  <img [src]="imageUrl" alt="Coin Logo" class="logo" />
-  <span class="header-text">{{ symbol }} Metrics</span>
-</div>
-<div class="subheader">
-  <span class="subheader-text">Timeframe: {{ timeframe }}</span>
+  <span class="header-text">{{ title}}</span>
 </div>
 
-<div class="echarts-container">
-  <app-coin-metrics-chart *ngIf="oiEchartOptoins" [chartData]="oiEchartOptoins"></app-coin-metrics-chart>
-  <app-coin-metrics-chart *ngIf="frEchartOptoins" [chartData]="frEchartOptoins"></app-coin-metrics-chart>
-  <app-coin-metrics-chart *ngIf="quoteVolumeEchartOptoins"
-    [chartData]="quoteVolumeEchartOptoins"></app-coin-metrics-chart>
-  <app-coin-metrics-chart *ngIf="buyerRatioEchartOptoins"
-    [chartData]="buyerRatioEchartOptoins"></app-coin-metrics-chart>
-  <app-coin-metrics-chart *ngIf="volumeDeltaEchartOptoins"
-    [chartData]="volumeDeltaEchartOptoins"></app-coin-metrics-chart>
-  <app-coin-metrics-chart *ngIf="closePriceEchartOptoins"
-    [chartData]="closePriceEchartOptoins"></app-coin-metrics-chart>
+<div class="ribbon">
+  <ng-container *ngIf="coins && coins.length > 0; else noItems">
+    <app-coin-item *ngFor="let coin of coins" [coin]="coin" [isSelected]="true" [actionType]="'compare'"
+      [timeframe]="TF.h4"></app-coin-item>
+  </ng-container>
 
-  <app-normalized-metrics-chart *ngIf="normalizedEchartOptoins"
-    [chartData]="normalizedEchartOptoins"></app-normalized-metrics-chart>
+  <ng-template #noItems>
+    <div class="no-items-message">No items to display</div>
+  </ng-template>
 </div>
-<app-scroll-to-top [scrollOffset]="200" position="right">
-</app-scroll-to-top>
+
+<div *ngIf="coins && coins.length > 0">
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>Timerframe 1H</ng-template>
+      <app-coin-metrics-tab [timeframe]="TF.h1" [symbol]="coins[0].symbol"></app-coin-metrics-tab>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>Timerframe 4H</ng-template>
+      <app-coin-metrics-tab [timeframe]="TF.h4" [symbol]="coins[0].symbol"></app-coin-metrics-tab>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>Timerframe 12H</ng-template>
+      <app-coin-metrics-tab [timeframe]="TF.h12" [symbol]="coins[0].symbol"></app-coin-metrics-tab>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>Timerframe D</ng-template>
+      <app-coin-metrics-tab [timeframe]="TF.D" [symbol]="coins[0].symbol"></app-coin-metrics-tab>
+    </mat-tab>
+  </mat-tab-group>
+</div>

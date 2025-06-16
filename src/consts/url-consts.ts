@@ -16,6 +16,7 @@ export const COIN_COMPARE = 'coin-compare';
 export const SENTIMENT = 'sentiment';
 export const MINI_SENTIMENT = 'mini-sentiment';
 export const AGGREGATOR = 'aggregator';
+export const MARKET_ANALYZER = 'market-analyzer';
 
 //URLS
 const renderBaseURL = env.renderBaseURL;

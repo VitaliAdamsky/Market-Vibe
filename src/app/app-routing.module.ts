@@ -15,6 +15,7 @@ import {
   SENTIMENT,
   MINI_SENTIMENT,
   AGGREGATOR,
+  MARKET_ANALYZER,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -22,6 +23,13 @@ const routes: Routes = [
     path: COLORS,
     loadChildren: () =>
       import('./colors/colors.module').then((m) => m.ColorsModule),
+  },
+  {
+    path: MARKET_ANALYZER,
+    loadChildren: () =>
+      import('./market-analyzer/market-analyzer.module').then(
+        (m) => m.MarketAnalyzerModule
+      ),
   },
   {
     path: AGGREGATOR,

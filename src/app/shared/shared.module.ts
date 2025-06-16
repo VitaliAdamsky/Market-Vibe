@@ -21,6 +21,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
 import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CoinItemComponent } from './coin-item/coin-item.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CoinItemComponent } from './coin-item/coin-item.component';
     ScrollToTopComponent,
     SearchBoxComponent,
     CoinItemComponent,
+    LoadingComponent,
   ],
   imports: [
     //MODULES
@@ -60,6 +62,7 @@ import { CoinItemComponent } from './coin-item/coin-item.component';
     ScrollToTopComponent,
     SearchBoxComponent,
     CoinItemComponent,
+    LoadingComponent,
   ],
 })
 export class SharedModule {}

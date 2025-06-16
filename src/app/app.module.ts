@@ -34,6 +34,7 @@ import { SentimentModule } from './sentiment/sentiment.module';
 import { MarketActivityModule } from './market-activity/market-activity.module';
 import { MiniSentimentModule } from './mini-sentiment/mini-sentiment.module';
 import { AggregatorModule } from './aggregator/aggregator.module';
+import { MarketAnalyzerModule } from './market-analyzer/market-analyzer.module';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -74,6 +75,7 @@ registerLocaleData(localeRu);
     MarketActivityModule,
     MiniSentimentModule,
     AggregatorModule,
+    MarketAnalyzerModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],

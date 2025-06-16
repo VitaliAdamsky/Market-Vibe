@@ -10,6 +10,7 @@ import {
   DATA_CHARTS,
   FUNDING_RATE,
   MARKET_ACTIVITY,
+  MARKET_ANALYZER,
   MINI_SENTIMENT,
   PANEL,
   SENTIMENT,
@@ -86,8 +87,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
   goToMiniSentiment() {
     this.router.navigate([MINI_SENTIMENT]);
   }
+
   goToAggregator() {
     this.router.navigate([AGGREGATOR]);
+  }
+
+  goToMarketAnalyzer() {
+    this.router.navigate([MARKET_ANALYZER]);
   }
 
   ngOnDestroy(): void {

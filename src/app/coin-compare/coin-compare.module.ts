@@ -35,18 +35,21 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CoinCompareComponent } from './coin-compare.component';
 import { CoinCompareRoutingModule } from './coin-compare-routing.module';
+import { CoinCompareTabComponent } from './coin-compare-tab/coin-compare-tab.component';
 
 @NgModule({
-  declarations: [CoinCompareComponent],
+  declarations: [CoinCompareComponent, CoinCompareTabComponent],
   imports: [
     NgxEchartsModule.forRoot({ echarts }),
     CommonModule,
     SharedModule,
     MatIconModule,
+    MatTabsModule,
     CoinCompareRoutingModule,
   ],
   exports: [CoinCompareComponent],

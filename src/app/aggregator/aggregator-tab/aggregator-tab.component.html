@@ -1,0 +1,5 @@
+<div class="echarts-container">
+  <echarts *ngIf="chartOptions" [options]="chartOptions" style="width: 100%; height: 450px;">
+  </echarts>
+</div>
+<app-loading *ngIf="!chartOptions"></app-loading>

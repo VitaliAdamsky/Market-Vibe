@@ -22,14 +22,4 @@
   margin-top: 0px;
 }
 
-.loading {
-  position: fixed;
-  top: 50%;
-  left: 51%;
-  transform: translate(-50%, -50%);
-
-  font-size: 16px;
-  color: #ccc;
-  text-align: center;
-}
 

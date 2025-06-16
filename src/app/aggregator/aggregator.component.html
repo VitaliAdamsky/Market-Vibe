@@ -1,20 +1,27 @@
 <div class="header">
   <span class="header-text">Aggregator</span>
 </div>
+<mat-tab-group style="margin-top: 40px;">
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe 1H</ng-template>
+    <app-aggregator-tab [chartOptions]="chartsOptions1h"></app-aggregator-tab>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe 4H</ng-template>
+    <app-aggregator-tab [chartOptions]="chartsOptions4h"></app-aggregator-tab>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe 12H</ng-template>
+    <app-aggregator-tab [chartOptions]="chartsOptions12h"></app-aggregator-tab>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe D</ng-template>
+    <app-aggregator-tab [chartOptions]="chartsOptionsD"></app-aggregator-tab>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Funding Rate</ng-template>
+    <app-aggregator-tab *ngFor="let chartOptions of chartsOptionsFR" [chartOptions]="chartOptions"></app-aggregator-tab>
+  </mat-tab>
+</mat-tab-group>
 
-<div class="echarts-container">
-  <ng-container
-    *ngIf="chartsOptions1h && chartsOptions4h && chartsOptions12h && chartsOptionsD && chartsOptionsFR; else loading">
-    <app-aggregator-chart [chartOptions]="chartsOptions1h"></app-aggregator-chart>
-    <app-aggregator-chart [chartOptions]="chartsOptions4h"></app-aggregator-chart>
-    <app-aggregator-chart [chartOptions]="chartsOptions12h"></app-aggregator-chart>
-    <app-aggregator-chart [chartOptions]="chartsOptionsD"></app-aggregator-chart>
-    <app-aggregator-chart *ngFor="let chartOptions of chartsOptionsFR"
-      [chartOptions]="chartOptions"></app-aggregator-chart>
-  </ng-container>
-
-  <ng-template #loading>
-    <div class="loading">Loading...</div>
-  </ng-template>
-</div>
 <app-scroll-to-top [scrollOffset]="200" position="right"></app-scroll-to-top>

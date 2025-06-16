@@ -82,7 +82,9 @@ export class AggregateService {
       new Date(d.openTime).toISOString()
     );
 
-    const keys = Object.keys(LABELS_MAP) as MetricKey[];
+    const keys = Object.keys(LABELS_MAP).filter(
+      (key) => key !== 'fundingRateChange'
+    ) as MetricKey[];
 
     const series: LineSeriesOption[] = keys.map((key) => ({
       name: LABELS_MAP[key],

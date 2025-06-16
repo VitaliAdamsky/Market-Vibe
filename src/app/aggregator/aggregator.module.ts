@@ -37,17 +37,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AggregatorComponent } from './aggregator.component';
 import { AggregatorRoutingModule } from './aggregator-routing.module';
-import { AggregatorChartComponent } from './aggregator-chart/aggregator-chart.component';
+import { AggregatorTabComponent } from './aggregator-tab/aggregator-tab.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [AggregatorComponent, AggregatorChartComponent],
+  declarations: [AggregatorComponent, AggregatorTabComponent],
   imports: [
     NgxEchartsModule.forRoot({ echarts }),
     CommonModule,
     SharedModule,
     MatButtonModule,
     MatIconModule,
+    MatTabsModule,
     AggregatorRoutingModule,
   ],
   exports: [AggregatorComponent],

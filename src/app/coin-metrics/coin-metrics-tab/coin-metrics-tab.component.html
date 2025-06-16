@@ -1,0 +1,6 @@
+<div class="echarts-container">
+  <div *ngIf="chartData" class="chart">
+    <div echarts [options]="chartData.options"></div>
+  </div>
+</div>
+<app-loading *ngIf="!chartData"></app-loading>

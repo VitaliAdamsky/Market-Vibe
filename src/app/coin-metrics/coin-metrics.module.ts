@@ -37,20 +37,17 @@ import { CoinMetricsRoutingModule } from './coin-metrics-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { CoinMetricsComponent } from './coin-metrics.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { CoinMetricsChartComponent } from './coin-metrics-chart/coin-metrics-chart.component';
-import { NormalizedMetricsChartComponent } from './normalized-metrics-chart/normalized-metrics-chart.component';
+import { CoinMetricsTabComponent } from './coin-metrics-tab/coin-metrics-tab.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [
-    CoinMetricsComponent,
-    CoinMetricsChartComponent,
-    NormalizedMetricsChartComponent,
-  ],
+  declarations: [CoinMetricsComponent, CoinMetricsTabComponent],
   imports: [
     NgxEchartsModule.forRoot({ echarts }),
     CommonModule,
     SharedModule,
     MatIconModule,
+    MatTabsModule,
     CoinMetricsRoutingModule,
     //COMPONENTS
   ],
