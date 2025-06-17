@@ -1,11 +1,7 @@
 .heatmap-wrapper {
   position: relative;
   padding: 16px;
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   overflow-x: auto;
-  background: linear-gradient(145deg, #1c1c1c, #242424);
 }
 
 .heatmap-grid {
@@ -31,7 +27,7 @@
   border-radius: 6px;
   transition: transform 0.15s ease, box-shadow 0.2s ease;
   user-select: none;
-   animation: fadeIn 0.4s ease-in;
+  animation: fadeIn 0.4s ease-in;
 }
 
 .heatmap-cell:hover {
@@ -47,10 +43,12 @@
 
 /* Внешний контейнер — центрирует всё по горизонтали */
 .heatmap-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  /* padding: 24px; */
+  zoom: 0.8;
 }
 
 /* Заголовок над таблицей */
@@ -62,3 +60,4 @@
   text-align: center;
   text-transform: capitalize;
 }
+

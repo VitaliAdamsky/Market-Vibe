@@ -1,0 +1,15 @@
+<div class="custom-container" *ngIf=" data && data.length > 0">
+  <app-mini-sentiment-chart [data]="data" [metricKey]="'closePriceChange'"
+    [timeframe]="timeframe"></app-mini-sentiment-chart>
+  <app-mini-sentiment-chart [data]="data" [metricKey]="'openInterestChange'"
+    [timeframe]="timeframe"></app-mini-sentiment-chart>
+  <app-mini-sentiment-chart [data]="data" [metricKey]="'volumeDeltaChange'"
+    [timeframe]="timeframe"></app-mini-sentiment-chart>
+  <app-mini-sentiment-chart [data]="data" [metricKey]="'perpSpotDiff'"
+    [timeframe]="timeframe"></app-mini-sentiment-chart>
+  <app-mini-sentiment-chart [data]="data" [metricKey]="'buyerRatioChange'"
+    [timeframe]="timeframe"></app-mini-sentiment-chart>
+  <app-mini-sentiment-chart [data]="data" [metricKey]="'volumeChange'"
+    [timeframe]="timeframe"></app-mini-sentiment-chart>
+</div>
+<div><app-loading *ngIf="!data || data.length === 0"></app-loading></div>

@@ -8,13 +8,20 @@ import { SentimentComponent } from './sentiment.component';
 
 import { SentimentHeatmapComponent } from './sentiment-heatmap/sentiment-heatmap.component';
 import { SentimentRoutingModule } from './sentiment-routing.module';
+import { SentimentTabComponent } from './sentiment-tab/sentiment-tab.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [SentimentComponent, SentimentHeatmapComponent],
+  declarations: [
+    SentimentComponent,
+    SentimentTabComponent,
+    SentimentHeatmapComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
     MatButtonModule,
+    MatTabsModule,
     SentimentRoutingModule,
     MatIconModule,
     InfiniteScrollModule,

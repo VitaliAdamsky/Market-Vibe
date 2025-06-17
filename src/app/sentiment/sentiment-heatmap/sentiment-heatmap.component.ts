@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MarketActivityStats } from 'src/app/shared/models/market-activity-stats';
 import { PropertyMapping } from '../models/property-mapping';
+import { TF } from 'src/app/shared/models/timeframes';
+import { SentimentService } from '../services/sentiment.service';
 
 @Component({
   selector: 'app-sentiment-heatmap',
@@ -8,14 +10,15 @@ import { PropertyMapping } from '../models/property-mapping';
   styleUrls: ['./sentiment-heatmap.component.css'],
 })
 export class SentimentHeatmapComponent implements OnChanges {
-  @Input() data: MarketActivityStats[] = [];
   @Input() metricKey!: string;
+  @Input() data: MarketActivityStats[] = [];
+  @Input() timeframe!: TF;
   title = '';
   heatmapData: any[] = [];
-  hoverItem: MarketActivityStats | null = null;
+  constructor() {}
+  async ngOnChanges(changes: SimpleChanges): Promise<void> {
+    this.title = PropertyMapping[this.metricKey] + ` ${this.timeframe}`;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.title = PropertyMapping[this.metricKey];
     if (changes['data'] && this.data?.length) {
       this.heatmapData = this.generateHeatmapRows(this.data, this.metricKey);
       console.log('Heatmap built:', this.heatmapData);

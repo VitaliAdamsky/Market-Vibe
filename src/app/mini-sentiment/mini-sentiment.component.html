@@ -1,38 +1,25 @@
 <div class="header">
   <span class="header-text">{{ title }}</span>
 </div>
-<div class="subheader">
-  <span class="subheader-text">{{ subtitle }}</span>
-</div>
-<div class="heatmap-container">
-  <ng-container *ngIf="tableData.length > 0; else loading">
-    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'closePriceChange'"></app-mini-sentiment-heatmap>
-  </ng-container>
 
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'openInterestChange'"></app-mini-sentiment-heatmap>
-  </ng-container>
+<mat-tab-group style="margin-top: 40px;">
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe 1H</ng-template>
+    <app-mini-sentiment-tab [data]="data1h" [timeframe]="TF.h1"></app-mini-sentiment-tab>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe 4H</ng-template>
+    <app-mini-sentiment-tab [data]="data4h" [timeframe]="TF.h4"></app-mini-sentiment-tab>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe 12H</ng-template>
+    <app-mini-sentiment-tab [data]="data12h" [timeframe]="TF.h12"></app-mini-sentiment-tab>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Timerframe D</ng-template>
+    <app-mini-sentiment-tab [data]="dataD" [timeframe]="TF.D"></app-mini-sentiment-tab>
+  </mat-tab>
 
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'fundingRateChange'"></app-mini-sentiment-heatmap>
-  </ng-container>
+</mat-tab-group>
 
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'volumeDeltaChange'"></app-mini-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'perpSpotDiff'"></app-mini-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'buyerRatioChange'"></app-mini-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0">
-    <app-mini-sentiment-heatmap [data]="tableData" [metricKey]="'volumeChange'"></app-mini-sentiment-heatmap>
-  </ng-container>
-  <ng-template #loading>
-    <div class="loading">Loading...</div>
-  </ng-template>
-</div>
+<app-scroll-to-top [scrollOffset]="200" position="right"></app-scroll-to-top>

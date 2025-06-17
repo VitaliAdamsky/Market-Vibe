@@ -1,38 +1,36 @@
 <div class="header">
   <span class="header-text">{{ title }}</span>
 </div>
-<div class="subheader">
-  <span class="subheader-text">{{ subtitle }}</span>
+
+<div class="custom-tab-group">
+  <button class="custom-tab" [class.active]="selectedTab === 0" (click)="selectTab(0)">
+    Timeframe 1h
+  </button>
+  <button class="custom-tab" [class.active]="selectedTab === 1" (click)="selectTab(1)">
+    Timeframe 4h
+  </button>
+  <button class="custom-tab" [class.active]="selectedTab === 2" (click)="selectTab(2)">
+    Timeframe 12h
+  </button>
+  <button class="custom-tab" [class.active]="selectedTab === 3" (click)="selectTab(3)">
+    Timeframe D
+  </button>
 </div>
-<div class="heatmap-container">
-  <ng-container *ngIf="tableData.length > 0; else loading">
-    <app-sentiment-heatmap [data]="tableData" [metricKey]="'closePriceChange'"></app-sentiment-heatmap>
-  </ng-container>
 
-  <ng-container *ngIf="tableData.length > 0">
-    <app-sentiment-heatmap [data]="tableData" [metricKey]="'openInterestChange'"></app-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-sentiment-heatmap [data]="tableData" [metricKey]="'fundingRateChange'"></app-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-sentiment-heatmap [data]="tableData" [metricKey]="'volumeDeltaChange'"></app-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-sentiment-heatmap [data]="tableData" [metricKey]="'perpSpotDiff'"></app-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0 ">
-    <app-sentiment-heatmap [data]="tableData" [metricKey]="'buyerRatioChange'"></app-sentiment-heatmap>
-  </ng-container>
-
-  <ng-container *ngIf="tableData.length > 0">
-    <app-sentiment-heatmap [data]="tableData" [metricKey]="'volumeChange'"></app-sentiment-heatmap>
-  </ng-container>
-  <ng-template #loading>
-    <div class="loading">Loading...</div>
-  </ng-template>
+<div class="custom-tab-content-wrapper">
+  <div class="custom-tab-content" [class.active]="selectedTab === 0">
+    <app-sentiment-tab [data]="data1h" [timeframe]="TF.h1"></app-sentiment-tab>
+  </div>
+  <div class="custom-tab-content" [class.active]="selectedTab === 1">
+    <app-sentiment-tab [data]="data4h" [timeframe]="TF.h4"></app-sentiment-tab>
+  </div>
+  <div class="custom-tab-content" [class.active]="selectedTab === 2">
+    <app-sentiment-tab [data]="data12h" [timeframe]="TF.h12"></app-sentiment-tab>
+  </div>
+  <div class="custom-tab-content" [class.active]="selectedTab === 3">
+    <app-sentiment-tab [data]="dataD" [timeframe]="TF.D"></app-sentiment-tab>
+  </div>
 </div>
+
+
+<app-scroll-to-top [scrollOffset]="200" position="right"></app-scroll-to-top>

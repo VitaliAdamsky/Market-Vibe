@@ -1,0 +1,11 @@
+<div class="echarts-container" style="padding-top: 10px;" *ngIf=" data && data.length > 0">
+  <app-sentiment-heatmap [data]="data" [metricKey]="'closePriceChange'" [timeframe]="timeframe"></app-sentiment-heatmap>
+  <app-sentiment-heatmap [data]="data" [metricKey]="'openInterestChange'"
+    [timeframe]="timeframe"></app-sentiment-heatmap>
+  <app-sentiment-heatmap [data]="data" [metricKey]="'volumeDeltaChange'"
+    [timeframe]="timeframe"></app-sentiment-heatmap>
+  <app-sentiment-heatmap [data]="data" [metricKey]="'perpSpotDiff'" [timeframe]="timeframe"></app-sentiment-heatmap>
+  <app-sentiment-heatmap [data]="data" [metricKey]="'buyerRatioChange'" [timeframe]="timeframe"></app-sentiment-heatmap>
+  <app-sentiment-heatmap [data]="data" [metricKey]="'volumeChange'" [timeframe]="timeframe"></app-sentiment-heatmap>
+</div>
+<div style="padding-top: 70vh;"><app-loading *ngIf="!data || data.length === 0"></app-loading></div>

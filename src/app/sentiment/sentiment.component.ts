@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { TF } from '../shared/models/timeframes';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { ActivatedRoute } from '@angular/router';
 import { SentimentService } from './services/sentiment.service';
 import { MarketActivityStats } from '../shared/models/market-activity-stats';
 
@@ -9,27 +10,35 @@ import { MarketActivityStats } from '../shared/models/market-activity-stats';
   templateUrl: './sentiment.component.html',
   styleUrls: ['./sentiment.component.css'],
 })
-export class SentimentComponent implements OnInit, OnDestroy {
-  timeframe: TF = TF.h4;
-  tableData: MarketActivityStats[] = [];
+export class SentimentComponent implements OnInit {
   title = 'Market Sentiment';
-  subtitle = `Timeframe ${this.timeframe}`;
+  subtitle = '';
+  TF = TF;
+  selectedTab = 0;
+  loadedTabs = [true, false, false, false];
 
-  constructor(
-    private route: ActivatedRoute,
-    private sentimentService: SentimentService
-  ) {
-    this.route.queryParams.subscribe((params) => {
-      this.timeframe = params['timeframe'] || TF.h4;
-    });
-  }
+  data1h: MarketActivityStats[] = [];
+  data4h: MarketActivityStats[] = [];
+  data12h: MarketActivityStats[] = [];
+  dataD: MarketActivityStats[] = [];
 
+  constructor(private sentimentService: SentimentService) {}
   async ngOnInit(): Promise<void> {
-    this.tableData = await this.sentimentService.getCombinedSymbolStats(
-      this.timeframe
-    );
-    console.log(this.tableData);
+    this.data1h = await this.sentimentService.getCombinedSymbolStats(TF.h1);
+    this.data4h = await this.sentimentService.getCombinedSymbolStats(TF.h4);
+    this.data12h = await this.sentimentService.getCombinedSymbolStats(TF.h12);
+    this.dataD = await this.sentimentService.getCombinedSymbolStats(TF.D);
   }
 
-  ngOnDestroy(): void {}
+  selectTab(index: number) {
+    this.selectedTab = index;
+  }
+  onTabChange(event: MatTabChangeEvent): void {
+    const index = event.index;
+    if (!this.loadedTabs[index]) {
+      setTimeout(() => {
+        this.loadedTabs[index] = true;
+      }, 50);
+    }
+  }
 }

@@ -1,0 +1,11 @@
+.custom-container {
+  margin-top: 10px;
+  zoom: 1.25;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;      /* Центровка по горизонтали */
+  align-items: flex-start;      /* По верху */
+  gap: 20px;                    /* Расстояние между чартами */
+  padding: 20px;
+}
+

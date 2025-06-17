@@ -43,13 +43,15 @@ export class EchartsBuilderService {
 
       const seriesData: number[] =
         dataType === 'oi'
-          ? (coin.data as OpenInterestItem[]).map((d) => d.openInterest)
+          ? (coin.data as OpenInterestItem[]).map(
+              (d) => d.normalizedOpenInterest
+            )
           : dataType === 'kline' && propertyKey
           ? (coin.data as KlineDataItem[]).map((d) =>
               this.getKlineValue(d, propertyKey)
             )
           : dataType === 'fr'
-          ? (coin.data as FundingRateItem[]).map((d) => d.fundingRate)
+          ? (coin.data as FundingRateItem[]).map((d) => d.normalizedFundingRate)
           : [];
 
       const chartOptions: EChartsOption = {

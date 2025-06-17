@@ -12,23 +12,19 @@ import { MarketActivityStats } from '../shared/models/market-activity-stats';
 export class MiniSentimentComponent implements OnInit, OnDestroy {
   timeframe: TF = TF.h4;
   tableData: MarketActivityStats[] = [];
-  title = 'Market Sentiment';
-  subtitle = `Timeframe ${this.timeframe}`;
+  title = 'Market Mini Sentiment';
+  TF = TF;
+  data1h: MarketActivityStats[] = [];
+  data4h: MarketActivityStats[] = [];
+  data12h: MarketActivityStats[] = [];
+  dataD: MarketActivityStats[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private sentimentService: SentimentService
-  ) {
-    this.route.queryParams.subscribe((params) => {
-      this.timeframe = params['timeframe'] || TF.h4;
-    });
-  }
-
+  constructor(private sentimentService: SentimentService) {}
   async ngOnInit(): Promise<void> {
-    this.tableData = await this.sentimentService.getCombinedSymbolStats(
-      this.timeframe
-    );
-    console.log(this.tableData);
+    this.data1h = await this.sentimentService.getCombinedSymbolStats(TF.h1);
+    this.data4h = await this.sentimentService.getCombinedSymbolStats(TF.h4);
+    this.data12h = await this.sentimentService.getCombinedSymbolStats(TF.h12);
+    this.dataD = await this.sentimentService.getCombinedSymbolStats(TF.D);
   }
 
   ngOnDestroy(): void {}
