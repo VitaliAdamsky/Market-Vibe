@@ -38,9 +38,10 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartComponent } from './chart/chart.component';
 import { SharedModule } from '../shared/shared.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { DataChartTabComponent } from './data-chart-tab/data-chart-tab.component';
 
 @NgModule({
-  declarations: [DataChartsComponent, ChartComponent],
+  declarations: [DataChartsComponent, ChartComponent, DataChartTabComponent],
   imports: [
     DataChartsRoutingModule,
     NgxEchartsModule.forRoot({ echarts }),
@@ -49,5 +50,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     InfiniteScrollModule,
     //COMPONENTS
   ],
+  exports: [DataChartsComponent],
 })
 export class DataChartsModule {}

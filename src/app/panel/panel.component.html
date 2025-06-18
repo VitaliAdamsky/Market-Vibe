@@ -3,9 +3,10 @@
     4h</button>
   <button (click)="goToCharts( 'kline', TF.h4, 'normalizedClosePrice')" mat-raised-button color="accent">Close Price
     4h</button>
-  <button (click)="goToCharts( 'kline', TF.h4, 'quoteVolume')" mat-raised-button color="warn">Quote Volume 4h</button>
-  <button (click)="goToCharts( 'kline', TF.h4, 'buyerRatio')" mat-raised-button>Buyer Ratio 4h</button>
-  <button (click)="goToCharts( 'kline', TF.h4, 'volumeDelta')" mat-raised-button color="primary">Volume Delta
+  <button (click)="goToCharts( 'kline', TF.h4, 'normalizedQuoteVolume')" mat-raised-button color="warn">Quote Volume
+    4h</button>
+  <button (click)="goToCharts( 'kline', TF.h4, 'normalizedVolumeDelta')" mat-raised-button>Volume Delta </button>
+  <button (click)="goToCharts( 'kline', TF.h4, 'normalizedBuyerRatio')" mat-raised-button color="primary">Volume Delta
     4h</button>
   <button (click)="goToCharts( 'fr', TF.h4)" mat-raised-button color="accent">FR</button>
   <button mat-raised-button (click)="goToCoinMetrics()">Coin Metrics: BTCUSDT</button>

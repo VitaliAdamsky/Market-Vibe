@@ -1,5 +1,8 @@
 export const LABELS_MAP: Record<string, string> = {
-  quoteVolumeChange: 'Quote Volume',
+  quoteVolumeChange: 'Volume',
+  volumeChange: 'Volume',
+  quoteVolume: 'Volume',
+  normalizedQuoteVolume: 'Volume',
   volumeDeltaChange: 'Volume Delta',
   closePriceChange: 'Close Price',
   buyerRatioChange: 'Buyer Ratio',

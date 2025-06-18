@@ -10,7 +10,7 @@ export function getChartHeader(
 
   const labels: Partial<Record<keyof KlineDataItem, string>> = {
     closePrice: 'Close Price',
-    quoteVolume: 'Quote Volume',
+    quoteVolume: 'Volume',
     buyerRatio: 'Buyer Ratio',
     volumeDelta: 'Volume Delta',
     perpSpotDiff: 'Perp/Spot Diff',
@@ -18,10 +18,10 @@ export function getChartHeader(
     quoteVolumeChange: 'Volume Change',
     buyerRatioChange: 'Buyer Ratio Change',
     volumeDeltaChange: 'Volume Delta Change',
-    normalizedClosePrice: 'Norm Close Price',
-    normalizedBuyerRatio: 'Norm Buyer Ratio',
-    normalizedQuoteVolume: 'Norm Quote Volume',
-    normalizedVolumeDelta: 'Norm Volume Delta',
+    normalizedClosePrice: 'Close Price',
+    normalizedBuyerRatio: 'Buyer Ratio',
+    normalizedQuoteVolume: 'Volume',
+    normalizedVolumeDelta: 'Volume Delta',
   };
 
   return propertyKey ? labels[propertyKey] ?? 'Kline Metric' : 'Kline Metrics';

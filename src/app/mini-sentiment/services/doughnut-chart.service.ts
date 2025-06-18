@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import type { EChartsOption } from 'echarts';
 import { TF } from 'src/app/shared/models/timeframes';
-import { LABELS_MAP } from '../functions/labels-map';
+import { LABELS_MAP } from 'src/app/shared/functions/labels-map';
 
 export interface SentimentMetricItem {
   symbol: string;
@@ -43,6 +43,13 @@ export class DoughnutChartService {
       tooltip: {
         trigger: 'item',
         formatter: '{b}: {c} ({d}%)',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        borderColor: 'rgba(0, 0, 0, 0.8)',
+        borderRadius: 8,
+        textStyle: {
+          color: '#ffffff',
+          fontSize: 12,
+        },
       },
       title: {
         show: true,

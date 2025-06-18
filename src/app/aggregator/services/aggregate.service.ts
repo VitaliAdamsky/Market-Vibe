@@ -9,9 +9,9 @@ import { TF } from 'src/app/shared/models/timeframes';
 import { IndexedDbService } from 'src/app/shared/services/market-data/idexdb.service';
 import { MarketDataService } from 'src/app/shared/services/market-data/market-data.service';
 
-import { LABELS_MAP } from '../functions/labels-map';
 import { getRandomColor } from 'src/app/coin-compare/functions/get-random-color';
 import { formatAggregateTooltip } from '../functions/formate-aggregate-tooltip';
+import { LABELS_MAP } from 'src/app/shared/functions/labels-map';
 
 type MetricKey =
   | 'quoteVolumeChange'

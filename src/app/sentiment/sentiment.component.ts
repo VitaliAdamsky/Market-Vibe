@@ -33,6 +33,7 @@ export class SentimentComponent implements OnInit {
   selectTab(index: number) {
     this.selectedTab = index;
   }
+
   onTabChange(event: MatTabChangeEvent): void {
     const index = event.index;
     if (!this.loadedTabs[index]) {
