@@ -1,18 +1,7 @@
-<div class="button-grid">
-  <button style="width: auto;" mat-raised-button color="primary" (click)="goToCharts( 'oi', TF.h4)">OI
-    4h</button>
-  <button (click)="goToCharts( 'kline', TF.h4, 'normalizedClosePrice')" mat-raised-button color="accent">Close Price
-    4h</button>
-  <button (click)="goToCharts( 'kline', TF.h4, 'normalizedQuoteVolume')" mat-raised-button color="warn">Quote Volume
-    4h</button>
-  <button (click)="goToCharts( 'kline', TF.h4, 'normalizedVolumeDelta')" mat-raised-button>Volume Delta </button>
-  <button (click)="goToCharts( 'kline', TF.h4, 'normalizedBuyerRatio')" mat-raised-button color="primary">Volume Delta
-    4h</button>
-  <button (click)="goToCharts( 'fr', TF.h4)" mat-raised-button color="accent">FR</button>
-  <button mat-raised-button (click)="goToCoinMetrics()">Coin Metrics: BTCUSDT</button>
-  <button mat-raised-button color="warn">Button 8</button>
-  <button mat-raised-button color="primary">Button 9</button>
-  <button mat-raised-button color="accent">Button 10</button>
-  <button mat-raised-button>Button 11</button>
-  <button mat-raised-button color="warn">Button 12</button>
+<div class="panel-container">
+  <div class="panel-column"> <app-heatmaps-panel></app-heatmaps-panel></div>
+  <div class="panel-column">
+    <app-data-charts-panel></app-data-charts-panel>
+    <app-market-stats-panel></app-market-stats-panel>
+  </div>
 </div>

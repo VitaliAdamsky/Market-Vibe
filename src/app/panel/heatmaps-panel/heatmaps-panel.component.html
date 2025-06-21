@@ -1,0 +1,32 @@
+<div class="metrics-panel">
+  <div class="panel-header">
+    <h3 class="panel-title">Heatmaps</h3>
+
+  </div>
+
+  <div class="metric-pairs-container">
+    <div *ngFor="let pair of metricPairs" class="metric-pair">
+      <div class="metric-block">
+        <div class="metric-title">{{ pair[0].title }}</div>
+        <div class="time-buttons">
+          <button *ngFor="let interval of pair[0].intervals" class="time-btn"
+            [class.active]="activeSelections[pair[0].key] === interval" [class.funding-btn]="pair[0].isFundingRate"
+            (click)="setActive(pair[0].key, interval)">
+            {{ interval }}
+          </button>
+        </div>
+      </div>
+
+      <div class="metric-block" *ngIf="pair[1]">
+        <div class="metric-title">{{ pair[1].title }}</div>
+        <div class="time-buttons">
+          <button *ngFor="let interval of pair[1].intervals" class="time-btn"
+            [class.active]="activeSelections[pair[1].key] === interval" [class.funding-btn]="pair[1].isFundingRate"
+            (click)="setActive(pair[1].key, interval)">
+            {{ interval }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

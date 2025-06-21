@@ -8,11 +8,11 @@ interface Metric {
 }
 
 @Component({
-  selector: 'app-panel',
-  templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.css'],
+  selector: 'app-heatmaps-panel',
+  templateUrl: './heatmaps-panel.component.html',
+  styleUrls: ['./heatmaps-panel.component.css'],
 })
-export class PanelComponent {
+export class HeatmapsPanelComponent {
   metricPairs: Metric[][] = [
     [
       {

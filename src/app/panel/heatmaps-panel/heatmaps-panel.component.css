@@ -1,0 +1,250 @@
+/* Основные стили панели */
+.metrics-panel {
+  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(80, 80, 80, 0.2);
+  max-width: 1200px;
+  width: 100%;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f0f0f0;
+}
+
+.metrics-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #333, #555, #333);
+}
+
+/* Заголовок панели */
+.panel-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+  position: relative;
+}
+
+.panel-title {
+  color: #e0e0e0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.panel-subtitle {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+/* Контейнер для пар метрик */
+.metric-pairs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Пара метрик */
+.metric-pair {
+  display: flex;
+  gap: 25px;
+}
+
+/* Блок метрики */
+.metric-block {
+  background: linear-gradient(145deg, #1a1a1a, #151515);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #2a2a2a;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.metric-title {
+  color: #d0d0d0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+/* Кнопки временных интервалов */
+.time-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.time-btn {
+  background: linear-gradient(145deg, #1c1c1c, #151515);
+  color: #d0d0d0;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Особый стиль для кнопок Funding Rate */
+.time-btn.funding-btn {
+  min-width: 160px;
+  padding: 12px 10px;
+  font-size: 1rem;
+}
+
+.time-btn:hover {
+  background: linear-gradient(145deg, #252525, #1c1c1c);
+  transform: translateY(-3px);
+  box-shadow:
+    0 5px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.time-btn:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.time-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    rgba(120, 120, 120, 0) 0%,
+    rgba(120, 120, 120, 0.15) 50%,
+    rgba(120, 120, 120, 0) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+}
+
+.time-btn:hover::before {
+  transform: translateX(100%);
+}
+
+/* Активная кнопка */
+.time-btn.active {
+  background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+  color: #ffffff;
+  box-shadow:
+    0 0 12px rgba(80, 80, 80, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.time-btn.active::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 8px;
+  border: 1px solid rgba(150, 150, 150, 0.5);
+  z-index: -1;
+}
+
+/* Футер панели */
+.panel-footer {
+  margin-top: 30px;
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  padding-top: 20px;
+  border-top: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+  .metric-pair {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics-panel {
+    padding: 20px 15px;
+  }
+
+  .panel-title {
+    font-size: 1.8rem;
+  }
+
+  .metric-title {
+    font-size: 1.1rem;
+  }
+
+  .time-btn {
+    padding: 9px 14px;
+    font-size: 0.9rem;
+    min-width: 55px;
+  }
+
+  .time-btn.funding-btn {
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel-title {
+    font-size: 1.6rem;
+  }
+
+  .time-buttons {
+    gap: 8px;
+  }
+
+  .time-btn {
+    padding: 8px 12px;
+    min-width: 50px;
+  }
+
+  .time-btn.funding-btn {
+    min-width: 130px;
+    padding: 10px 8px;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="metrics-panel">
+  <div class="panel-header">
+    <h3 class="panel-title">Market Data Charts</h3>
+  </div>
+
+  <div class="metrics-container">
+    <button *ngFor="let metric of metrics" class="metric-btn" [class.active]="activeMetric === metric.key"
+      (click)="setActive(metric.key)">
+      {{ metric.title }}
+    </button>
+  </div>
+</div>
