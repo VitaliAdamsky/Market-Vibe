@@ -1,0 +1,43 @@
+<div class="search-box">
+  <app-search-box [(query)]="searchQuery" placeholder="Search symbol..."
+    (queryChange)="applySearch($event)"></app-search-box>
+</div>
+<div #tableContainer class="table-container fade-in" [class.show]="tableReady" infiniteScroll
+  [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [fromRoot]="true" (scrolled)="loadMoreData()">
+
+  <table class="market-table">
+    <thead>
+      <tr>
+        <th style="width: 90px;" (click)="sortData('symbol')">Symbol</th>
+        <th style="width: 80px;" (click)="sortData('fundingRateChange')">Funding Rate Chg</th>
+        <th style="width: 90px;" (click)="sortData('openInterestChange')">OI Change</th>
+        <th style="width: 90px;" (click)="sortData('volumeChange')">Vol Change</th>
+        <th style="width: 90px;" (click)="sortData('volumeDeltaChange')">Vol Δ Chg</th>
+        <th style="width: 90px;" (click)="sortData('closePriceChange')">Price Chg</th>
+        <th style="width: 90px;" (click)="sortData('perpSpotDiff')">Perp/Spot Diff</th>
+        <th style="width: 90px;" (click)="sortData('buyerRatioChange')">Buyer Ratio Chg</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of filteredData; trackBy: trackBySymbol"
+        [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges  || []}" [triggerEvent]="'click'">
+        <td class="coin-label">
+          <div class="logo-container">
+            <img [src]="row.imageUrl" width="20"
+              [appExchangeTooltip]="{ symbol: row.symbol, exchanges: row.exchanges || []}" [triggerEvent]="'hover'" />
+            <span class="coin-name">{{ stripPair(row.symbol) }}</span>
+          </div>
+        </td>
+        <td>{{ row.fundingRateChange }}</td>
+        <td>{{ row.openInterestChange }}</td>
+        <td>{{ row.volumeChange }}</td>
+        <td>{{ row.volumeDeltaChange }}</td>
+        <td>{{ row.closePriceChange }}</td>
+        <td>{{ row.perpSpotDiff }}</td>
+        <td>{{ row.buyerRatioChange }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-scroll-to-top [scrollOffset]="100" position="right" [tableContainer]="tableContainer">
+  </app-scroll-to-top>
+</div>

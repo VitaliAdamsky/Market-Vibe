@@ -14,9 +14,11 @@ import { MarketActivityComponent } from './market-activity.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MarketActivityTabComponent } from './market-activity-tab/market-activity-tab.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [MarketActivityComponent],
+  declarations: [MarketActivityComponent, MarketActivityTabComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,6 +30,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MarketActivityRoutingModule,
     MatIconModule,
     InfiniteScrollModule,
+    MatTabsModule,
   ],
   exports: [MarketActivityComponent],
 })
