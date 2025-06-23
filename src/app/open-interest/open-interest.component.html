@@ -1,10 +1,8 @@
-<div class="header">
+<div class="header" *ngIf="tableData.tableData.length">
   <span class="header-text">{{ title }}</span>
   <span class="header-icon" (click)="openInfoModal()">
     <mat-icon>info</mat-icon>
   </span>
 </div>
-<div class="subheader">
-  <span class="subheader-text">{{ subtitle }}</span>
-</div>
-<div class="table-container"><app-heatmap-table [data]="tableData"></app-heatmap-table></div>
+<div><app-heatmap-table [data]="tableData"></app-heatmap-table></div>
+<app-scroll-to-top [scrollOffset]="200" position="right"></app-scroll-to-top>

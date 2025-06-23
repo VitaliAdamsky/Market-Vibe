@@ -21,7 +21,18 @@ export class EchartsBuilderService {
 
   // Helper: Safely extract a number from a KlineDataItem by key
   getKlineValue(item: KlineDataItem, key: keyof KlineDataItem): number {
-    const value = item[key];
+    const normalizedKeyMap: Partial<
+      Record<keyof KlineDataItem, keyof KlineDataItem>
+    > = {
+      closePrice: 'normalizedClosePrice',
+      buyerRatio: 'normalizedBuyerRatio',
+      quoteVolume: 'normalizedQuoteVolume',
+      volumeDelta: 'normalizedVolumeDelta',
+    };
+
+    const normalizedKey = normalizedKeyMap[key];
+    const value = normalizedKey ? item[normalizedKey] : item[key];
+
     return typeof value === 'number' ? value : 0;
   }
 

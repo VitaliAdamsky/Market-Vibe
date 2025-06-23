@@ -17,7 +17,7 @@ export class DataChartsComponent implements OnInit {
   header = '';
   dataType!: DataType;
   timeframe!: TF;
-  propertyKey!: keyof KlineDataItem | undefined;
+  metric!: keyof KlineDataItem | undefined;
   selectedTab = 0;
 
   constructor(private route: ActivatedRoute) {}
@@ -25,12 +25,10 @@ export class DataChartsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.dataType = params['dataType'] || 'oi';
-      this.propertyKey = params['propertyKey']
-        ? params['propertyKey']
-        : undefined;
+      this.metric = params['metric'] ? params['metric'] : undefined;
 
       // Пример установки заголовков
-      this.header = getChartHeader(this.dataType, this.propertyKey);
+      this.header = getChartHeader(this.dataType, this.metric);
     });
   }
 

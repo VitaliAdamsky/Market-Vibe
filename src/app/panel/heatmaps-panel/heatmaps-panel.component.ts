@@ -1,11 +1,10 @@
+import { TF } from 'src/app/shared/models/timeframes';
+import { Metric } from '../models/metric';
+import { metricPairs } from './../data/heatmap-metrics';
 import { Component } from '@angular/core';
-
-interface Metric {
-  title: string;
-  key: string;
-  intervals: string[];
-  isFundingRate?: boolean;
-}
+import { Router, UrlTree } from '@angular/router';
+import { FUNDING_RATE, KLINE, OPEN_INTEREST } from 'src/consts/url-consts';
+import { getRouterLink } from '../functions/get-router-link';
 
 @Component({
   selector: 'app-heatmaps-panel',
@@ -13,80 +12,32 @@ interface Metric {
   styleUrls: ['./heatmaps-panel.component.css'],
 })
 export class HeatmapsPanelComponent {
-  metricPairs: Metric[][] = [
-    [
-      {
-        title: 'Close Price',
-        key: 'closePrice',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-      {
-        title: 'Close Price Change',
-        key: 'closePriceChange',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-    ],
-    [
-      {
-        title: 'Open Interest',
-        key: 'openInterest',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-      {
-        title: 'Open Interest Change',
-        key: 'openInterestChange',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-    ],
-    [
-      {
-        title: 'Buyer Ratio',
-        key: 'buyerRatio',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-      {
-        title: 'Buyer Ratio Change',
-        key: 'buyerRatioChange',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-    ],
-    [
-      { title: 'Volume', key: 'volume', intervals: ['1h', '4h', '12h', 'D'] },
-      {
-        title: 'Volume Change',
-        key: 'volumeChange',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-    ],
-    [
-      {
-        title: 'Volume Delta',
-        key: 'volumeDelta',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-      {
-        title: 'Volume Delta Change',
-        key: 'volumeDeltaChange',
-        intervals: ['1h', '4h', '12h', 'D'],
-      },
-    ],
-    [
-      {
-        title: 'Funding Rate',
-        key: 'fundingRate',
-        intervals: ['Funding Rate', 'Funding Rate Change'],
-        isFundingRate: true,
-      },
-    ],
-  ];
+  metricPairs: Metric[][] = metricPairs;
+  activeSelections: Record<string, string> = {};
 
-  activeSelections: { [key: string]: string } = {};
+  constructor(private router: Router) {}
 
-  setActive(metricKey: string, interval: string) {
-    this.activeSelections[metricKey] = interval;
-  }
-
-  get currentDate(): Date {
-    return new Date();
+  setActive(metric: string, interval: string) {
+    this.activeSelections[metric] = interval;
+    if (metric === 'fundingRate' && interval === 'Funding Rate Change') {
+      const tree: UrlTree = this.router.createUrlTree([FUNDING_RATE], {
+        queryParams: { metric: 'fundingRateChange' },
+      });
+      const url = this.router.serializeUrl(tree);
+      window.open(url, '_blank');
+    } else if (metric === 'fundingRate' && interval === 'Funding Rate') {
+      const tree: UrlTree = this.router.createUrlTree([FUNDING_RATE], {
+        queryParams: { metric: 'fundingRate' },
+      });
+      const url = this.router.serializeUrl(tree);
+      window.open(url, '_blank');
+    } else {
+      const link = getRouterLink(metric);
+      const tree: UrlTree = this.router.createUrlTree([link], {
+        queryParams: { metric, timeframe: interval },
+      });
+      const url = this.router.serializeUrl(tree);
+      window.open(url, '_blank');
+    }
   }
 }

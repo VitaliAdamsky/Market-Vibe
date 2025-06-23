@@ -19,16 +19,16 @@
 
 <div class="custom-tab-content-wrapper">
   <div class="custom-tab-content" [class.active]="selectedTab === 0">
-    <app-data-chart-tab [timeframe]="TF.h1" [dataType]="dataType" [propertyKey]="propertyKey"></app-data-chart-tab>
+    <app-data-chart-tab [timeframe]="TF.h1" [dataType]="dataType" [propertyKey]="metric"></app-data-chart-tab>
   </div>
   <div class="custom-tab-content" [class.active]="selectedTab === 1">
-    <app-data-chart-tab [timeframe]="TF.h4" [dataType]="dataType" [propertyKey]="propertyKey"></app-data-chart-tab>
+    <app-data-chart-tab [timeframe]="TF.h4" [dataType]="dataType" [propertyKey]="metric"></app-data-chart-tab>
   </div>
   <div class="custom-tab-content" [class.active]="selectedTab === 2">
-    <app-data-chart-tab [timeframe]="TF.h12" [dataType]="dataType" [propertyKey]="propertyKey"></app-data-chart-tab>
+    <app-data-chart-tab [timeframe]="TF.h12" [dataType]="dataType" [propertyKey]="metric"></app-data-chart-tab>
   </div>
   <div class="custom-tab-content" [class.active]="selectedTab === 3">
-    <app-data-chart-tab [timeframe]="TF.D" [dataType]="dataType" [propertyKey]="propertyKey"></app-data-chart-tab>
+    <app-data-chart-tab [timeframe]="TF.D" [dataType]="dataType" [propertyKey]="metric"></app-data-chart-tab>
   </div>
 </div>
 

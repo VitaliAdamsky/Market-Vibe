@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AGGREGATOR,
   MARKET_ACTIVITY,
@@ -29,9 +30,12 @@ export class MarketStatsPanelComponent {
   ];
 
   activeMetric: string = SENTIMENT;
+  constructor(private router: Router) {}
 
   setActive(key: string) {
     this.activeMetric = key;
+    const url = this.router.serializeUrl(this.router.createUrlTree([key]));
+    window.open(url, '_blank');
   }
 
   get currentDate(): Date {

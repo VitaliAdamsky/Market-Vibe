@@ -1,37 +1,42 @@
-<div class="table-scroll-wrapper" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150"
-  (scrolled)="onScrollDown()">
-  <table *ngIf="visibleRows.length" class="data-table">
-    <thead>
-      <tr>
-        <th>Coin</th>
-        <!-- Time columns -->
-        <th *ngFor="let item of data.tableData[0]?.data">
-          <div class="vertical-text">
-            {{ item.openTime | date: 'EEE':'':'ru' }}
-            {{ item.openTime | date: 'HH:mm':'':'ru' }}
-          </div>
-        </th>
-      </tr>
-    </thead>
+<div class="table-container">
+  <div class="subheader">
+    <span class="subheader-text">{{ data.label }}</span>
+  </div>
+  <div class="table-scroll-wrapper" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150"
+    (scrolled)="onScrollDown()">
+    <table *ngIf="visibleRows.length" class="data-table">
+      <thead>
+        <tr>
+          <th>Coin</th>
+          <!-- Time columns -->
+          <th *ngFor="let item of data.tableData[0]?.data">
+            <div class="vertical-text">
+              {{ item.openTime | date: 'EEE':'':'ru' }}
+              {{ item.openTime | date: 'HH:mm':'':'ru' }}
+            </div>
+          </th>
+        </tr>
+      </thead>
 
-    <tbody cdkDropList (cdkDropListDropped)="dropRow($event)">
-      <tr *ngFor="let coin of visibleRows; let i = index" cdkDrag>
-        <!-- Coin Label Cell -->
-        <td class="coin-label">
-          <div class="logo-container">
-            <img [src]="coin.imageUrl" width="20"
-              [appExchangeTooltip]="{ symbol: coin.symbol, exchanges: coin.exchanges}" />
-            <span class="coin-name">{{ stripPair(coin.symbol) }}</span>
-          </div>
-        </td>
+      <tbody cdkDropList (cdkDropListDropped)="dropRow($event)">
+        <tr *ngFor="let coin of visibleRows; let i = index" cdkDrag>
+          <!-- Coin Label Cell -->
+          <td class="coin-label">
+            <div class="logo-container">
+              <img [src]="coin.imageUrl" width="20"
+                [appExchangeTooltip]="{ symbol: coin.symbol, exchanges: coin.exchanges}" />
+              <span class="coin-name">{{ stripPair(coin.symbol) }}</span>
+            </div>
+          </td>
 
-        <!-- Color Cells -->
-        <td *ngFor="let item of coin.data" class="color-cell">
-          <div [appCellTooltip]="item" [appLittleCellTooltip]="item" class="color-cell"
-            [style.backgroundColor]="item.displayedColorValue">
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <!-- Color Cells -->
+          <td *ngFor="let item of coin.data" class="color-cell">
+            <div [appCellTooltip]="item" [appLittleCellTooltip]="item" class="color-cell"
+              [style.backgroundColor]="item.displayedColorValue">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

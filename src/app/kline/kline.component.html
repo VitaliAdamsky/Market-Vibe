@@ -1,7 +1,11 @@
-<div class="header">
-  <span class="header-text">{{ title }}</span>
-  <span class="header-icon" (click)="openInfoModal()">
-    <mat-icon>info</mat-icon>
-  </span>
+<div *ngIf="tableData.tableData.length">
+  <div class="header">
+    <span class="header-text">{{ title }}</span>
+    <span class="header-icon" (click)="openInfoModal()">
+      <mat-icon>info</mat-icon>
+    </span>
+  </div>
+  <div class="table-container"><app-heatmap-table [data]="tableData"></app-heatmap-table></div>
 </div>
-<div class="table-container"><app-heatmap-table [data]="tableData"></app-heatmap-table></div>
+<app-loading *ngIf="!tableData.tableData.length"></app-loading>
+<app-scroll-to-top [scrollOffset]="200" position="right"></app-scroll-to-top>

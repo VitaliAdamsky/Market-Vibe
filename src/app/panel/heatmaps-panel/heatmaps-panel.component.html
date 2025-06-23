@@ -10,8 +10,8 @@
         <div class="metric-title">{{ pair[0].title }}</div>
         <div class="time-buttons">
           <button *ngFor="let interval of pair[0].intervals" class="time-btn"
-            [class.active]="activeSelections[pair[0].key] === interval" [class.funding-btn]="pair[0].isFundingRate"
-            (click)="setActive(pair[0].key, interval)">
+            [class.active]="activeSelections[pair[0].metric] === interval" [class.funding-btn]="pair[0].isFundingRate"
+            (click)="setActive(pair[0].metric, interval  )">
             {{ interval }}
           </button>
         </div>
@@ -21,8 +21,8 @@
         <div class="metric-title">{{ pair[1].title }}</div>
         <div class="time-buttons">
           <button *ngFor="let interval of pair[1].intervals" class="time-btn"
-            [class.active]="activeSelections[pair[1].key] === interval" [class.funding-btn]="pair[1].isFundingRate"
-            (click)="setActive(pair[1].key, interval)">
+            [class.active]="activeSelections[pair[1].metric] === interval" [class.funding-btn]="pair[1].isFundingRate"
+            (click)="setActive(pair[1].metric, interval  )">
             {{ interval }}
           </button>
         </div>

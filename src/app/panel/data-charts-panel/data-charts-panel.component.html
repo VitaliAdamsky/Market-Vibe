@@ -4,9 +4,9 @@
   </div>
 
   <div class="metrics-container">
-    <button *ngFor="let metric of metrics" class="metric-btn" [class.active]="activeMetric === metric.key"
-      (click)="setActive(metric.key)">
-      {{ metric.title }}
+    <button *ngFor="let item of metrics" class="metric-btn" [class.active]="activeMetric === item.metric"
+      (click)="setActive(item.metric, item.dataType)">
+      {{ item.title }}
     </button>
   </div>
 </div>

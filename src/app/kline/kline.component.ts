@@ -17,7 +17,7 @@ import { KlineData } from '../shared/models/kline';
   styleUrls: ['./kline.component.css'],
 })
 export class KlineComponent implements OnDestroy, OnInit {
-  title = 'Close Price';
+  title!: string;
   tableData: { label: string; tableData: TableDataRow[] } = {
     label: '',
     tableData: [],
@@ -80,10 +80,10 @@ export class KlineComponent implements OnDestroy, OnInit {
                 this.title = 'Close Price Change';
                 break;
               case 'quoteVolume':
-                this.title = 'Quote Volume';
+                this.title = 'Volume';
                 break;
               case 'quoteVolumeChange':
-                this.title = 'Quote Volume Change';
+                this.title = 'Volume Change';
                 break;
               case 'buyerRatio':
                 this.title = 'Buyer Ratio';
