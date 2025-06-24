@@ -32,23 +32,80 @@ router-outlet + * {
   min-height: calc(100vh - 64px - 412px); /* adjust if needed */
 }
 
-/* SNACKBAR CSS FOR ANGULAR 16 */
+/* SNACKBAR CSS FOR ANGULAR 16 - Dark Theme with Neon Effects */
+
 .warning-snackbar {
-  --mdc-snackbar-container-color: #0000b3;
-  --mat-mdc-snack-bar-button-color: white;
+  --mdc-snackbar-container-color: #1a1a40; /* Очень тёмно-синий фон */
+  color: #00b3ff; /* Неоновый голубой текст */
+  box-shadow:
+    0 0 8px #00b3ff,
+    0 0 20px #00e0ff,
+    0 0 30px #00ffff;
+  border: 1px solid #00e0ff;
 }
 
-/* SNACKBAR CSS FOR ANGULAR 16 */
+/* Основной текст снэкбара */
+.warning-snackbar .mdc-snackbar__label {
+  text-shadow:
+    0 0 5px #00b3ff,
+    0 0 10px #00e0ff;
+}
+
+/* Кнопка действия */
+.warning-snackbar .mdc-button,
+.warning-snackbar .mat-mdc-snack-bar-button {
+  color: #00e0ff;
+  text-shadow: 0 0 8px #00e0ff;
+}
+
+/* --------- */
+
 .error-snackbar {
-  --mdc-snackbar-container-color: rgb(168, 31, 31);
-  --mat-mdc-snack-bar-button-color: white;
+  --mdc-snackbar-container-color: #330000; /* Очень тёмно-красный фон */
+  color: #ff3366; /* Неоновый розово-красный текст */
+  box-shadow:
+    0 0 8px #ff3366,
+    0 0 20px #ff0044,
+    0 0 30px #ff1a75;
+  border: 1px solid #ff0044;
 }
 
-/* SNACKBAR CSS FOR ANGULAR 16 */
-.info-snackbar {
-  --mdc-snackbar-container-color: green;
-  --mat-mdc-snack-bar-button-color: white;
+.error-snackbar .mdc-snackbar__label {
+  text-shadow:
+    0 0 5px #ff3366,
+    0 0 10px #ff0044;
 }
+
+.error-snackbar .mdc-button,
+.error-snackbar .mat-mdc-snack-bar-button {
+  color: #ff0044;
+  text-shadow: 0 0 8px #ff0044;
+}
+
+/* --------- */
+
+.info-snackbar {
+  --mdc-snackbar-container-color: #003300; /* Очень тёмно-зелёный фон */
+  color: #00ff99; /* Неоновый мятный зелёный текст */
+  box-shadow:
+    0 0 8px #00ff99,
+    0 0 20px #00cc77,
+    0 0 30px #00ffbb;
+  border: 1px solid #00cc77;
+}
+
+.info-snackbar .mdc-snackbar__label {
+  text-shadow:
+    0 0 5px #00ff99,
+    0 0 10px #00cc77;
+}
+
+.info-snackbar .mdc-button,
+.info-snackbar .mat-mdc-snack-bar-button {
+  color: #00cc77;
+  text-shadow: 0 0 8px #00cc77;
+}
+
 
 /* TOOLTIP BOX */
 .tooltip-box {

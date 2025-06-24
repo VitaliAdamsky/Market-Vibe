@@ -10,6 +10,7 @@ export function formatTooltip(
   propertyKey?: keyof KlineDataItem
 ): string {
   const index = params[0].dataIndex;
+  const seriesColor = params[0].color || '#ffffff'; // цвет серии или белый по умолчанию
 
   const format = (dateStr: number) =>
     new Date(dateStr).toLocaleString('en-GB', {
@@ -19,6 +20,10 @@ export function formatTooltip(
       month: 'short',
     });
 
+  // Функция для цветного кружочка с текстом
+  const coloredDot = (text: string) =>
+    `<span style="color: ${seriesColor}; font-weight: bold; margin-right: 6px;">&#9679;</span>${text}`;
+
   let openTime = 0;
   let closeTime = 0;
   let content = '';
@@ -27,12 +32,16 @@ export function formatTooltip(
     const point = data[index] as OpenInterestItem;
     openTime = point.openTime;
     closeTime = point.closeTime;
-    content = `<div><span style="color:#aaa;">OI Change:</span> ${point.openInterestChange}%</div>`;
+    content = `<div>${coloredDot('OI Change:')} ${
+      point.openInterestChange
+    }%</div>`;
   } else if (dataType === 'fr') {
     const point = data[index] as FundingRateItem;
     openTime = point.openTime;
     closeTime = point.closeTime;
-    content = `<div><span style="color:#aaa;">FR Change:</span> ${point.fundingRateChange}%</div>`;
+    content = `<div>${coloredDot('FR Change:')} ${
+      point.fundingRateChange
+    }%</div>`;
   } else {
     const point = data[index] as KlineDataItem;
     openTime = point.openTime;
@@ -49,9 +58,7 @@ export function formatTooltip(
 
     for (const [key, label] of fields) {
       if (point[key] != null) {
-        parts.push(
-          `<div><span style="color:#aaa;">${label}:</span> ${point[key]}%</div>`
-        );
+        parts.push(`<div>${coloredDot(label)} ${point[key]}%</div>`);
       }
     }
 

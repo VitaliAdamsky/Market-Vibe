@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
+  ADMIN,
   AGGREGATOR,
   COIN_COMPARE,
   COINS,
@@ -39,6 +40,11 @@ export class NavBarComponent implements OnInit, OnDestroy {
   goToAlertsAtWork() {
     this.router.navigate([]);
   }
+
+  goToAdmin() {
+    this.router.navigate([ADMIN]);
+  }
+
   onGoToFundingRate() {
     this.router.navigate([FUNDING_RATE]);
   }

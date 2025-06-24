@@ -7,9 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { AlertMenuComponent } from './nav-bar/alert-menu/alert-menu.component';
-import { VwapAlertMenuComponent } from './nav-bar/vwap-alert-menu/vwap-alert-menu.component';
-import { AdminPanelMenuComponent } from './nav-bar/admin-panel-menu/admin-panel-menu.component';
+
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LoginModule } from './login/login.module';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -35,16 +33,11 @@ import { MarketActivityModule } from './market-activity/market-activity.module';
 import { MiniSentimentModule } from './mini-sentiment/mini-sentiment.module';
 import { AggregatorModule } from './aggregator/aggregator.module';
 import { MarketAnalyzerModule } from './market-analyzer/market-analyzer.module';
+import { AdminModule } from './admin/admin.module';
 
 registerLocaleData(localeRu);
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavBarComponent,
-    AlertMenuComponent,
-    VwapAlertMenuComponent,
-    AdminPanelMenuComponent,
-  ],
+  declarations: [AppComponent, NavBarComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -76,6 +69,7 @@ registerLocaleData(localeRu);
     MiniSentimentModule,
     AggregatorModule,
     MarketAnalyzerModule,
+    AdminModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],

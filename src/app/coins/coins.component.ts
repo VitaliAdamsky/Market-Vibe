@@ -19,7 +19,7 @@ import { SnackbarType } from '../shared/models/snackbar-type';
 export class CoinsComponent implements OnInit, OnDestroy {
   isAlpahbetAsc = true;
   isCategoryAsc = true;
-  private openedWindows: Window[] = [];
+
   TF = TF;
   coins: Coin[] = [];
   filteredCoins: Coin[] = [];
@@ -64,6 +64,14 @@ export class CoinsComponent implements OnInit, OnDestroy {
   }
 
   toggleAll() {
+    if (this.selectionService.selectedValues().length === 0) {
+      this.selectionService.select(this.filteredCoins);
+      return;
+    }
+    if (this.selectionService.isAllSelected(this.filteredCoins)) {
+      this.selectionService.clear();
+      return;
+    }
     const selected = this.selectionService.selectedValues();
     const anySelected = selected.some((coin) =>
       this.filteredCoins.includes(coin)
@@ -96,10 +104,7 @@ export class CoinsComponent implements OnInit, OnDestroy {
       this.filteredCoins
     );
   }
-  /**
-   * Sorts the coins array by Roman numeral order.
-   * @param order - 'asc' for ascending, 'desc' for descending
-   */
+
   private sortRomanNumerals(order: 'asc' | 'desc'): void {
     const romanOrder = ['I', 'II', 'III', 'IV', 'V', 'VI']; // Define the Roman numeral order
     this.coins.sort((a, b) => {
@@ -118,12 +123,12 @@ export class CoinsComponent implements OnInit, OnDestroy {
 
   onGoToCoinMetrics() {
     const coins = this.selectionService.selectedValues();
-    if (coins.length < 1) {
+    if (coins.length < 1 || coins.length > 1) {
       this.snacakbarService.showSnackBar(
-        'Select at least 1 coin',
+        'Select just 1 coin',
         '',
         3000,
-        SnackbarType.Info
+        SnackbarType.Warning
       );
       return;
     }
@@ -168,16 +173,6 @@ export class CoinsComponent implements OnInit, OnDestroy {
       .toString();
 
     window.open(url, '_blank');
-  }
-
-  closeWindows(): void {
-    for (const win of this.openedWindows) {
-      if (win && !win.closed) {
-        win.close();
-      }
-    }
-    this.openedWindows = [];
-    console.log('All opened windows closed.');
   }
 
   ngOnDestroy(): void {

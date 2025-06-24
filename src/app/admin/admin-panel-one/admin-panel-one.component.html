@@ -1,0 +1,12 @@
+<div class="metrics-panel">
+  <div class="panel-header">
+    <h3 class="panel-title">Admin Panel One</h3>
+  </div>
+
+  <div class="metrics-container">
+    <button *ngFor="let action of actions" class="metric-btn" [class.active]="activeAction === action.action"
+      (click)="setActive(action.action)">
+      {{ action.title }}
+    </button>
+  </div>
+</div>

@@ -1,88 +1,136 @@
 .toolbar {
+  position: fixed;
+  top: 63px;
+  left: 0;
+  right: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 98%;
   background-color: #383838;
-  margin: auto;
-
-
-
-  position: fixed;
-  top: 0;
-  z-index: 10;
+  padding: 17px 17px;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Общий стиль для всех дочерних элементов */
-.toolbar > app-search-box,
-.toolbar > .header,
-.toolbar > .button-panel {
-  margin-top: 84px;
-  margin-bottom: 10px;
-}
-
-/* === Search Box (слева) === */
-.toolbar > app-search-box {
-  flex: 1 1 25%; /* Занимает ~25% ширины */
-  min-width: 200px;
-  margin-top: 94px;
-}
-
-/* === Header (по центру) === */
-.toolbar > .header {
-  flex: 1 1 50%; /* Занимает ~50% ширины */
+/* Левая часть: поиск и сортировки */
+.toolbar-left {
   display: flex;
   align-items: center;
+  gap: 10px;
+  flex: 1.3;
+  min-width: 330px;
+}
+
+/* Центр: заголовок */
+.toolbar-center {
+  display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
 }
 
 .header-text {
   font-size: 24px;
   font-weight: bold;
+  color: #fff;
   display: flex;
   align-items: center;
-  gap: 10px; /* Пробел между текстом и кнопкой */
+  gap: 20px;
 }
 
-/* === Button Panel (справа) === */
-.toolbar > .button-panel {
-  flex: 1 1 25%; /* Занимает ~25% ширины */
+app-search-box {
+  flex: 1;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+/* Правая часть: кнопки управления */
+.toolbar-right {
   display: flex;
   justify-content: flex-end;
-  gap: 12px; /* Отступ между кнопками */
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 300px;
 }
 
-/* Опционально: предотвращает перенос текста в Material-кнопках */
 .button-panel button {
   white-space: nowrap;
 }
 
-.left-button-panel   {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  margin-top: 70px;
-  margin-left: 30px
-
-}
-
+/* Контейнер с монетами */
 .coin-container {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top:155px
+  justify-content: flex-start;
+  padding: 0 12px;
+  margin-top: 160px; /* место под фиксированную шапку */
 }
 
-.panel-icon{
+/* Эффект плавного появления */
+.container {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Иконка в панели */
+.panel-icon {
   margin-left: 4px;
   padding-right: 4px;
   font-size: 24px;
   padding-bottom: 5px;
 }
 
-.sort-icon{
-  margin-left: 6px; font-size: 25px;
-  margin-top: 6px;
+
+
+.time-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* расстояние между иконкой и текстом */
+
+  background: linear-gradient(145deg, #1c1c1c, #151515);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+
+  /* Неоновая подсветка */
+  box-shadow:
+    0 0 8px rgba(255, 0, 102, 0.6),
+    0 0 15px rgba(255, 0, 102, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.time-btn:hover {
+  box-shadow:
+    0 0 10px rgba(255, 20, 147, 0.9),
+    0 0 25px rgba(255, 20, 147, 0.8),
+    0 0 35px rgba(255, 20, 147, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* необязательно, но можно чуть подправить размер иконки */
+.time-btn mat-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
 }

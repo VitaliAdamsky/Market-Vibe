@@ -8,6 +8,7 @@ import { TooltipSyncService } from '../services/tooltip-sync.service';
   templateUrl: './heatmap-table.component.html',
   styleUrls: ['./heatmap-table.component.css'],
 })
+//TODO: СДЕЛАЙ ТУЛТИП ДЛЯ ТЕПЛОВОЙ КАРЫ
 export class HeatmapTableComponent {
   @Input() data: { label: string; tableData: TableDataRow[] } = {
     label: '',

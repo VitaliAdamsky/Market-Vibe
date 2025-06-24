@@ -1,0 +1,23 @@
+.panel-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1600px;
+  margin: 65px auto 0;
+  height: 100vh;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.panel-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panel-column:last-child {
+  margin-top: 4px;
+  padding-left: 70px;
+  box-sizing: border-box;
+}
+

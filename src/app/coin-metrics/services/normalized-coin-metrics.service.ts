@@ -9,6 +9,7 @@ import { OpenInterestData } from 'src/app/shared/models/oi';
 import { KlineData } from 'src/app/shared/models/kline';
 import { DataType } from 'src/app/shared/models/data-type';
 import { MarketData } from 'src/app/shared/models/market-data';
+import { formatAggregateTooltip } from 'src/app/aggregator/functions/formate-aggregate-tooltip';
 
 @Injectable({ providedIn: 'root' })
 export class NormalizedMetricsChartService {
@@ -80,61 +81,7 @@ export class NormalizedMetricsChartService {
         backgroundColor: 'transparent', // 👈 disables the white background
         borderColor: 'transparent', // 👈 removes any border
         extraCssText: 'box-shadow: none;', // 👈 removes default shadow if present
-        formatter: (params: any) => {
-          const index = params[0].dataIndex;
-
-          const format = (dateStr: number) =>
-            new Date(dateStr).toLocaleString('en-GB', {
-              hour: '2-digit',
-              minute: '2-digit',
-              day: '2-digit',
-              month: 'short',
-            });
-
-          const oiPoint = coinOi.data[index];
-          const frPoint = coinFr.data[index];
-          const klinePoint = coinKline.data[index];
-
-          if (!oiPoint || !frPoint || !klinePoint) return '';
-
-          const openTime = klinePoint.openTime;
-          const closeTime = klinePoint.closeTime;
-
-          const html = `
-      <div style="
-        background: #2f2f2f;
-        color: #f1f1f1;
-        padding: 10px;
-        border-radius: 6px;
-        font-size: 13px;
-        line-height: 1.6;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-      ">
-        <div><span style="color:#aaa;">Open:</span> ${format(openTime)}</div>
-        <div><span style="color:#aaa;">Close:</span> ${format(closeTime)}</div>
-        <div><span style="color:#aaa;">OI Change:</span> ${
-          oiPoint.openInterestChange
-        }%</div>
-        <div><span style="color:#aaa;">FR Change:</span> ${
-          frPoint.fundingRateChange
-        }%</div>
-        <div><span style="color:#aaa;">Close Price Change:</span> ${
-          klinePoint.closePriceChange
-        }%</div>
-        <div><span style="color:#aaa;">Volume Change:</span> ${
-          klinePoint.quoteVolumeChange
-        }%</div>
-        <div><span style="color:#aaa;">Buyer Ratio:</span> ${
-          klinePoint.buyerRatio
-        }%</div>
-        <div><span style="color:#aaa;">Volume Δ Change:</span> ${
-          klinePoint.volumeDeltaChange
-        }%</div>
-      </div>
-    `;
-
-          return html;
-        },
+        formatter: (params: any) => formatAggregateTooltip(params),
       },
       legend: {
         top: 30,

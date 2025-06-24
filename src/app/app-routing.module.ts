@@ -16,6 +16,7 @@ import {
   MINI_SENTIMENT,
   AGGREGATOR,
   MARKET_ANALYZER,
+  ADMIN,
 } from 'src/consts/url-consts';
 
 const routes: Routes = [
@@ -23,6 +24,11 @@ const routes: Routes = [
     path: COLORS,
     loadChildren: () =>
       import('./colors/colors.module').then((m) => m.ColorsModule),
+  },
+  {
+    path: ADMIN,
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: MARKET_ANALYZER,
