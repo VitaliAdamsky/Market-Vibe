@@ -126,6 +126,7 @@ router-outlet + * {
   width: auto;     /* ← grow with content */
   white-space: nowrap; /* Prevent text wrapping everywhere */
   cursor: pointer;
+  padding: 0rem 1rem 1rem; /* ⬅️ убираем верхний отступ */
 }
 
 /* Triangle pointer at bottom */
@@ -209,7 +210,7 @@ router-outlet + * {
   justify-content: flex-end;
   gap: 5px;
   margin-top: var(--tooltip-margin-top, 15px);
-  margin-bottom: var(--tooltip-margin-bottom, 4px);
+  margin-bottom: var(--tooltip-margin-bottom, 10px);
 }
 
 .tooltip-box .header-icon {

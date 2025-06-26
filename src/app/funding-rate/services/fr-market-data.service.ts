@@ -20,9 +20,6 @@ import { TF } from 'src/app/shared/models/timeframes';
   providedIn: 'root',
 })
 export class FrMarketDataService {
-  //private readonly apiUrl = `${env.renderBaseURL}/api/fr`;
-  private readonly apiUrl = `http://localhost:3000/api/fr`;
-
   constructor(
     private errorHandler: HttpErrorHandler,
     private marketDataService: MarketDataService
@@ -67,6 +64,7 @@ export class FrMarketDataService {
           exchanges: data[index].exchanges,
           symbol: data[index].symbol,
           imageUrl: data[index].imageUrl,
+          category: data[index].category,
         } satisfies TableMetricItem;
       });
 

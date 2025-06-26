@@ -39,32 +39,47 @@ export class NormalizedMetricsChartService {
     const series = [
       {
         name: 'OI',
-        data: coinOi.data.map((d) => d.normalizedOpenInterest),
+        data: coinOi.data.map((d) => ({
+          value: d.normalizedOpenInterest,
+          openTime: d.openTime,
+          closeTime: d.closeTime,
+        })),
         color: '#ffcc00',
       },
-      // {
-      //   name: 'FR',
-      //   data: this.alignFundingRateToKlines(coinKline.data, coinFr.data),
-      //   color: '#00e676',
-      // },
       {
         name: 'Price',
-        data: coinKline.data.map((d) => d.normalizedClosePrice),
+        data: coinKline.data.map((d) => ({
+          value: d.normalizedClosePrice,
+          openTime: d.openTime,
+          closeTime: d.closeTime,
+        })),
         color: '#42a5f5',
       },
       {
         name: 'Buyer Ratio',
-        data: coinKline.data.map((d) => d.normalizedBuyerRatio),
+        data: coinKline.data.map((d) => ({
+          value: d.normalizedBuyerRatio,
+          openTime: d.openTime,
+          closeTime: d.closeTime,
+        })),
         color: '#ab47bc',
       },
       {
         name: 'Volume',
-        data: coinKline.data.map((d) => d.normalizedQuoteVolume),
+        data: coinKline.data.map((d) => ({
+          value: d.normalizedQuoteVolume,
+          openTime: d.openTime,
+          closeTime: d.closeTime,
+        })),
         color: '#ff7043',
       },
       {
         name: 'Volume Δ',
-        data: coinKline.data.map((d) => d.normalizedVolumeDelta),
+        data: coinKline.data.map((d) => ({
+          value: d.normalizedVolumeDelta,
+          openTime: d.openTime,
+          closeTime: d.closeTime,
+        })),
         color: '#e6005c',
       },
     ];

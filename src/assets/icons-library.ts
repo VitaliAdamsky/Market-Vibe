@@ -42,6 +42,7 @@ export const APP_ICONS: { name: string; url: string }[] = [
   { name: 'pause', url: 'assets/icons/pause.svg' },
   { name: 'play', url: 'assets/icons/play.svg' },
   { name: 'reddit', url: 'assets/icons/reddit.svg' },
+  { name: 'report', url: 'assets/icons/report.svg' },
   { name: 'reset-settings', url: 'assets/icons/reset-settings.svg' },
   { name: 'reset_focus', url: 'assets/icons/reset_focus.svg' },
   { name: 'send-from', url: 'assets/icons/send-from.svg' },

@@ -5,12 +5,12 @@
       <app-search-box [(query)]="searchQuery" placeholder="Search symbol..." (queryChange)="applySearch($event)">
       </app-search-box>
 
-      <button class="time-btn" (click)="sortByAlphabet()">
+      <button class="time-btn glow-blue" (click)="sortByAlphabet()">
         <mat-icon svgIcon="{{ isAlpahbetAsc ? 'sort-up' : 'sort-down' }}"></mat-icon>
         Sort by Alphabet
       </button>
 
-      <button class="time-btn" (click)="sortByCategory()">
+      <button class="time-btn glow-green" (click)="sortByCategory()">
         <mat-icon svgIcon="{{ isCategoryAsc ? 'sort-up' : 'sort-down' }}"></mat-icon>
         Sort by Category
       </button>
@@ -25,10 +25,13 @@
 
     <!-- Right: Buttons -->
     <div class="toolbar-right">
-      <button class="time-btn" (click)="onGoToCoinMetrics()">
+      <button class="time-btn glow-red" (click)="onGenerateReport()">
+        <mat-icon svgIcon="report"></mat-icon> Generate Report
+      </button>
+      <button class="time-btn glow-purple" (click)="onGoToCoinMetrics()">
         <mat-icon>bar_chart</mat-icon> Coin Metrics
       </button>
-      <button class="time-btn" (click)="onGoToComparison()">
+      <button class="time-btn glow-orange" (click)="onGoToComparison()">
         <mat-icon svgIcon="line-chart"></mat-icon> Coins Comparison
       </button>
     </div>

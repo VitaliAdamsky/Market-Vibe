@@ -10,6 +10,7 @@ import { COIN_COMPARE, COIN_METRICS } from 'src/consts/url-consts';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/services/snackbar.service';
 import { SnackbarType } from '../shared/models/snackbar-type';
+import { ReportService } from './services/report.service';
 
 @Component({
   selector: 'app-coins',
@@ -33,7 +34,8 @@ export class CoinsComponent implements OnInit, OnDestroy {
     private coinsService: CoinsService,
     private selectionService: SelectionService<Coin>,
     private router: Router,
-    private snacakbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private reportService: ReportService
   ) {}
 
   ngOnInit(): void {
@@ -121,10 +123,31 @@ export class CoinsComponent implements OnInit, OnDestroy {
     });
   }
 
+  async onGenerateReport() {
+    const coins = this.selectionService.selectedValues();
+    if (coins.length < 1) {
+      this.snackbarService.showSnackBar(
+        'Select at least 1 coin',
+        '',
+        3000,
+        SnackbarType.Warning
+      );
+      return;
+    }
+
+    // Параллельно запускаем генерацию отчётов
+    await Promise.all([
+      this.reportService.exportMarketDataFile(TF.h1, coins),
+      this.reportService.exportMarketDataFile(TF.h4, coins),
+      this.reportService.exportMarketDataFile(TF.h12, coins),
+      this.reportService.exportMarketDataFile(TF.D, coins),
+    ]);
+  }
+
   onGoToCoinMetrics() {
     const coins = this.selectionService.selectedValues();
     if (coins.length < 1 || coins.length > 1) {
-      this.snacakbarService.showSnackBar(
+      this.snackbarService.showSnackBar(
         'Select just 1 coin',
         '',
         3000,
@@ -151,7 +174,7 @@ export class CoinsComponent implements OnInit, OnDestroy {
   onGoToComparison() {
     const coins = this.selectionService.selectedValues();
     if (coins.length < 2) {
-      this.snacakbarService.showSnackBar(
+      this.snackbarService.showSnackBar(
         'Select at least 2 coins',
         '',
         3000,

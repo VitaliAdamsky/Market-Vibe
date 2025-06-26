@@ -31,8 +31,7 @@
 
           <!-- Color Cells -->
           <td *ngFor="let item of coin.data" class="color-cell">
-            <div [appCellTooltip]="item" [appLittleCellTooltip]="item" class="color-cell"
-              [style.backgroundColor]="item.displayedColorValue">
+            <div [appCellTooltip]="item" class="color-cell" [style.backgroundColor]="item.displayedColorValue">
             </div>
           </td>
         </tr>

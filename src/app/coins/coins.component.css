@@ -20,7 +20,8 @@
   align-items: center;
   gap: 10px;
   flex: 1.3;
-  min-width: 330px;
+  min-width: 300px;
+  margin-right: 35px;
 }
 
 /* Центр: заголовок */
@@ -29,7 +30,7 @@
   justify-content: center;
   align-items: center;
   flex: 1;
-  min-width: 200px;
+  max-width: 300px;
 }
 
 .header-text {
@@ -54,7 +55,7 @@ app-search-box {
   align-items: center;
   gap: 10px;
   flex: 1;
-  min-width: 300px;
+  min-width: 380px;
 }
 
 .button-panel button {
@@ -97,7 +98,7 @@ app-search-box {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* расстояние между иконкой и текстом */
+  gap: 8px;
 
   background: linear-gradient(145deg, #1c1c1c, #151515);
   color: #fff;
@@ -107,30 +108,91 @@ app-search-box {
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
 
-  /* Неоновая подсветка */
-  box-shadow:
-    0 0 8px rgba(255, 0, 102, 0.6),
-    0 0 15px rgba(255, 0, 102, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: box-shadow 1s ease, color 0.3s ease;
+  will-change: box-shadow;
 }
 
-.time-btn:hover {
-  box-shadow:
-    0 0 10px rgba(255, 20, 147, 0.9),
-    0 0 25px rgba(255, 20, 147, 0.8),
-    0 0 35px rgba(255, 20, 147, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-
-/* необязательно, но можно чуть подправить размер иконки */
 .time-btn mat-icon {
   font-size: 20px;
   height: 20px;
   width: 20px;
+}
+
+/* 🔵 Синий */
+.glow-blue {
+  box-shadow:
+    0 0 6px rgba(0, 191, 255, 0.4),
+    0 0 12px rgba(0, 191, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.glow-blue:hover {
+  box-shadow:
+    0 0 14px rgba(0, 191, 255, 0.9),
+    0 0 30px rgba(0, 191, 255, 0.7),
+    0 0 40px rgba(0, 191, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 🟢 Зелёный */
+.glow-green {
+  box-shadow:
+    0 0 6px rgba(0, 255, 153, 0.4),
+    0 0 12px rgba(0, 255, 153, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.glow-green:hover {
+  box-shadow:
+    0 0 14px rgba(0, 255, 153, 0.9),
+    0 0 30px rgba(0, 255, 153, 0.7),
+    0 0 40px rgba(0, 255, 153, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 🟣 Фиолетовый */
+.glow-purple {
+  box-shadow:
+    0 0 6px rgba(178, 102, 255, 0.4),
+    0 0 12px rgba(178, 102, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.glow-purple:hover {
+  box-shadow:
+    0 0 14px rgba(178, 102, 255, 0.9),
+    0 0 30px rgba(178, 102, 255, 0.7),
+    0 0 40px rgba(178, 102, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 🟠 Оранжевый */
+.glow-orange {
+  box-shadow:
+    0 0 6px rgba(255, 169, 77, 0.4),
+    0 0 12px rgba(255, 169, 77, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.glow-orange:hover {
+  box-shadow:
+    0 0 14px rgba(255, 169, 77, 0.9),
+    0 0 30px rgba(255, 169, 77, 0.7),
+    0 0 40px rgba(255, 169, 77, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 🔴 Красное свечение */
+.glow-red {
+  box-shadow:
+    0 0 6px rgba(255, 50, 50, 0.4),
+    0 0 12px rgba(255, 50, 50, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.glow-red:hover {
+  box-shadow:
+    0 0 14px rgba(255, 50, 50, 0.9),
+    0 0 30px rgba(255, 50, 50, 0.7),
+    0 0 40px rgba(255, 50, 50, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }

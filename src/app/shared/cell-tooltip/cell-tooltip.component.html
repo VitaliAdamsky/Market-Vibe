@@ -1,11 +1,14 @@
 <div class="tooltip-box">
+  <!-- Header -->
   <div class="header-row">
     <div class="header">
-      <img [src]="data.imageUrl" class="tooltip-image header-icon" alt="logo" />
+      <img [src]="data.imageUrl" class="tooltip-image header-icon" alt="logo" (click)="onGoToCoinMetrics()" />
       <h3>{{ stripPair(data.symbol) }}</h3>
     </div>
     <mat-icon class="close-icon" (click)="closeTooltip()">close</mat-icon>
   </div>
+
+  <!-- Time Info -->
   <div class="row tooltip-date">
     <span class="label">Open:</span>
     <span class="data">{{ data.openTime | date:'HH:mm dd MMM yy' }}</span>
@@ -15,21 +18,50 @@
     <span class="data">{{ data.closeTime | date:'HH:mm dd MMM yy' }}</span>
   </div>
 
-  <!-- FUNDING RATA -->
+  <hr />
+
+  <!-- === Normalized Metrics First === -->
   <div class="row" *ngIf="data.normalizedFundingRate">
     <span class="label">FR:</span>
     <span class="data">{{ data.fundingRate }}</span>
   </div>
 
+  <div class="row" *ngIf="data.normalizedOpenInterest">
+    <span class="label">Norm OI:</span>
+    <span class="data">{{ data.normalizedOpenInterest }}</span>
+  </div>
+
+  <div class="row" *ngIf="data.normalizedClosePrice">
+    <span class="label">Close Price Norm.:</span>
+    <span class="data">{{ data.normalizedClosePrice }}</span>
+  </div>
+
+  <div class="row" *ngIf="data.normalizedQuoteVolume">
+    <span class="label">Quote Volume Norm.:</span>
+    <span class="data">{{ data.normalizedQuoteVolume }}</span>
+  </div>
+
+  <div class="row" *ngIf="data.normalizedBuyerRatio">
+    <span class="label">Buyer Ratio Norm.:</span>
+    <span class="data">{{ data.normalizedBuyerRatio }}</span>
+  </div>
+
+  <div class="row" *ngIf="data.normalizedVolumeDelta">
+    <span class="label">Volume Delta Norm.:</span>
+    <span class="data">{{ data.normalizedVolumeDelta }}</span>
+  </div>
+
+  <div class="row" *ngIf="data.normalizedPerpSpotDiff">
+    <span class="label">Perp Spot Diff Norm.:</span>
+    <span class="data">{{ data.normalizedPerpSpotDiff }}</span>
+  </div>
+
+  <hr />
+
+  <!-- === Other Metrics (Changes & Raw) === -->
   <div class="row" *ngIf="data.fundingRateChange">
     <span class="label">FR Change:</span>
     <span class="data">{{ data.fundingRateChange }}%</span>
-  </div>
-
-  <!-- OPEN INTEREST -->
-  <div class="row" *ngIf="data.normalizedOpenInterest">
-    <span class="label">Norm OI:</span>
-    <span class="data">{{ data.normalizedOpenInterest }}%</span>
   </div>
 
   <div class="row" *ngIf="data.openInterestChange">
@@ -37,21 +69,9 @@
     <span class="data">{{ data.openInterestChange }}%</span>
   </div>
 
-  <!-- CLOSE PRICE -->
-  <div class="row" *ngIf="data.normalizedClosePrice">
-    <span class="label">Close Price Norm.:</span>
-    <span class="data">{{ data.normalizedClosePrice }}</span>
-  </div>
-
   <div class="row" *ngIf="data.closePriceChange">
     <span class="label">Close Price Change:</span>
     <span class="data">{{ data.closePriceChange }}%</span>
-  </div>
-
-  <!-- QUOTE VOLUME -->
-  <div class="row" *ngIf="data.normalizedQuoteVolume">
-    <span class="label">Quote Volume Norm.:</span>
-    <span class="data">{{ data.normalizedQuoteVolume }}</span>
   </div>
 
   <div class="row" *ngIf="data.quoteVolumeChange">
@@ -59,26 +79,9 @@
     <span class="data">{{ data.quoteVolumeChange }}%</span>
   </div>
 
-  <!-- BUYER RATIO -->
-  <div class="row" *ngIf="data.normalizedBuyerRatio">
-    <span class="label">Buyer Ratio Norm.:</span>
-    <span class="data">{{ data.normalizedBuyerRatio }}</span>
-  </div>
-
   <div class="row" *ngIf="data.buyerRatioChange">
     <span class="label">Buyer Ratio Change:</span>
     <span class="data">{{ data.buyerRatioChange }}%</span>
-  </div>
-
-  <!-- VOLUME DELTA -->
-  <div class="row" *ngIf="data.normalizedVolumeDelta">
-    <span class="label">Volume Delta Norm.:</span>
-    <span class="data">{{ data.normalizedVolumeDelta }}</span>
-  </div>
-
-  <div class="row" *ngIf="data.volumeDelta">
-    <span class="label">Volume Delta:</span>
-    <span class="data">{{ data.volumeDelta }}</span>
   </div>
 
   <div class="row" *ngIf="data.volumeDeltaChange">
@@ -86,29 +89,30 @@
     <span class="data">{{ data.volumeDeltaChange }}%</span>
   </div>
 
-  <!-- PERP SPOT DIFF -->
-  <div class="row" *ngIf="data.normalizedPerpSpotDiff">
-    <span class="label">Perp Spot Diff Norm.:</span>
-    <span class="data">{{ data.normalizedPerpSpotDiff }}</span>
-  </div>
+  <hr />
+
+
+  <!-- <div class="row" *ngIf="data.volumeDelta">
+    <span class="label">Volume Delta:</span>
+    <span class="data">{{ data.volumeDelta }}</span>
+  </div>    -->
 
   <div class="row" *ngIf="data.perpSpotDiff">
     <span class="label">Perp Spot Diff:</span>
     <span class="data">{{ data.perpSpotDiff }}%</span>
   </div>
 
+  <!-- === Exchange & External Links === -->
   <div class="tooltip-exchanges">
-    <!-- TRADING VIEW -->
     <a [href]="coinLinksService.tradingViewLink(data.symbol, data.exchanges)" target="_blank">
       <img src="assets/img/tv-white.png" alt="TradingView" class="tooltip-image" />
     </a>
-    <!-- COIN GLASS -->
     <a [href]="coinLinksService.coinglassLink(data.symbol, data.exchanges)" target="_blank">
       <img src="assets/img/coinglass-white.png" alt="Coinglass" class="tooltip-image" />
     </a>
 
     <div style="display: inline-block;" *ngFor="let exchange of data.exchanges">
-      <a [href]="coinLinksService.exchangeLink(data.symbol,exchange)" target="_blank">
+      <a [href]="coinLinksService.exchangeLink(data.symbol, exchange)" target="_blank">
         <img [src]="coinLinksService.exchangeLogoLink(exchange)" [alt]="exchange" class="tooltip-image" />
       </a>
     </div>

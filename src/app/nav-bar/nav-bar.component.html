@@ -1,20 +1,23 @@
 <mat-toolbar class="navbar-container">
 
   <button class="time-btn" matTooltipPosition="above" (click)="goToAdmin()">
-    <mat-icon style="cursor: pointer;" svgIcon="admin"></mat-icon>Admin
+    <mat-icon svgIcon="admin" class="icon-glow"></mat-icon>
+    <span class="link-text">Admin</span>
   </button>
 
   <button class="time-btn" (click)="goToPanel()">
-    <mat-icon style="cursor: pointer;" svgIcon="dashboard"></mat-icon>Panel
+    <mat-icon svgIcon="dashboard" class="icon-glow"></mat-icon>
+    <span class="link-text">Panel</span>
   </button>
 
   <button class="time-btn" (click)="goToCoins()">
-    <mat-icon style="cursor: pointer;" svgIcon="local-atm"></mat-icon>Coins
+    <mat-icon svgIcon="local-atm" class="icon-glow"></mat-icon>
+    <span class="link-text">Coins</span>
   </button>
 
   <button class="time-btn" (click)="goToMarketAnalyzer()">
-    <mat-icon style="cursor: pointer;" svgIcon="flowchart"></mat-icon>Market
-    Analyzer
+    <mat-icon svgIcon="flowchart" class="icon-glow"></mat-icon>
+    <span class="link-text">Market Analyzer</span>
   </button>
 
 </mat-toolbar>

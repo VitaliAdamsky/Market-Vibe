@@ -94,7 +94,8 @@ export class KlineMarketDataService {
           imageUrl: entry.imageUrl,
           colors: item.colors,
           symbol: entry.symbol,
-          exchanges: entry.exchanges, // ✅ Use correct field name
+          exchanges: entry.exchanges,
+          category: entry.category,
         };
       });
 

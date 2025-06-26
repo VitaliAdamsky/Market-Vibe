@@ -1,11 +1,12 @@
-import { OpenInterestComponent } from './../../open-interest/open-interest.component';
 export interface TableMetricItem {
+  symbol: string;
+  imageUrl?: string;
+  exchanges: string[];
+  category: string;
   openTime: number;
   closeTime: number;
   displayedColorValue: string;
   tooltipText: string;
-  imageUrl?: string;
-
   // Metric-specific values — only some will be used per view
   fundingRate?: number;
   fundingRateChange?: number | null;
@@ -41,8 +42,6 @@ export interface TableMetricItem {
     volumeDeltaChange?: string;
     perpSpotDiff?: string;
   };
-  symbol: string;
-  exchanges: string[];
 }
 
 export interface TableDataRow {
