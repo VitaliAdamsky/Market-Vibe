@@ -39,9 +39,14 @@ import { CoinMetricsComponent } from './coin-metrics.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CoinMetricsTabComponent } from './coin-metrics-tab/coin-metrics-tab.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { RollingVwapTabComponent } from './rolling-vwap-tab/rolling-vwap-tab.component';
 
 @NgModule({
-  declarations: [CoinMetricsComponent, CoinMetricsTabComponent],
+  declarations: [
+    CoinMetricsComponent,
+    CoinMetricsTabComponent,
+    RollingVwapTabComponent,
+  ],
   imports: [
     NgxEchartsModule.forRoot({ echarts }),
     CommonModule,

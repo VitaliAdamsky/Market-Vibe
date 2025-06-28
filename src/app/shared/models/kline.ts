@@ -2,6 +2,8 @@ export interface KlineDataItem {
   openTime: number;
   closeTime: number;
   closePrice: number;
+  lowPrice: number;
+  highPrice: number;
   quoteVolume: number;
   buyerRatio: number;
   volumeDelta: number;

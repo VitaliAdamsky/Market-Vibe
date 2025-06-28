@@ -31,5 +31,9 @@
       <ng-template mat-tab-label>Timerframe D</ng-template>
       <app-coin-metrics-tab [timeframe]="TF.D" [symbol]="coins[0].symbol"></app-coin-metrics-tab>
     </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>Rolling VWAP</ng-template>
+      <app-rolling-vwap-tab [symbol]="coins[0].symbol"></app-rolling-vwap-tab>
+    </mat-tab>
   </mat-tab-group>
 </div>
